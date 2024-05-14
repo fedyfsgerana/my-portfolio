@@ -525,46 +525,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image:url({{ asset('vendor/clyde') }}/images/work-5.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                        <span>Web Design</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image:url({{ asset('vendor/clyde') }}/images/work-6.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                        <span>Web Design</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image:url({{ asset('vendor/clyde') }}/images/work-7.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                        <span>Web Design</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image:url({{ asset('vendor/clyde') }}/images/work-8.jpg);">
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                        <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                        <span>Web Design</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -610,7 +570,6 @@
                         </div>
                     </div>
                 </form>
-
             </div>
 
             <div class="col-md-4 d-flex pl-md-5">
