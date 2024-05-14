@@ -477,7 +477,6 @@
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Contact us</span>
                 <h2 class="mb-4">Have a Project?</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
             </div>
         </div>
 
