@@ -14,21 +14,8 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ url('#home-section') }}"><span class="fa fa-chevron-right mr-2"></span>Home</a></li>
                         <li><a href="{{ url('#about-section') }}"><span class="fa fa-chevron-right mr-2"></span>About</a></li>
-                        <li><a href="{{ url('#services-section') }}"><span class="fa fa-chevron-right mr-2"></span>Services</a></li>
                         <li><a href="{{ url('#projects-section') }}"><span class="fa fa-chevron-right mr-2"></span>Projects</a></li>
                         <li><a href="{{ url('#contact-section') }}"><span class="fa fa-chevron-right mr-2"></span>Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Services</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url('#') }}"><span class="fa fa-chevron-right mr-2"></span>Web Design</a></li>
-                        <li><a href="{{ url('#') }}"><span class="fa fa-chevron-right mr-2"></span>Web Development</a></li>
-                        <li><a href="{{ url('#') }}"><span class="fa fa-chevron-right mr-2"></span>Business Strategy</a></li>
-                        <li><a href="{{ url('#') }}"><span class="fa fa-chevron-right mr-2"></span>Data Analysis</a></li>
-                        <li><a href="{{ url('#') }}"><span class="fa fa-chevron-right mr-2"></span>Graphic Design</a></li>
                     </ul>
                 </div>
             </div>
