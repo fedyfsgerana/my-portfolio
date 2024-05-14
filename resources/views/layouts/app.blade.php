@@ -26,7 +26,7 @@
         <div id="main" class="layout-horizontal">
             <header class="mb-5">
                 @include('layouts/navbar')
-                @include('layouts/content')
+                @yield('content')
             </header>
 
             @include('layouts/footer')
