@@ -117,9 +117,8 @@
                         <div class="col-md-12 heading-section ftco-animate">
                             <span class="subheading">My Intro</span>
                             <h2 class="mb-4" style="font-size: 34px; text-transform: capitalize;">About Me</h2>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                                into your mouth.</p>
+                            <p>Sebagai programmer dan desainer, saya menggabungkan kreativitas dan logika untuk
+                                menciptakan solusi inovatif dalam teknologi.</p>
 
                             <ul class="about-info mt-4 px-md-0 px-2">
                                 <li class="d-flex"><span>Name:</span> <span>Fedy Fs. Gerana</span></li>
@@ -621,8 +620,8 @@
                             <span class="fa fa-map-marker"></span>
                         </div>
                         <div class="text">
-                            <p><span>Address:</span> Desa Harapan Tani, Kab.
-                                Indragiri Hilir, Prov. Riau</p>
+                            <p><span>Address:</span> Desa Harapan Tani, Kabupaten
+                                Indragiri Hilir, Provinsi Riau</p>
                         </div>
                     </div>
                     <div class="dbox w-100 d-flex">
@@ -639,7 +638,9 @@
                             <span class="fa fa-paper-plane"></span>
                         </div>
                         <div class="text">
-                            <p><span>Email:</span> <a href="mailto:fedfg30@gmail.com">fedfg30@gmail.com</a></p>
+                            <p><span>Email:</span>
+                                <a href="mailto:fedfg30@gmail.com">fedfg30@gmail.com</a>
+                            </p>
                         </div>
                     </div>
                     <div class="dbox w-100 d-flex">
@@ -647,16 +648,15 @@
                             <span class="fa fa-globe"></span>
                         </div>
                         <div class="text">
-                            <p><span>Website</span> <a
-                                    href="https://youtube.com/@symphonymusic18?si=O5XfcwClAmJEK0uc">yoursite.com</a></p>
+                            <p><span>YouTube</span>
+                                <a href="https://youtube.com/@symphonymusic18?si=O5XfcwClAmJEK0uc">symphonymusic18</a>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <!-- <div id="map" class="map"></div> -->
             </div>
         </div>
     </div>
 </section>
-
 
 @endsection
