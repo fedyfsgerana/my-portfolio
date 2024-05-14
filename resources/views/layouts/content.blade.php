@@ -249,7 +249,7 @@
 
         <div class="row block-9">
             <div class="col-md-8">
-                <form action="{{ url('/contact') }}" class="bg-light p-4 p-md-5 contact-form">
+                <form action="#" class="bg-light p-4 p-md-5 contact-form">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
