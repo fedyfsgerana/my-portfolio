@@ -9,11 +9,11 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav nav ml-auto">
-                <li class="nav-item"><a href="{{ url('#home-section') }}" class="nav-link"><span>Home</span></a></li>
-                <li class="nav-item"><a href="{{ url('#about-section') }}" class="nav-link"><span>About</span></a></li>
-                <li class="nav-item"><a href="{{ url('#skills-section') }}" class="nav-link"><span>Skills</span></a></li>
-                <li class="nav-item"><a href="{{ url('#projects-section') }}" class="nav-link"><span>Projects</span></a></li>
-                <li class="nav-item"><a href="{{ url('#contact-section') }}" class="nav-link"><span>Contact</span></a></li>
+                <li class="nav-item"><a href="{{ url('') }}" class="nav-link"><span>Home</span></a></li>
+                <li class="nav-item"><a href="{{ url('about') }}" class="nav-link"><span>About</span></a></li>
+                <li class="nav-item"><a href="{{ url('skills') }}" class="nav-link"><span>Skills</span></a></li>
+                <li class="nav-item"><a href="{{ url('projects') }}" class="nav-link"><span>Projects</span></a></li>
+                <li class="nav-item"><a href="{{ url('contact') }}" class="nav-link"><span>Contact</span></a></li>
             </ul>
         </div>
     </div>
