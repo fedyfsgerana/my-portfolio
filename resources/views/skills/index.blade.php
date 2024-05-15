@@ -27,53 +27,6 @@ Skills
                 </div>
             </div>
 
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">JavaScript</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">PHP</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">CodeIgniter</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">Laravel</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">Microsoft Office</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">AutoCad</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">SketchUp</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">Fl Studio</h2>
-                </div>
-            </div>
         </div>
     </div>
 </section>

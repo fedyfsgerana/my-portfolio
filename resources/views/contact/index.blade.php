@@ -56,8 +56,9 @@ Contact
                             <span class="fa fa-map-marker"></span>
                         </div>
                         <div class="text">
-                            <p><span>Address:</span> Desa Harapan Tani, Kabupaten
-                                Indragiri Hilir, Provinsi Riau</p>
+                            <p>
+                                <span>Address:</span> <a href="https://www.google.com/maps/search/Desa+Harapan+Tani,+Kecamatan+Kempas,+Kabupaten+Indragiri+Hilir,+Provinsi+Riau" target="_blank">Desa Harapan Tani, Kecamatan Kempas, Kabupaten Indragiri Hilir, Provinsi Riau</a>
+                            </p>
                         </div>
                     </div>
                     <div class="dbox w-100 d-flex">
@@ -65,8 +66,9 @@ Contact
                             <span class="fa fa-phone"></span>
                         </div>
                         <div class="text">
-                            <p><span>Phone:</span> <a href="tel://1234567920">+62 822 6839
-                                    1862</a></p>
+                            <p>
+                                <span>Phone:</span> <a href="tel://+6282268391862">+62 822 6839 1862</a>
+                            </p>
                         </div>
                     </div>
                     <div class="dbox w-100 d-flex">
@@ -74,18 +76,7 @@ Contact
                             <span class="fa fa-paper-plane"></span>
                         </div>
                         <div class="text">
-                            <p><span>Email:</span>
-                                <a href="mailto:fedfg30@gmail.com">fedfg30@gmail.com</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="dbox w-100 d-flex">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="fa fa-globe"></span>
-                        </div>
-                        <div class="text">
-                            <p><span>YouTube</span>
-                                <a href="https://youtube.com/@symphonymusic18?si=O5XfcwClAmJEK0uc">symphonymusic18</a>
+                            <p><span>Email:</span> <a href="mailto:fedfg30@gmail.com">fedfg30@gmail.com</a>
                             </p>
                         </div>
                     </div>
