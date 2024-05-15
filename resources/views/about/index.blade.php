@@ -2,6 +2,10 @@
 
 @section('content')
 
+@section('title')
+About
+@endsection
+
 <section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="about-section">
     <div class="container">
         <div class="row d-flex no-gutters">

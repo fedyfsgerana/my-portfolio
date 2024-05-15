@@ -2,6 +2,10 @@
 
 @section('content')
 
+@section('title')
+Projects
+@endsection
+
 <section class="ftco-section ftco-project" id="projects-section">
     <div class="container-fluid px-md-4">
         <div class="row justify-content-center pb-5">

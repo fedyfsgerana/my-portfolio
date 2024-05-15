@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+@section('title')
+Home
+@endsection
+
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
         <div class="slider-item">
