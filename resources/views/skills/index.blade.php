@@ -15,15 +15,63 @@ Skills
             </div>
         </div>
         <div class="row progress-circle mb-5">
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">HTML</h2>
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">HTML</h2>
                 </div>
             </div>
 
-            <div class="col-lg-4 mb-4">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="h5 font-weight-bold text-center mb-4">CSS</h2>
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">CSS</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">PHP</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">JavaScript</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">CodeIgniter</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">Laravel</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">Microsoft Office</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">Fl Studio</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">AutoCad</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <div class="bg-white rounded-lg shadow p-2">
+                    <h2 class="h5 font-weight-bold text-center mb-2">SketchUp</h2>
                 </div>
             </div>
 
