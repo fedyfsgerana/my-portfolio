@@ -21,7 +21,7 @@ Home
                         data-scrollax=" properties: { translateY: '70%' }">
                         <div class="text">
                             <span class="subheading">Hello! My Name Is Fedy</span>
-                            <h1 class="mb-4 mt-3">Designer &amp; Developer</h1>
+                            <h1 class="mb-4 mt-3" style="color: #000000;">Designer &amp; Developer</h1>
                             <p><a href="#" class="btn btn-primary">Hire me</a> <a href="#"
                                     class="btn btn-primary btn-outline-primary">Download CV</a></p>
                         </div>
@@ -42,8 +42,8 @@ Home
                     <div class="one-forth d-flex align-items-center ftco-animate"
                         data-scrollax=" properties: { translateY: '70%' }">
                         <div class="text">
-                            <span class="subheading">We Design &amp; Developer</span>
-                            <h1 class="mb-4 mt-3">Hi, I am <span>Fedy</span></h1>
+                            <span class="subheading">I Design &amp; Developer</span>
+                            <h1 class="mb-4 mt-3" style="color: #000000;">Hi, I am <span>Fedy</span></h1>
                             <p><a href="#" class="btn btn-primary">Hire me</a> <a href="#"
                                     class="btn btn-primary btn-outline-primary">Download CV</a></p>
                         </div>
