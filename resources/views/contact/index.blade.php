@@ -67,10 +67,11 @@ Contact
                         </div>
                         <div class="text">
                             <p>
-                                <span>Address:</span> <a
-                                    href="https://www.google.com/maps/search/Desa+Harapan+Tani,+Kecamatan+Kempas,+Kabupaten+Indragiri+Hilir,+Provinsi+Riau"
+                                <span>Address:</span>
+                                <a href="https://www.google.com/maps/search/Desa+Harapan+Tani,+Kecamatan+Kempas,+Kabupaten+Indragiri+Hilir,+Provinsi+Riau"
                                     target="_blank">Desa Harapan Tani, Kecamatan Kempas, Kabupaten Indragiri Hilir,
-                                    Provinsi Riau</a>
+                                    Provinsi Riau
+                                </a>
                             </p>
                         </div>
                     </div>
