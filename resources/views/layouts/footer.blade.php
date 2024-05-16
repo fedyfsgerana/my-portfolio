@@ -45,7 +45,9 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <p>
-                    Copyright &copy;<script> document.write(new Date().getFullYear()); </script> All rights reserved | Fedy Fs. Gerana</a>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fedy Fs. Gerana | Made with
+                    <i class="fa fa-heart" aria-hidden="true"></i> by
+                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
                 </p>
             </div>
         </div>
