@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/clyde') }}/css/magnific-popup.css">
     <link rel="stylesheet" href="{{ asset('vendor/clyde') }}/css/flaticon.css">
     <link rel="stylesheet" href="{{ asset('vendor/clyde') }}/css/style.css">
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
