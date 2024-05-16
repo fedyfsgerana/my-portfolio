@@ -15,29 +15,39 @@ Contact
             </div>
         </div>
 
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+
         <div class="row block-9">
             <div class="col-md-8">
-                <form action="#" class="bg-light p-4 p-md-5 contact-form">
+                <form action="{{ route('send.your.email') }}" method="POST" class="bg-light p-4 p-md-5 contact-form">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Name">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Email">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Subject">
+                                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <textarea name="" id="" cols="30" rows="7" class="form-control"
-                                    placeholder="Message"></textarea>
+                                <textarea name="message" cols="30" rows="7" class="form-control" placeholder="Message"
+                                    required></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -57,7 +67,10 @@ Contact
                         </div>
                         <div class="text">
                             <p>
-                                <span>Address:</span> <a href="https://www.google.com/maps/search/Desa+Harapan+Tani,+Kecamatan+Kempas,+Kabupaten+Indragiri+Hilir,+Provinsi+Riau" target="_blank">Desa Harapan Tani, Kecamatan Kempas, Kabupaten Indragiri Hilir, Provinsi Riau</a>
+                                <span>Address:</span> <a
+                                    href="https://www.google.com/maps/search/Desa+Harapan+Tani,+Kecamatan+Kempas,+Kabupaten+Indragiri+Hilir,+Provinsi+Riau"
+                                    target="_blank">Desa Harapan Tani, Kecamatan Kempas, Kabupaten Indragiri Hilir,
+                                    Provinsi Riau</a>
                             </p>
                         </div>
                     </div>
