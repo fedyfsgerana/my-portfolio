@@ -17,7 +17,7 @@ Projects
         <div class="row">
             <div class="col-md-3">
                 <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image:url({{ asset('vendor/clyde') }}/images/work-1.jpg);">
+                    style="background-image:url({{ asset('vendor/clyde') }}/images/image_1.jpg);">
                     <div class="overlay"></div>
                     <div class="text text-center p-4">
                         <h3><a href="#">Build Manager</a></h3>
@@ -27,7 +27,7 @@ Projects
             </div>
             <div class="col-md-3">
                 <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"
-                    style="background-image:url({{ asset('vendor/clyde') }}/images/work-2.jpg);">
+                    style="background-image:url({{ asset('vendor/clyde') }}/images/image_2.jpg);">
                     <div class="overlay"></div>
                     <div class="text text-center p-4">
                         <h3><a href="#">Bookify</a></h3>
