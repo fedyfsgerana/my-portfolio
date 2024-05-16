@@ -24,4 +24,10 @@ Route::get('/contact', function () {
 });
 
 Route::post('/send-email', [MailController::class, 'index'])->name('send.email');
+
 Route::post('/send-your-email', [MailController::class, 'sendEmail'])->name('send.your.email');
+
+Route::get('/download-cv', function () {
+    $pathToFile = public_path('nama-file-pdf.pdf');
+    return response()->download($pathToFile);
+});

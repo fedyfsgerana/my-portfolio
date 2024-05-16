@@ -23,8 +23,8 @@ Home
                             <span class="subheading">Hello! My Name Is Fedy</span>
                             <h1 class="mb-4 mt-3" style="color: #000000;">Web Development &amp; Building Designer</h1>
                             <p>
-                                <a href="#" class="btn btn-primary">Hire me</a>
-                                <a href="#" class="btn btn-primary btn-outline-primary">Download CV</a>
+                                <a href="{{ url('about') }}" class="btn btn-primary">Hire me</a>
+                                <a href="{{ url('/cv.pdf') }}" class="btn btn-primary btn-outline-primary">Download CV</a>
                             </p>
                         </div>
                     </div>
