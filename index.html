@@ -27,18 +27,9 @@
           },
           colors: {
             stone: {
-              50: "#fafaf9",
-              100: "#f5f5f4",
-              150: "#efefed",
-              200: "#e7e5e4",
-              300: "#d6d3d1",
-              400: "#a8a29e",
-              500: "#78716c",
-              600: "#57534e",
-              700: "#44403c",
-              800: "#292524",
-              900: "#1c1917",
-              950: "#0c0a09",
+              50: "#fafaf9", 100: "#f5f5f4", 150: "#efefed", 200: "#e7e5e4",
+              300: "#d6d3d1", 400: "#a8a29e", 500: "#78716c", 600: "#57534e",
+              700: "#44403c", 800: "#292524", 900: "#1c1917", 950: "#0c0a09",
             },
           },
         },
@@ -49,6 +40,8 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- i18next CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c1917'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' fill='white'>FFG</text></svg>" />
   <link rel="stylesheet" href="styles.css" />
@@ -58,8 +51,9 @@
 
 <body>
   <div id="loader">
-    <div
-      style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;">
+    <div id="loader-text"
+      style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;"
+      data-i18n="loader_text">
       Memuat portofolio
     </div>
     <div class="loader-bar">
@@ -72,55 +66,71 @@
   <div id="progress-bar"></div>
   <div id="back-top"><i class="fas fa-arrow-up"></i></div>
 
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
   <nav id="navbar" class="fixed top-0 w-full z-50 backdrop-blur-lg border-b border-transparent">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 flex items-center justify-between h-14">
       <a href="#home" class="font-mono text-sm font-medium text-stone-900 tracking-wide flex items-center gap-1.5">
         <span>FFG</span><span class="text-stone-300">.</span>
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#tentang" class="nav-link flex items-center gap-1.5"><i class="fas fa-user text-xs"></i>Tentang</a>
-        <a href="#keahlian" class="nav-link flex items-center gap-1.5"><i class="fas fa-code text-xs"></i>Keahlian</a>
-        <a href="#proyek" class="nav-link flex items-center gap-1.5"><i class="fas fa-briefcase text-xs"></i>Proyek</a>
-        <a href="#kontak" class="nav-link flex items-center gap-1.5"><i class="fas fa-envelope text-xs"></i>Kontak</a>
+        <a href="#tentang" class="nav-link flex items-center gap-1.5"><i class="fas fa-user text-xs"></i><span
+            data-i18n="nav_tentang">Tentang</span></a>
+        <a href="#keahlian" class="nav-link flex items-center gap-1.5"><i class="fas fa-code text-xs"></i><span
+            data-i18n="nav_keahlian">Keahlian</span></a>
+        <a href="#proyek" class="nav-link flex items-center gap-1.5"><i class="fas fa-briefcase text-xs"></i><span
+            data-i18n="nav_proyek">Proyek</span></a>
+        <a href="#kontak" class="nav-link flex items-center gap-1.5"><i class="fas fa-envelope text-xs"></i><span
+            data-i18n="nav_kontak">Kontak</span></a>
       </div>
       <div class="flex items-center gap-3">
+
+        <!-- Language Switcher -->
+        <div id="lang-toggle" role="group" aria-label="Language switcher">
+          <button class="lang-btn active" data-lang="id" aria-label="Bahasa Indonesia" aria-pressed="true"
+            title="Indonesia">
+            ID
+          </button>
+          <button class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false" title="English">
+            EN
+          </button>
+        </div>
+
+        <!-- Theme Toggle -->
         <div id="theme-toggle" role="group">
-          <button class="theme-btn" data-mode="light" aria-label="Mode terang" title="Mode terang" aria-pressed="false">
-            <i class="fas fa-sun"></i>
-          </button>
-          <button class="theme-btn" data-mode="system" aria-label="Ikuti sistem" title="Sistem" aria-pressed="true">
-            <i class="fas fa-circle-half-stroke"></i>
-          </button>
-          <button class="theme-btn" data-mode="dark" aria-label="Mode gelap" title="Mode gelap" aria-pressed="false">
-            <i class="fas fa-moon"></i>
-          </button>
+          <button class="theme-btn" data-mode="light" aria-label="Mode terang" title="Mode terang"
+            aria-pressed="false"><i class="fas fa-sun"></i></button>
+          <button class="theme-btn" data-mode="system" aria-label="Ikuti sistem" title="Sistem" aria-pressed="true"><i
+              class="fas fa-circle-half-stroke"></i></button>
+          <button class="theme-btn" data-mode="dark" aria-label="Mode gelap" title="Mode gelap" aria-pressed="false"><i
+              class="fas fa-moon"></i></button>
         </div>
 
         <a href="#kontak"
           class="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium">
-          Hubungi Saya <i class="fas fa-arrow-right text-xs"></i>
+          <span data-i18n="nav_hubungi">Hubungi Saya</span> <i class="fas fa-arrow-right text-xs"></i>
         </a>
       </div>
     </div>
   </nav>
 
+  <!-- ── BOTTOM NAV ─────────────────────────────────────────── -->
   <nav id="bottom-nav" aria-label="Navigasi utama">
     <div class="bottom-nav-inner">
       <a href="#home" class="bottom-nav-item active" data-section="home">
         <div class="bottom-nav-icon"><i class="fas fa-house"></i></div>
-        <span class="bottom-nav-label">Beranda</span>
+        <span class="bottom-nav-label" data-i18n="bnav_beranda">Beranda</span>
       </a>
       <a href="#tentang" class="bottom-nav-item" data-section="tentang">
         <div class="bottom-nav-icon"><i class="fas fa-user"></i></div>
-        <span class="bottom-nav-label">Tentang</span>
+        <span class="bottom-nav-label" data-i18n="bnav_tentang">Tentang</span>
       </a>
       <a href="#keahlian" class="bottom-nav-item" data-section="keahlian">
         <div class="bottom-nav-icon"><i class="fas fa-code"></i></div>
-        <span class="bottom-nav-label">Keahlian</span>
+        <span class="bottom-nav-label" data-i18n="bnav_keahlian">Keahlian</span>
       </a>
       <a href="#proyek" class="bottom-nav-item" data-section="proyek">
         <div class="bottom-nav-icon"><i class="fas fa-briefcase"></i></div>
-        <span class="bottom-nav-label">Proyek</span>
+        <span class="bottom-nav-label" data-i18n="bnav_proyek">Proyek</span>
       </a>
       <div class="bottom-nav-item" style="cursor:default;">
         <div style="display:flex;gap:4px;align-items:center;padding:4px;">
@@ -131,31 +141,31 @@
           <button class="theme-dot" data-mode="dark" aria-label="Mode gelap" title="Gelap"><i class="fas fa-moon"
               style="font-size:0.6rem;"></i></button>
         </div>
-        <span class="bottom-nav-label">Tema</span>
+        <span class="bottom-nav-label" data-i18n="bnav_tema">Tema</span>
       </div>
     </div>
   </nav>
 
+  <!-- ── HERO ───────────────────────────────────────────────── -->
   <section id="home" class="min-h-screen flex items-center pt-14">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center py-20 lg:py-28">
         <div class="space-y-8">
           <div class="space-y-3">
-            <div class="section-label">Web Developer</div>
+            <div class="section-label" data-i18n="hero_role">Web Developer</div>
             <h1 class="text-5xl lg:text-6xl xl:text-[4.5rem] font-light leading-[1.05] text-stone-900 tracking-tight">
-              <div class="reveal-word"><span>Halo, saya</span></div>
+              <div class="reveal-word"><span data-i18n="hero_greeting">Halo, saya</span></div>
               <br />
-              <div class="reveal-word" style="transition-delay:0.08s">
-                <span><strong class="font-semibold tracking-tight">Fedy Fs.</strong></span>
-              </div>
+              <div class="reveal-word" style="transition-delay:0.08s"><span><strong
+                    class="font-semibold tracking-tight">Fedy Fs.</strong></span></div>
               <br />
-              <div class="reveal-word" style="transition-delay:0.16s">
-                <span><strong class="font-semibold">Gerana</strong></span>
-              </div>
+              <div class="reveal-word" style="transition-delay:0.16s"><span><strong
+                    class="font-semibold">Gerana</strong></span></div>
             </h1>
           </div>
           <p id="hero-desc" class="text-base lg:text-lg text-stone-500 leading-relaxed max-w-md font-light"
-            style="opacity:0;transition:opacity 0.7s ease,transform 0.7s ease;transition-delay:0.4s;">
+            style="opacity:0;transition:opacity 0.7s ease,transform 0.7s ease;transition-delay:0.4s;"
+            data-i18n="hero_desc">
             Saya seorang web developer yang mengerjakan proyek dari sisi tampilan hingga logika di baliknya — dengan
             fokus pada hasil yang bersih dan fungsional.
           </p>
@@ -163,16 +173,16 @@
             style="opacity:0;transition:opacity 0.7s ease;transition-delay:0.55s;">
             <a href="#proyek"
               class="px-6 py-3 bg-stone-900 text-white text-sm rounded-full hover:bg-stone-700 transition-colors font-medium inline-flex items-center gap-2">
-              <i class="fas fa-briefcase text-xs"></i>Lihat Karya Saya
+              <i class="fas fa-briefcase text-xs"></i><span data-i18n="hero_cta_proyek">Lihat Karya Saya</span>
             </a>
             <a href="#kontak"
               class="px-6 py-3 border border-stone-300 text-stone-700 text-sm rounded-full hover:bg-stone-100 transition-colors inline-flex items-center gap-2">
-              <i class="fas fa-envelope text-xs"></i>Hubungi Saya
+              <i class="fas fa-envelope text-xs"></i><span data-i18n="hero_cta_kontak">Hubungi Saya</span>
             </a>
           </div>
           <div id="hero-social" class="flex items-center gap-5"
             style="opacity:0;transition:opacity 0.7s ease;transition-delay:0.65s;">
-            <span class="num uppercase tracking-widest">Temukan saya</span>
+            <span class="num uppercase tracking-widest" data-i18n="hero_find">Temukan saya</span>
             <div class="h-px bg-stone-200 w-8"></div>
             <div class="flex gap-3">
               <a href="https://github.com" class="social-icon has-tooltip"><i class="fab fa-github"></i><span
@@ -199,15 +209,14 @@
                   <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 ping opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                 </div>
-                <span class="text-sm font-medium text-stone-700">Tersedia untuk proyek</span>
+                <span class="text-sm font-medium text-stone-700" data-i18n="hero_status">Tersedia untuk proyek</span>
               </div>
             </div>
             <div class="absolute -top-4 -right-4 bg-stone-900 text-white rounded-2xl px-4 py-3 shadow-xl z-10">
-              <div class="num text-stone-400 mb-0.5">Pengalaman</div>
-              <div class="text-xl font-semibold" style="font-family:'DM Mono',monospace">
-                2<span class="text-stone-400 text-base">+</span>
-              </div>
-              <div class="text-xs text-stone-400">tahun</div>
+              <div class="num text-stone-400 mb-0.5" data-i18n="hero_exp_label">Pengalaman</div>
+              <div class="text-xl font-semibold" style="font-family:'DM Mono',monospace">2<span
+                  class="text-stone-400 text-base">+</span></div>
+              <div class="text-xs text-stone-400" data-i18n="hero_exp_unit">tahun</div>
             </div>
           </div>
         </div>
@@ -216,27 +225,29 @@
       <div class="border-t border-stone-200 pt-10 pb-6 grid grid-cols-3 gap-8 fade-up">
         <div>
           <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="6">0</div>
-          <div class="text-sm text-stone-400 mt-1">Proyek selesai</div>
+          <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_proyek">Proyek selesai</div>
         </div>
         <div>
           <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="2">0</div>
-          <div class="text-sm text-stone-400 mt-1">Tahun pengalaman</div>
+          <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_tahun">Tahun pengalaman</div>
         </div>
         <div>
           <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="10">0</div>
-          <div class="text-sm text-stone-400 mt-1">Klien puas</div>
+          <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_klien">Klien puas</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── TENTANG ────────────────────────────────────────────── -->
   <section id="tentang" class="py-24 lg:py-32 bg-white">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         <div class="lg:col-span-5 fade-up">
-          <div class="section-label mb-4">Tentang Saya</div>
+          <div class="section-label mb-4" data-i18n="about_label">Tentang Saya</div>
           <h2 class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug mb-6">
-            Bekerja dengan baik,<br /><span class="font-light text-stone-600">dibaca dengan mudah</span>
+            <span data-i18n="about_heading">Bekerja dengan baik,</span><br />
+            <span class="font-light text-stone-600" data-i18n="about_heading_sub">dibaca dengan mudah</span>
           </h2>
           <div class="relative mt-8">
             <div class="absolute -inset-2 border border-stone-100 rounded-2xl"></div>
@@ -244,41 +255,40 @@
               class="relative w-full h-52 object-cover rounded-xl grayscale" alt="Workspace Fedy" />
             <div
               class="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 shadow-md border border-stone-100">
-              <div class="num text-stone-400 mb-0.5">Lokasi</div>
+              <div class="num text-stone-400 mb-0.5" data-i18n="contact_loc_label">Lokasi</div>
               <div class="text-sm font-medium text-stone-800 flex items-center gap-1.5">
                 <i class="fas fa-map-marker-alt text-xs text-stone-400"></i>
-                Riau, Indonesia
+                <span data-i18n="about_location">Riau, Indonesia</span>
               </div>
             </div>
           </div>
         </div>
         <div class="lg:col-span-7 space-y-6 fade-up" style="transition-delay:0.15s">
-          <p class="text-stone-600 leading-relaxed font-light text-lg">
+          <p class="text-stone-600 leading-relaxed font-light text-lg" data-i18n-html="about_p1">
             Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya mengerjakan proyek web
-            secara menyeluruh — merancang antarmuka yang nyaman dipakai sekaligus membangun backend yang stabil dan
-            mudah dirawat.
+            secara menyeluruh.
           </p>
-          <p class="text-stone-500 leading-relaxed font-light">
+          <p class="text-stone-500 leading-relaxed font-light" data-i18n="about_p2">
             Saya percaya kualitas kode terlihat bukan hanya saat pertama kali jalan, tapi saat proyek berkembang dan
             orang lain ikut terlibat.
           </p>
-          <p class="text-stone-500 leading-relaxed font-light">
-            Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, dan Laravel — dipilih sesuai kebutuhan
-            proyek, bukan sekadar kebiasaan.
+          <p class="text-stone-500 leading-relaxed font-light" data-i18n="about_p3">
+            Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, dan Laravel.
           </p>
           <div class="pt-2 flex flex-wrap gap-2">
-            <span class="tag">Pemecah Masalah</span><span class="tag">Berorientasi Detail</span>
-            <span class="tag">Pengembang Web</span><span class="tag">Konsisten &
-              Terstruktur</span>
+            <span class="tag" data-i18n="about_tag1">Pemecah Masalah</span>
+            <span class="tag" data-i18n="about_tag2">Berorientasi Detail</span>
+            <span class="tag" data-i18n="about_tag3">Pengembang Web</span>
+            <span class="tag" data-i18n="about_tag4">Konsisten & Terstruktur</span>
           </div>
           <div class="flex flex-wrap gap-3 pt-2">
             <a href="#"
               class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium">
-              <i class="fas fa-file-arrow-down text-xs"></i> Unduh CV
+              <i class="fas fa-file-arrow-down text-xs"></i> <span data-i18n="about_cv">Unduh CV</span>
             </a>
             <a href="#kontak"
               class="inline-flex items-center gap-2 px-5 py-2.5 border border-stone-300 text-stone-700 text-xs rounded-full hover:bg-stone-100 transition-colors font-medium">
-              <i class="fas fa-envelope text-xs"></i> Kontak Saya
+              <i class="fas fa-envelope text-xs"></i> <span data-i18n="about_contact">Kontak Saya</span>
             </a>
           </div>
         </div>
@@ -286,12 +296,14 @@
     </div>
   </section>
 
+  <!-- ── KEAHLIAN ───────────────────────────────────────────── -->
   <section id="keahlian" class="py-24 lg:py-32 bg-stone-50">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
       <div class="flex items-end justify-between mb-16 fade-up">
         <div>
-          <div class="section-label mb-4">Keahlian</div>
-          <h2 class="text-3xl lg:text-4xl font-light text-stone-900">Teknologi &amp; Stack</h2>
+          <div class="section-label mb-4" data-i18n="skill_label">Keahlian</div>
+          <h2 class="text-3xl lg:text-4xl font-light text-stone-900" data-i18n="skill_heading">Teknologi &amp; Stack
+          </h2>
         </div>
       </div>
 
@@ -305,11 +317,11 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Frontend -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up">
           <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center">
-              <i class="fas fa-layer-group text-stone-600 text-sm"></i>
-            </div>
+            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
+                class="fas fa-layer-group text-stone-600 text-sm"></i></div>
             <h3 class="font-medium text-stone-900">Frontend</h3>
             <span class="ml-auto num text-stone-300">01</span>
           </div>
@@ -393,12 +405,11 @@
           </div>
         </div>
 
+        <!-- Backend -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
           <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-content-center"
-              style="display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-server text-stone-600 text-sm"></i>
-            </div>
+            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
+                class="fas fa-server text-stone-600 text-sm"></i></div>
             <h3 class="font-medium text-stone-900">Backend</h3>
             <span class="ml-auto num text-stone-300">02</span>
           </div>
@@ -473,12 +484,11 @@
           </div>
         </div>
 
+        <!-- Database -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.15s">
           <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-content-center"
-              style="display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-database text-stone-600 text-sm"></i>
-            </div>
+            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
+                class="fas fa-database text-stone-600 text-sm"></i></div>
             <h3 class="font-medium text-stone-900">Database Layer</h3>
             <span class="ml-auto num text-stone-300">03</span>
           </div>
@@ -512,12 +522,11 @@
           </div>
         </div>
 
+        <!-- Dev & Production -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.2s">
           <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-content-center"
-              style="display:flex;align-items:center;justify-content:center;">
-              <i class="fas fa-rocket text-stone-600 text-sm"></i>
-            </div>
+            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
+                class="fas fa-rocket text-stone-600 text-sm"></i></div>
             <h3 class="font-medium text-stone-900">Dev &amp; Production</h3>
             <span class="ml-auto num text-stone-300">04</span>
           </div>
@@ -567,26 +576,28 @@
     </div>
   </section>
 
+  <!-- ── PROYEK ──────────────────────────────────────────────── -->
   <section id="proyek" class="py-24 lg:py-32 bg-white">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
       <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-16 fade-up">
         <div>
-          <div class="section-label mb-4">Karya Pilihan</div>
-          <h2 class="text-3xl lg:text-4xl font-light text-stone-900">Proyek Unggulan</h2>
+          <div class="section-label mb-4" data-i18n="project_label">Karya Pilihan</div>
+          <h2 class="text-3xl lg:text-4xl font-light text-stone-900" data-i18n="project_heading">Proyek Unggulan</h2>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button class="filter-btn active" data-filter="all">Semua</button>
-          <button class="filter-btn" data-filter="web">Aplikasi Web</button>
+          <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Semua</button>
+          <button class="filter-btn" data-filter="web" data-i18n="filter_web">Aplikasi Web</button>
         </div>
       </div>
 
       <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+        <!-- Card 1 -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Platform E-Commerce" />
+              alt="Project 1" />
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -597,25 +608,28 @@
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
             <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium">Aplikasi
-                Web</span></div>
+                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900">Platform E-Commerce</h3><span class="num">01</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj1_title">Platform E-Commerce</h3><span
+                class="num">01</span>
             </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4">Platform modern dengan pembayaran terintegrasi,
-              inventaris real-time, dan dashboard analitik lengkap.</p>
+            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj1_desc">Platform modern dengan
+              pembayaran terintegrasi, inventaris real-time, dan dashboard analitik lengkap.</p>
             <div class="flex flex-wrap gap-1.5"><span class="tag">React</span><span class="tag">Node.js</span><span
                 class="tag">PostgreSQL</span></div>
           </div>
         </div>
+
+        <!-- Card 2 -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.05s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Pelacak Kebugaran" />
+              alt="Project 2" />
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -626,25 +640,28 @@
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
             <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium">Aplikasi
-                Web</span></div>
+                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900">Pelacak Kebugaran</h3><span class="num">02</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj2_title">Pelacak Kebugaran</h3><span
+                class="num">02</span>
             </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4">Aplikasi web pelacakan latihan dengan dashboard
-              statistik personal dan progress harian.</p>
+            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj2_desc">Aplikasi web pelacakan latihan
+              dengan dashboard statistik personal dan progress harian.</p>
             <div class="flex flex-wrap gap-1.5"><span class="tag">Vue.js</span><span class="tag">Laravel</span><span
                 class="tag">PostgreSQL</span></div>
           </div>
         </div>
+
+        <!-- Card 3 -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.1s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="UI Dashboard Perbankan" />
+              alt="Project 3" />
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -655,25 +672,28 @@
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
             <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium">Aplikasi
-                Web</span></div>
+                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900">UI Dashboard Perbankan</h3><span class="num">03</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj3_title">UI Dashboard Perbankan</h3><span
+                class="num">03</span>
             </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4">Dashboard admin fintech dengan aksesibilitas tinggi,
-              sistem desain konsisten, dan laporan keuangan interaktif.</p>
+            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj3_desc">Dashboard admin fintech dengan
+              aksesibilitas tinggi, sistem desain konsisten, dan laporan keuangan interaktif.</p>
             <div class="flex flex-wrap gap-1.5"><span class="tag">React</span><span class="tag">Tailwind</span><span
                 class="tag">NestJS</span></div>
           </div>
         </div>
+
+        <!-- Card 4 -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.15s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Analitik Real-time" />
+              alt="Project 4" />
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -684,25 +704,28 @@
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
             <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium">Aplikasi
-                Web</span></div>
+                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900">Analitik Real-time</h3><span class="num">04</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj4_title">Analitik Real-time</h3><span
+                class="num">04</span>
             </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4">Dashboard intelijen bisnis dengan visualisasi data
-              interaktif dan pelaporan otomatis berbasis Vue.js.</p>
+            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj4_desc">Dashboard intelijen bisnis
+              dengan visualisasi data interaktif dan pelaporan otomatis berbasis Vue.js.</p>
             <div class="flex flex-wrap gap-1.5"><span class="tag">Vue.js</span><span class="tag">Express.js</span><span
                 class="tag">Redis</span></div>
           </div>
         </div>
+
+        <!-- Card 5 -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.2s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Sistem Manajemen Toko" />
+              alt="Project 5" />
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -713,25 +736,28 @@
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
             <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium">Aplikasi
-                Web</span></div>
+                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900">Sistem Manajemen Toko</h3><span class="num">05</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj5_title">Sistem Manajemen Toko</h3><span
+                class="num">05</span>
             </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4">Aplikasi manajemen inventaris dan penjualan toko
-              dengan laporan harian dan notifikasi stok otomatis.</p>
+            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj5_desc">Aplikasi manajemen inventaris
+              dan penjualan toko dengan laporan harian dan notifikasi stok otomatis.</p>
             <div class="flex flex-wrap gap-1.5"><span class="tag">Laravel</span><span class="tag">Filament</span><span
                 class="tag">PostgreSQL</span></div>
           </div>
         </div>
+
+        <!-- Card 6 -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.25s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Platform Belajar Online" />
+              alt="Project 6" />
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -742,15 +768,16 @@
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
             <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium">Aplikasi
-                Web</span></div>
+                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900">Platform Belajar Online</h3><span class="num">06</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj6_title">Platform Belajar Online</h3><span
+                class="num">06</span>
             </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4">LMS sederhana dengan manajemen kursus, quiz
-              interaktif, dan tracking progress siswa secara real-time.</p>
+            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj6_desc">LMS sederhana dengan manajemen
+              kursus, quiz interaktif, dan tracking progress siswa secara real-time.</p>
             <div class="flex flex-wrap gap-1.5"><span class="tag">Nuxt.js</span><span class="tag">NestJS</span><span
                 class="tag">Prisma</span></div>
           </div>
@@ -759,6 +786,7 @@
     </div>
   </section>
 
+  <!-- ── KONTAK ──────────────────────────────────────────────── -->
   <section id="kontak" class="py-24 lg:py-32 bg-stone-900 text-white relative overflow-hidden">
     <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none"
       style="background:radial-gradient(circle,#fff 0%,transparent 70%);transform:translate(30%,-30%);"></div>
@@ -768,12 +796,15 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
         <div class="space-y-8 fade-up">
           <div>
-            <div class="section-label mb-4" style="color:rgba(255,255,255,0.3)">Mari Berkolaborasi</div>
-            <h2 class="text-3xl lg:text-5xl font-light text-white leading-tight">Punya proyek<br /><span
-                class="font-light text-stone-300">yang ingin diwujudkan?</span></h2>
+            <div class="section-label mb-4" style="color:rgba(255,255,255,0.3)" data-i18n="contact_label">Mari
+              Berkolaborasi</div>
+            <h2 class="text-3xl lg:text-5xl font-light text-white leading-tight">
+              <span data-i18n="contact_heading">Punya proyek</span><br />
+              <span class="font-light text-stone-300" data-i18n="contact_heading_sub">yang ingin diwujudkan?</span>
+            </h2>
           </div>
-          <p class="text-stone-400 font-light leading-relaxed">Saya terbuka untuk kolaborasi maupun freelance — kirimkan
-            pesan dan kita bisa mulai dari sana.</p>
+          <p class="text-stone-400 font-light leading-relaxed" data-i18n="contact_desc">Saya terbuka untuk kolaborasi
+            maupun freelance — kirimkan pesan dan kita bisa mulai dari sana.</p>
           <div class="space-y-4">
             <div class="flex items-center gap-4">
               <div
@@ -781,8 +812,8 @@
                 <i class="fas fa-envelope text-stone-400 text-xs"></i>
               </div>
               <div>
-                <div class="num text-stone-500 mb-0.5">Email</div><span
-                  class="text-stone-300 text-sm">fedfg30@gmail.com</span>
+                <div class="num text-stone-500 mb-0.5" data-i18n="contact_email_label">Email</div>
+                <span class="text-stone-300 text-sm">fedfg30@gmail.com</span>
               </div>
             </div>
             <div class="flex items-center gap-4">
@@ -791,8 +822,8 @@
                 <i class="fas fa-phone text-stone-400 text-xs"></i>
               </div>
               <div>
-                <div class="num text-stone-500 mb-0.5">Telepon</div><span class="text-stone-300 text-sm">+62
-                  822-6839-1862</span>
+                <div class="num text-stone-500 mb-0.5" data-i18n="contact_phone_label">Telepon</div>
+                <span class="text-stone-300 text-sm">+62 822-6839-1862</span>
               </div>
             </div>
             <div class="flex items-center gap-4">
@@ -801,8 +832,8 @@
                 <i class="fas fa-map-marker-alt text-stone-400 text-xs"></i>
               </div>
               <div>
-                <div class="num text-stone-500 mb-0.5">Lokasi</div><span class="text-stone-300 text-sm">Riau,
-                  Indonesia</span>
+                <div class="num text-stone-500 mb-0.5" data-i18n="contact_loc_label">Lokasi</div>
+                <span class="text-stone-300 text-sm" data-i18n="contact_loc_val">Riau, Indonesia</span>
               </div>
             </div>
           </div>
@@ -818,41 +849,45 @@
                 class="fab fa-instagram text-sm"></i><span class="tooltip">Instagram</span></a>
           </div>
           <div class="border border-stone-700 rounded-2xl p-5 bg-stone-800/50">
-            <div class="num text-stone-500 mb-2">Waktu respons rata-rata</div>
+            <div class="num text-stone-500 mb-2" data-i18n="contact_response">Waktu respons rata-rata</div>
             <div class="flex items-center gap-3">
               <div class="text-2xl font-mono font-semibold text-white">&lt; 24</div>
-              <div class="text-stone-400 text-sm">jam pada hari kerja</div>
+              <div class="text-stone-400 text-sm" data-i18n="contact_response_unit">jam pada hari kerja</div>
             </div>
           </div>
         </div>
 
         <div class="fade-up" style="transition-delay:0.15s">
           <div class="bg-stone-800 rounded-2xl p-8 border border-stone-700">
-            <div class="num text-stone-500 mb-6">Kirim pesan</div>
+            <div class="num text-stone-500 mb-6" data-i18n="form_send_label">Kirim pesan</div>
             <form id="contact-form" class="space-y-5" novalidate>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div class="form-field">
-                  <label>Nama</label>
-                  <input type="text" name="name" required placeholder="Nama lengkap Anda" />
-                  <div class="text-xs text-red-400 mt-1 hidden err-name">Mohon isi nama Anda.</div>
+                  <label data-i18n="form_name">Nama</label>
+                  <input type="text" name="name" required data-i18n-ph="form_name_ph" placeholder="Nama lengkap Anda" />
+                  <div class="text-xs text-red-400 mt-1 hidden err-name" data-i18n="form_err_name">Mohon isi nama Anda.
+                  </div>
                 </div>
                 <div class="form-field">
-                  <label>Email</label>
-                  <input type="email" name="email" required placeholder="email@anda.com" />
-                  <div class="text-xs text-red-400 mt-1 hidden err-email">Mohon isi email yang valid.</div>
+                  <label data-i18n="form_email">Email</label>
+                  <input type="email" name="email" required data-i18n-ph="form_email_ph" placeholder="email@anda.com" />
+                  <div class="text-xs text-red-400 mt-1 hidden err-email" data-i18n="form_err_email">Mohon isi email
+                    yang valid.</div>
                 </div>
               </div>
               <div class="form-field">
-                <label>Subjek</label>
-                <input type="text" name="subject" required placeholder="Diskusi proyek / Konsultasi" />
+                <label data-i18n="form_subject">Subjek</label>
+                <input type="text" name="subject" required data-i18n-ph="form_subject_ph"
+                  placeholder="Diskusi proyek / Konsultasi" />
               </div>
               <div class="form-field">
-                <label>Pesan</label>
-                <textarea name="message" rows="5" required placeholder="Ceritakan tentang proyek Anda..."></textarea>
+                <label data-i18n="form_message">Pesan</label>
+                <textarea name="message" rows="5" required data-i18n-ph="form_message_ph"
+                  placeholder="Ceritakan tentang proyek Anda..."></textarea>
               </div>
               <button type="submit" id="submit-btn"
                 class="w-full py-3.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 group">
-                <span id="btn-text">Kirim Pesan</span>
+                <span id="btn-text" data-i18n="form_submit">Kirim Pesan</span>
                 <i id="btn-icon" class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
               </button>
             </form>
@@ -867,11 +902,14 @@
   <footer class="bg-stone-950 text-stone-500 py-8">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
       <span class="font-mono text-stone-600 text-sm">FFG<span class="text-stone-700">.</span></span>
-      <span>&copy; <span id="footer-year"></span> Fedy Fs. Gerana. Dibuat dengan perhatian pada detail.</span>
+      <span>&copy; <span id="footer-year"></span> Fedy Fs. Gerana. <span data-i18n="footer_credit">Dibuat dengan
+          perhatian pada detail.</span></span>
       <span></span>
     </div>
   </footer>
 
+  <!-- Load translations then main script -->
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 

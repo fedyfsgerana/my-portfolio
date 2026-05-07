@@ -1,3 +1,8 @@
+// ============================================================
+//  script.js  —  Main script + i18next language switching
+// ============================================================
+
+// ── Theme (runs immediately, before DOMContentLoaded) ───────
 (function initTheme() {
   const saved = localStorage.getItem("theme") || "system";
   applyTheme(saved);
@@ -40,6 +45,7 @@ window
     if (saved === "system") applyTheme("system");
   });
 
+// ── Loader ───────────────────────────────────────────────────
 const loader = document.getElementById("loader");
 const loaderPct = document.getElementById("loader-pct");
 
@@ -57,13 +63,14 @@ window.addEventListener("load", () => {
   setTimeout(() => loader.classList.add("hidden"), 1900);
 });
 
+// ── Progress bar ─────────────────────────────────────────────
 const progressBar = document.getElementById("progress-bar");
-
 window.addEventListener("scroll", () => {
   const total = document.documentElement.scrollHeight - window.innerHeight;
   progressBar.style.width = (window.scrollY / total) * 100 + "%";
 });
 
+// ── Navbar scroll ────────────────────────────────────────────
 const navbar = document.getElementById("navbar");
 const backTop = document.getElementById("back-top");
 
@@ -72,9 +79,9 @@ window.addEventListener("scroll", () => {
   if (backTop) backTop.classList.toggle("visible", window.scrollY > 400);
 });
 
+// back-to-top light mode when over dark sections
 if (backTop) {
   const darkSections = document.querySelectorAll("#kontak, footer");
-
   const btnObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -95,21 +102,19 @@ if (backTop) {
       rootMargin: `-${window.innerHeight - 72}px 0px -28px -${window.innerWidth - 72}px`,
     },
   );
-
   darkSections.forEach((sec) => btnObserver.observe(sec));
-}
-
-if (backTop) {
   backTop.addEventListener("click", () =>
     window.scrollTo({ top: 0, behavior: "smooth" }),
   );
 }
 
+// ── Theme button clicks ───────────────────────────────────────
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-mode]");
   if (btn) setTheme(btn.dataset.mode);
 });
 
+// ── Active nav highlight ──────────────────────────────────────
 const navLinks = document.querySelectorAll(".nav-link");
 
 const sectionObserver = new IntersectionObserver(
@@ -132,6 +137,7 @@ document
   .querySelectorAll("section[id]")
   .forEach((s) => sectionObserver.observe(s));
 
+// ── Bottom nav ────────────────────────────────────────────────
 const bottomNavItems = document.querySelectorAll(".bottom-nav-item");
 
 function updateBottomNav(sectionId) {
@@ -154,16 +160,15 @@ bottomNavItems.forEach((item) => {
   });
 });
 
+// ── Hero reveal ───────────────────────────────────────────────
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.querySelectorAll(".reveal-word").forEach((word, i) => {
       setTimeout(() => word.classList.add("visible"), i * 100);
     });
-
     const heroDesc = document.getElementById("hero-desc");
     const heroBtns = document.getElementById("hero-btns");
     const heroSocial = document.getElementById("hero-social");
-
     setTimeout(() => {
       heroDesc.style.opacity = "1";
       heroDesc.style.transform = "";
@@ -179,6 +184,7 @@ window.addEventListener("load", () => {
   }, 2000);
 });
 
+// ── Fade-up observer ─────────────────────────────────────────
 const fadeObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -190,31 +196,9 @@ const fadeObserver = new IntersectionObserver(
   },
   { threshold: 0.12 },
 );
-
 document.querySelectorAll(".fade-up").forEach((el) => fadeObserver.observe(el));
 
-const skillObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll(".skill-item").forEach((item, i) => {
-          const fill = item.querySelector(".skill-fill");
-          const width = item.dataset.width;
-          setTimeout(() => {
-            fill.style.width = width + "%";
-          }, i * 120);
-        });
-        skillObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.3 },
-);
-
-document
-  .querySelectorAll("#keahlian .card-lift")
-  .forEach((card) => skillObserver.observe(card));
-
+// ── Counter ───────────────────────────────────────────────────
 const counterObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -238,11 +222,33 @@ const counterObserver = new IntersectionObserver(
   },
   { threshold: 0.5 },
 );
-
 document.querySelectorAll(".fade-up").forEach((el) => {
   if (el.querySelector(".counter")) counterObserver.observe(el);
 });
 
+// ── Skill bar observer ────────────────────────────────────────
+const skillObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll(".skill-item").forEach((item, i) => {
+          const fill = item.querySelector(".skill-fill");
+          const width = item.dataset.width;
+          setTimeout(() => {
+            fill.style.width = width + "%";
+          }, i * 120);
+        });
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+document
+  .querySelectorAll("#keahlian .card-lift")
+  .forEach((card) => skillObserver.observe(card));
+
+// ── Project filter ────────────────────────────────────────────
 document.querySelectorAll(".filter-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
     document
@@ -262,18 +268,16 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
   });
 });
 
+// ── Hero photo fallback ───────────────────────────────────────
 (function () {
   const img = document.getElementById("hero-photo");
   if (!img) return;
   img.addEventListener("error", function () {
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="300" height="380" viewBox="0 0 300 380">
-        <defs>
-          <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#292524"/>
-            <stop offset="100%" style="stop-color:#44403c"/>
-          </linearGradient>
-        </defs>
+        <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#292524"/><stop offset="100%" style="stop-color:#44403c"/>
+        </linearGradient></defs>
         <rect width="300" height="380" fill="url(#bg)"/>
         <circle cx="150" cy="145" r="60" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
         <circle cx="150" cy="145" r="80" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
@@ -287,16 +291,15 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
               font-family="'DM Sans',sans-serif" font-size="11"
               fill="rgba(255,255,255,0.2)" letter-spacing="2">WEB DEVELOPER</text>
         <line x1="100" y1="215" x2="200" y2="215" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      </svg>
-    `.trim();
+      </svg>`.trim();
     const blob = new Blob([svg], { type: "image/svg+xml" });
     this.src = URL.createObjectURL(blob);
     this.onerror = null;
   });
 })();
 
+// ── Contact form ─────────────────────────────────────────────
 const contactForm = document.getElementById("contact-form");
-
 contactForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -310,7 +313,7 @@ contactForm.addEventListener("submit", function (e) {
   errEmail.classList.toggle("hidden", emailRegex.test(email));
 
   if (!name || !emailRegex.test(email)) {
-    showToast("Mohon lengkapi form dengan benar.", "error");
+    showToast(i18next.t("toast_error"), "error");
     return;
   }
 
@@ -319,23 +322,20 @@ contactForm.addEventListener("submit", function (e) {
   const btnIcon = document.getElementById("btn-icon");
 
   btn.disabled = true;
-  btnText.textContent = "Mengirim...";
+  btnText.textContent = i18next.t("form_sending");
   btnIcon.className = "fas fa-spinner fa-spin text-xs";
 
   setTimeout(() => {
     this.reset();
     btn.disabled = false;
-    btnText.textContent = "Kirim Pesan";
+    btnText.textContent = i18next.t("form_submit");
     btnIcon.className =
       "fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1";
-
-    showToast(
-      "Pesan berhasil terkirim! Saya akan segera menghubungi Anda.",
-      "success",
-    );
+    showToast(i18next.t("toast_success"), "success");
   }, 1500);
 });
 
+// ── Ticker ────────────────────────────────────────────────────
 (function buildTicker() {
   const techs = [
     [
@@ -441,41 +441,31 @@ contactForm.addEventListener("submit", function (e) {
 
   function fillTrack(trackEl, items) {
     const frag = document.createDocumentFragment();
-    [...items, ...items].forEach(([label, svg]) => {
-      frag.appendChild(makePill(label, svg));
-    });
+    [...items, ...items].forEach(([label, svg]) =>
+      frag.appendChild(makePill(label, svg)),
+    );
     trackEl.appendChild(frag);
   }
 
   const half = Math.ceil(techs.length / 2);
-  const row1Items = techs.slice(0, half);
-  const row2Items = techs.slice(half);
-
   const track1 = document.getElementById("ticker-row-1");
   const track2 = document.getElementById("ticker-row-2");
-
-  if (track1) fillTrack(track1, row1Items);
-  if (track2) fillTrack(track2, row2Items);
+  if (track1) fillTrack(track1, techs.slice(0, half));
+  if (track2) fillTrack(track2, techs.slice(half));
 })();
 
+// ── Toast ─────────────────────────────────────────────────────
 function showToast(message, type = "success") {
   const container = document.getElementById("toast-container");
-
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
   toast.innerHTML = `
-    <div class="toast-icon">
-      <i class="fas ${type === "success" ? "fa-check" : "fa-xmark"}"></i>
-    </div>
-    <span>${message}</span>
-  `;
-
+    <div class="toast-icon"><i class="fas ${type === "success" ? "fa-check" : "fa-xmark"}"></i></div>
+    <span>${message}</span>`;
   container.appendChild(toast);
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => toast.classList.add("show"));
-  });
-
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => toast.classList.add("show")),
+  );
   setTimeout(() => {
     toast.classList.add("hide");
     toast.addEventListener("transitionend", () => toast.remove(), {
@@ -484,4 +474,120 @@ function showToast(message, type = "success") {
   }, 3500);
 }
 
+// ── Footer year ───────────────────────────────────────────────
 document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+// ════════════════════════════════════════════════════════════
+//  i18next — Language Switcher
+// ════════════════════════════════════════════════════════════
+
+/**
+ * All translatable DOM nodes are marked with data-i18n="key"
+ * or data-i18n-html="key" (for innerHTML with HTML tags).
+ * Placeholders use data-i18n-ph="key".
+ * The switcher button reads data-lang on the <html> element.
+ */
+
+const DEFAULT_LANG = "id";
+
+function detectLang() {
+  const saved = localStorage.getItem("lang");
+  if (saved === "id" || saved === "en") return saved;
+  // Fallback: browser language
+  const browser = (navigator.language || "id").slice(0, 2).toLowerCase();
+  return browser === "en" ? "en" : "id";
+}
+
+function applyTranslations(lang) {
+  const t = window.translations[lang];
+  if (!t) return;
+
+  // Plain text
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // Inner HTML (supports <strong> etc.)
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = el.dataset.i18nHtml;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Placeholders
+  document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+    const key = el.dataset.i18nPh;
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  // Aria-labels  (for accessibility)
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    const key = el.dataset.i18nAria;
+    if (t[key] !== undefined) el.setAttribute("aria-label", t[key]);
+  });
+
+  // Update html lang attribute & switcher button UI
+  document.documentElement.lang = lang;
+  updateLangUI(lang);
+}
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  // i18next changeLanguage
+  i18next.changeLanguage(lang, () => {
+    applyTranslations(lang);
+  });
+}
+
+function updateLangUI(lang) {
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    const isActive = btn.dataset.lang === lang;
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+// Init i18next with bundled resources
+function initI18n() {
+  const lang = detectLang();
+
+  i18next.init(
+    {
+      lng: lang,
+      fallbackLng: DEFAULT_LANG,
+      resources: {
+        id: { translation: window.translations.id },
+        en: { translation: window.translations.en },
+      },
+      interpolation: { escapeValue: false },
+    },
+    (err) => {
+      if (err) console.warn("i18next init error:", err);
+      applyTranslations(lang);
+    },
+  );
+}
+
+// Wait for i18next CDN script to load, then init
+if (typeof i18next !== "undefined") {
+  initI18n();
+} else {
+  document.addEventListener("DOMContentLoaded", () => {
+    // Small retry in case CDN is slow
+    const check = setInterval(() => {
+      if (typeof i18next !== "undefined") {
+        clearInterval(check);
+        initI18n();
+      }
+    }, 50);
+  });
+}
+
+// Lang button click handler (delegated)
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".lang-btn");
+  if (btn && btn.dataset.lang) {
+    setLang(btn.dataset.lang);
+  }
+});

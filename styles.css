@@ -833,3 +833,47 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   background: #ef4444;
   color: white;
 }
+
+/* di dalam styles.css, tepat setelah block .theme-btn.active */
+
+#lang-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 1px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-faint);
+  font-size: 0.6rem;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+.lang-btn:hover {
+  color: var(--ink-soft);
+  transform: scale(1.1);
+}
+
+.lang-btn.active {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 1px 4px var(--shadow);
+}
