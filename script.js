@@ -483,3 +483,5 @@ function showToast(message, type = "success") {
     });
   }, 3500);
 }
+
+document.getElementById("footer-year").textContent = new Date().getFullYear();
