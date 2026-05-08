@@ -460,15 +460,26 @@ contactForm.addEventListener("submit", function (e) {
   btnText.textContent = i18next.t("form_sending");
   btnIcon.className = "fas fa-spinner fa-spin text-xs";
 
-  // Simulasi pengiriman 1.5 detik, lalu reset form
-  setTimeout(() => {
-    this.reset();
-    btn.disabled = false;
-    btnText.textContent = i18next.t("form_submit");
-    btnIcon.className =
-      "fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1";
-    showToast(i18next.t("toast_success"), "success");
-  }, 1500);
+  // Kirim form via EmailJS
+  emailjs
+    .sendForm("service_tvkgqua", "template_avol9zm", this)
+    .then(() => {
+      // Sukses: reset form & tampilkan toast berhasil
+      this.reset();
+      btn.disabled = false;
+      btnText.textContent = i18next.t("form_submit");
+      btnIcon.className =
+        "fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1";
+      showToast(i18next.t("toast_success"), "success");
+    })
+    .catch(() => {
+      // Gagal: kembalikan tombol & tampilkan toast error
+      btn.disabled = false;
+      btnText.textContent = i18next.t("form_submit");
+      btnIcon.className =
+        "fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1";
+      showToast(i18next.t("toast_error"), "error");
+    });
 });
 
 // ============================================================
