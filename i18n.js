@@ -155,7 +155,7 @@ window.translations = {
     hero_role: "Web Developer",
     hero_greeting: "Hi, I'm",
     hero_desc:
-      "I'm a web developer who handles projects from the visual layer to the logic behind it — focused on clean, functional results.",
+      "I build web projects from the interface down to the backend — focused on clean, functional results.",
     hero_cta_proyek: "View My Work",
     hero_cta_kontak: "Contact Me",
     hero_find: "Find me on",
@@ -168,12 +168,12 @@ window.translations = {
 
     // ── About ─────────────────────────────────────────────────
     about_label: "About Me",
-    about_heading: "Built to work well,",
+    about_heading: "Works well,",
     about_heading_sub: "easy to read",
     about_location: "Riau, Indonesia",
     // HTML diperbolehkan karena ada tag <strong>
     about_p1:
-      'For over <strong class="font-medium text-stone-800">2 years</strong> I\'ve been working on web projects end-to-end — designing interfaces that are pleasant to use while building backends that are stable and easy to maintain.',
+      'For over <strong class="font-medium text-stone-800">2 years</strong> I\'ve been building web projects end-to-end — crafting intuitive interfaces and stable, maintainable backends.',
     about_p2:
       "I believe code quality shows not just when it first runs, but as the project grows and others get involved.",
     about_p3:
@@ -224,7 +224,7 @@ window.translations = {
     contact_loc_label: "Location",
     contact_loc_val: "Riau, Indonesia",
     contact_response: "Average response time",
-    contact_response_unit: "hours on working days",
+    contact_response_unit: "hours on weekdays",
 
     // ── Form ──────────────────────────────────────────────────
     form_send_label: "Send a message",
