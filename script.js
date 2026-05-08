@@ -177,7 +177,6 @@ const sectionObserver = new IntersectionObserver(
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
 
-      // Hapus semua aktif dulu, lalu tandai yang sesuai
       navLinks.forEach((l) => l.classList.remove("active"));
       const activeLink = document.querySelector(
         `.nav-link[href="#${entry.target.id}"]`,
@@ -187,7 +186,10 @@ const sectionObserver = new IntersectionObserver(
       updateBottomNav(entry.target.id);
     });
   },
-  { threshold: 0.4 },
+  {
+    rootMargin: "-40% 0px -55% 0px",
+    threshold: 0,
+  },
 );
 
 document
