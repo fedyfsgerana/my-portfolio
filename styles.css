@@ -877,3 +877,98 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   color: var(--ink);
   box-shadow: 0 1px 4px var(--shadow);
 }
+
+/* ── Dark mode fixes ─────────────────────────────────────── */
+
+/* About section */
+.dark #tentang {
+  background: var(--warm) !important;
+}
+
+/* Skills section */
+.dark #keahlian {
+  background: var(--cream) !important;
+}
+
+/* Projects section */
+.dark #proyek {
+  background: var(--warm) !important;
+}
+
+/* Kontak section — paksa tetap gelap pekat */
+.dark #kontak {
+  background: #080705 !important;
+}
+
+/* Kontak section — hilangkan efek hover pada input & textarea */
+.dark #kontak .form-field input:hover,
+.dark #kontak .form-field textarea:hover {
+  border-color: var(--contact-input-border) !important;
+  background: var(--contact-input-bg) !important;
+}
+
+/* Photo card status badge dark fix */
+.dark #photo-card .absolute.-bottom-5 {
+  background: var(--warm-2) !important;
+  border-color: var(--border) !important;
+}
+
+/* Nav link active underline di dark mode */
+.dark .nav-link::after {
+  background: var(--ink);
+}
+
+/* Filter button active di dark mode */
+.dark .filter-btn.active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* Tag di dark mode */
+.dark .tag {
+  background: var(--warm-2);
+  border-color: var(--border-2);
+  color: var(--ink-soft);
+}
+
+/* Tech badge di dark mode */
+.dark .tech-badge {
+  background: var(--warm-2);
+  border-color: var(--border-2);
+  color: var(--ink-soft);
+}
+
+/* Ticker pill di dark mode */
+.dark .ticker-pill {
+  background: var(--warm-2);
+  border-color: var(--border-2);
+  color: var(--ink-soft);
+}
+
+/* Card lift border di dark mode */
+.dark .card-lift {
+  border-color: var(--border) !important;
+}
+
+/* Social icon di dark mode */
+.dark .social-icon {
+  border-color: var(--border);
+  color: var(--ink-faint);
+}
+.dark .social-icon:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: var(--warm-2);
+}
+
+/* Kontak — response box */
+.dark #kontak .border-stone-700 {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+/* Submit button — jangan berubah saat hover di kontak */
+#submit-btn:hover {
+  background: var(--contact-submit-hover) !important;
+  transform: none !important;
+}
