@@ -526,6 +526,12 @@ function applyTranslations(lang) {
     if (t[key] !== undefined) el.setAttribute("aria-label", t[key]);
   });
 
+  // Titles
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const key = el.dataset.i18nTitle;
+    if (t[key] !== undefined) el.title = t[key];
+  });
+
   // Update html lang attribute & switcher button UI
   document.documentElement.lang = lang;
   updateLangUI(lang);

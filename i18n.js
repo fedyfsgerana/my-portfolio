@@ -113,6 +113,9 @@ window.translations = {
 
     // LOADER
     loader_text: "Memuat portofolio",
+    theme_light: "Mode terang",
+    theme_system: "Ikuti sistem",
+    theme_dark: "Mode gelap",
   },
 
   en: {
@@ -224,5 +227,8 @@ window.translations = {
 
     // LOADER
     loader_text: "Loading portfolio",
+    theme_light: "Light mode",
+    theme_system: "System",
+    theme_dark: "Dark mode",
   },
 };
