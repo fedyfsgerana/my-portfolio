@@ -1,24 +1,36 @@
 // ============================================================
-//  i18n.js  —  Translations for ID & EN
+//  i18n.js — Data terjemahan Bahasa Indonesia & English
+//
+//  Cara pakai di HTML:
+//    data-i18n="key"       → textContent biasa
+//    data-i18n-html="key"  → innerHTML (boleh ada tag HTML)
+//    data-i18n-ph="key"    → placeholder input/textarea
+//    data-i18n-aria="key"  → aria-label (aksesibilitas)
+//    data-i18n-title="key" → title tooltip
+//
+//  Diakses di script.js via: window.translations["id"] / ["en"]
 // ============================================================
 
 window.translations = {
+  // ==========================================================
+  //  BAHASA INDONESIA
+  // ==========================================================
   id: {
-    // NAV
+    // ── Navbar ────────────────────────────────────────────────
     nav_tentang: "Tentang",
     nav_keahlian: "Keahlian",
     nav_proyek: "Proyek",
     nav_kontak: "Kontak",
     nav_hubungi: "Hubungi Saya",
 
-    // BOTTOM NAV
+    // ── Bottom Nav (Mobile) ───────────────────────────────────
     bnav_beranda: "Beranda",
     bnav_tentang: "Tentang",
     bnav_keahlian: "Keahlian",
     bnav_proyek: "Proyek",
     bnav_tema: "Tema",
 
-    // HERO
+    // ── Hero ──────────────────────────────────────────────────
     hero_role: "Web Developer",
     hero_greeting: "Halo, saya",
     hero_desc:
@@ -33,11 +45,12 @@ window.translations = {
     hero_stat_tahun: "Tahun pengalaman",
     hero_stat_klien: "Klien puas",
 
-    // TENTANG
+    // ── Tentang ───────────────────────────────────────────────
     about_label: "Tentang Saya",
     about_heading: "Bekerja dengan baik,",
     about_heading_sub: "dibaca dengan mudah",
     about_location: "Riau, Indonesia",
+    // HTML diperbolehkan karena ada tag <strong>
     about_p1:
       'Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya mengerjakan proyek web secara menyeluruh — merancang antarmuka yang nyaman dipakai sekaligus membangun backend yang stabil dan mudah dirawat.',
     about_p2:
@@ -51,11 +64,11 @@ window.translations = {
     about_cv: "Unduh CV",
     about_contact: "Kontak Saya",
 
-    // KEAHLIAN
+    // ── Keahlian ──────────────────────────────────────────────
     skill_label: "Keahlian",
     skill_heading: "Teknologi & Stack",
 
-    // PROYEK
+    // ── Proyek ────────────────────────────────────────────────
     project_label: "Karya Pilihan",
     project_heading: "Proyek Unggulan",
     filter_all: "Semua",
@@ -79,7 +92,7 @@ window.translations = {
     proj6_desc:
       "LMS sederhana dengan manajemen kursus, quiz interaktif, dan tracking progress siswa secara real-time.",
 
-    // KONTAK
+    // ── Kontak ────────────────────────────────────────────────
     contact_label: "Mari Berkolaborasi",
     contact_heading: "Punya proyek",
     contact_heading_sub: "yang ingin diwujudkan?",
@@ -91,6 +104,8 @@ window.translations = {
     contact_loc_val: "Riau, Indonesia",
     contact_response: "Waktu respons rata-rata",
     contact_response_unit: "jam pada hari kerja",
+
+    // ── Form ──────────────────────────────────────────────────
     form_send_label: "Kirim pesan",
     form_name: "Nama",
     form_name_ph: "Nama lengkap Anda",
@@ -104,36 +119,39 @@ window.translations = {
     form_sending: "Mengirim...",
     form_err_name: "Mohon isi nama Anda.",
     form_err_email: "Mohon isi email yang valid.",
+
+    // ── Toast ─────────────────────────────────────────────────
     toast_success:
       "Pesan berhasil terkirim! Saya akan segera menghubungi Anda.",
     toast_error: "Mohon lengkapi form dengan benar.",
 
-    // FOOTER
+    // ── Footer & Misc ─────────────────────────────────────────
     footer_credit: "Dibuat dengan perhatian pada detail.",
-
-    // LOADER
     loader_text: "Memuat portofolio",
     theme_light: "Mode terang",
     theme_system: "Sistem",
     theme_dark: "Mode gelap",
   },
 
+  // ==========================================================
+  //  ENGLISH
+  // ==========================================================
   en: {
-    // NAV
+    // ── Navbar ────────────────────────────────────────────────
     nav_tentang: "About",
     nav_keahlian: "Skills",
     nav_proyek: "Projects",
     nav_kontak: "Contact",
     nav_hubungi: "Contact Me",
 
-    // BOTTOM NAV
+    // ── Bottom Nav (Mobile) ───────────────────────────────────
     bnav_beranda: "Home",
     bnav_tentang: "About",
     bnav_keahlian: "Skills",
     bnav_proyek: "Projects",
     bnav_tema: "Theme",
 
-    // HERO
+    // ── Hero ──────────────────────────────────────────────────
     hero_role: "Web Developer",
     hero_greeting: "Hi, I'm",
     hero_desc:
@@ -148,11 +166,12 @@ window.translations = {
     hero_stat_tahun: "Years experience",
     hero_stat_klien: "Happy clients",
 
-    // TENTANG
+    // ── About ─────────────────────────────────────────────────
     about_label: "About Me",
     about_heading: "Built to work well,",
     about_heading_sub: "easy to read",
     about_location: "Riau, Indonesia",
+    // HTML diperbolehkan karena ada tag <strong>
     about_p1:
       'For over <strong class="font-medium text-stone-800">2 years</strong> I\'ve been working on web projects end-to-end — designing interfaces that are pleasant to use while building backends that are stable and easy to maintain.',
     about_p2:
@@ -166,11 +185,11 @@ window.translations = {
     about_cv: "Download CV",
     about_contact: "Contact Me",
 
-    // KEAHLIAN
+    // ── Skills ────────────────────────────────────────────────
     skill_label: "Skills",
     skill_heading: "Technologies & Stack",
 
-    // PROYEK
+    // ── Projects ──────────────────────────────────────────────
     project_label: "Selected Works",
     project_heading: "Featured Projects",
     filter_all: "All",
@@ -194,7 +213,7 @@ window.translations = {
     proj6_desc:
       "Simple LMS with course management, interactive quizzes, and real-time student progress tracking.",
 
-    // KONTAK
+    // ── Contact ───────────────────────────────────────────────
     contact_label: "Let's Collaborate",
     contact_heading: "Have a project",
     contact_heading_sub: "you'd like to build?",
@@ -206,6 +225,8 @@ window.translations = {
     contact_loc_val: "Riau, Indonesia",
     contact_response: "Average response time",
     contact_response_unit: "hours on working days",
+
+    // ── Form ──────────────────────────────────────────────────
     form_send_label: "Send a message",
     form_name: "Name",
     form_name_ph: "Your full name",
@@ -219,13 +240,13 @@ window.translations = {
     form_sending: "Sending...",
     form_err_name: "Please fill in your name.",
     form_err_email: "Please enter a valid email.",
+
+    // ── Toast ─────────────────────────────────────────────────
     toast_success: "Message sent! I'll get back to you shortly.",
     toast_error: "Please complete the form correctly.",
 
-    // FOOTER
+    // ── Footer & Misc ─────────────────────────────────────────
     footer_credit: "Crafted with attention to detail.",
-
-    // LOADER
     loader_text: "Loading portfolio",
     theme_light: "Light mode",
     theme_system: "System",

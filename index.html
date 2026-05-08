@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fedy Fs. Gerana — Web Developer</title>
 
+  <!-- ============================================================
+       THEME INITIALIZER
+       Dibaca sebelum halaman render agar tidak ada flash/kedip.
+       Ambil preferensi tema dari localStorage, lalu terapkan class
+       "dark" ke <html> jika diperlukan.
+  ============================================================ -->
   <script>
     (function () {
       var saved = localStorage.getItem('theme') || 'system';
@@ -14,7 +20,14 @@
     })();
   </script>
 
+  <!-- Tailwind CSS via CDN — framework utility CSS utama -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ============================================================
+       KONFIGURASI TAILWIND
+       Aktifkan dark mode berbasis class, tambah font custom,
+       dan tambah warna "stone" ekstra (150, dsb.).
+  ============================================================ -->
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -36,20 +49,36 @@
       },
     };
   </script>
+
+  <!-- Google Fonts: DM Sans (teks utama) & DM Mono (angka/kode) -->
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
+
+  <!-- Font Awesome — ikon-ikon (arrow, envelope, github, dll.) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- i18next CDN -->
+
+  <!-- i18next — library internasionalisasi (terjemahan ID / EN) -->
   <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
+
+  <!-- Favicon inline SVG — kotak gelap bertuliskan "FFG" -->
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c1917'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' fill='white'>FFG</text></svg>" />
+
+  <!-- CSS kustom — animasi, komponen, dan gaya khusus -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
+<!-- Kontainer notifikasi toast (muncul di pojok layar) -->
 <div id="toast-container"></div>
 
 <body>
+
+  <!-- ============================================================
+       LOADING SCREEN
+       Muncul saat halaman pertama kali dimuat.
+       Berisi teks, progress bar, dan persentase loading.
+  ============================================================ -->
   <div id="loader">
     <div id="loader-text"
       style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;"
@@ -59,19 +88,33 @@
     <div class="loader-bar">
       <div class="loader-fill"></div>
     </div>
+    <!-- Angka persentase, diupdate lewat JavaScript -->
     <div id="loader-pct" style="font-family:'DM Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.25);">0%
     </div>
   </div>
 
+  <!-- Progress bar tipis di bagian atas halaman saat scroll -->
   <div id="progress-bar"></div>
+
+  <!-- Tombol kembali ke atas, muncul setelah user scroll ke bawah -->
   <div id="back-top"><i class="fas fa-arrow-up"></i></div>
 
-  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       NAVBAR (Desktop)
+       Fixed di atas, semi-transparan dengan blur.
+       Berisi: logo, menu navigasi, switcher bahasa, switcher tema,
+       dan tombol "Hubungi Saya".
+  ============================================================ -->
   <nav id="navbar" class="fixed top-0 w-full z-50 backdrop-blur-lg border-b border-transparent">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 flex items-center justify-between h-14">
+
+      <!-- Logo teks -->
       <a href="#home" class="font-mono text-sm font-medium text-stone-900 tracking-wide flex items-center gap-1.5">
         <span>FFG</span><span class="text-stone-300">.</span>
       </a>
+
+      <!-- Menu navigasi desktop (tersembunyi di mobile) -->
       <div class="hidden md:flex items-center gap-8">
         <a href="#tentang" class="nav-link flex items-center gap-1.5"><i class="fas fa-user text-xs"></i><span
             data-i18n="nav_tentang">Tentang</span></a>
@@ -82,9 +125,10 @@
         <a href="#kontak" class="nav-link flex items-center gap-1.5"><i class="fas fa-envelope text-xs"></i><span
             data-i18n="nav_kontak">Kontak</span></a>
       </div>
+
       <div class="flex items-center gap-3">
 
-        <!-- Language Switcher -->
+        <!-- Switcher Bahasa: tombol ID / EN -->
         <div id="lang-toggle" role="group" aria-label="Language switcher">
           <button class="lang-btn active" data-lang="id" aria-label="Bahasa Indonesia" aria-pressed="true"
             title="Indonesia">
@@ -95,7 +139,7 @@
           </button>
         </div>
 
-        <!-- Theme Toggle -->
+        <!-- Switcher Tema: Light / System / Dark -->
         <div id="theme-toggle" role="group">
           <button class="theme-btn" data-mode="light" data-i18n-aria="theme_light" data-i18n-title="theme_light"
             aria-pressed="false"><i class="fas fa-sun"></i></button>
@@ -105,6 +149,7 @@
             aria-pressed="false"><i class="fas fa-moon"></i></button>
         </div>
 
+        <!-- Tombol CTA utama navbar (hanya desktop) -->
         <a href="#kontak"
           class="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium">
           <span data-i18n="nav_hubungi">Hubungi Saya</span> <i class="fas fa-arrow-right text-xs"></i>
@@ -113,7 +158,12 @@
     </div>
   </nav>
 
-  <!-- ── BOTTOM NAV ─────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       BOTTOM NAV (Mobile)
+       Navigasi bawah layar, hanya tampil di mobile.
+       Berisi ikon untuk: Beranda, Tentang, Keahlian, Proyek, Tema.
+  ============================================================ -->
   <nav id="bottom-nav" aria-label="Navigasi utama">
     <div class="bottom-nav-inner">
       <a href="#home" class="bottom-nav-item active" data-section="home">
@@ -132,6 +182,7 @@
         <div class="bottom-nav-icon"><i class="fas fa-briefcase"></i></div>
         <span class="bottom-nav-label" data-i18n="bnav_proyek">Proyek</span>
       </a>
+      <!-- Switcher tema versi mobile (3 titik kecil) -->
       <div class="bottom-nav-item" style="cursor:default;">
         <div style="display:flex;gap:4px;align-items:center;padding:4px;">
           <button class="theme-dot" data-mode="light" aria-label="Mode terang" title="Terang"><i class="fas fa-sun"
@@ -146,13 +197,25 @@
     </div>
   </nav>
 
-  <!-- ── HERO ───────────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       SECTION: HERO (#home)
+       Halaman pertama yang dilihat pengunjung.
+       Kiri: teks sambutan, tombol CTA, sosial media.
+       Kanan: foto profil dengan badge status & pengalaman.
+       Bawah: statistik (proyek, tahun, klien).
+  ============================================================ -->
   <section id="home" class="min-h-screen flex items-center pt-14">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center py-20 lg:py-28">
+
+        <!-- Kolom kiri: teks hero -->
         <div class="space-y-8">
           <div class="space-y-3">
+            <!-- Label role / jabatan -->
             <div class="section-label" data-i18n="hero_role">Web Developer</div>
+
+            <!-- Judul nama, animasi reveal per kata -->
             <h1 class="text-5xl lg:text-6xl xl:text-[4.5rem] font-light leading-[1.05] text-stone-900 tracking-tight">
               <div class="reveal-word"><span data-i18n="hero_greeting">Halo, saya</span></div>
               <br />
@@ -163,12 +226,16 @@
                     class="font-semibold">Gerana</strong></span></div>
             </h1>
           </div>
+
+          <!-- Deskripsi singkat, fade-in lewat JS -->
           <p id="hero-desc" class="text-base lg:text-lg text-stone-500 leading-relaxed max-w-md font-light"
             style="opacity:0;transition:opacity 0.7s ease,transform 0.7s ease;transition-delay:0.4s;"
             data-i18n="hero_desc">
             Saya seorang web developer yang mengerjakan proyek dari sisi tampilan hingga logika di baliknya — dengan
             fokus pada hasil yang bersih dan fungsional.
           </p>
+
+          <!-- Tombol CTA: Lihat Karya & Hubungi Saya -->
           <div id="hero-btns" class="flex flex-wrap gap-3"
             style="opacity:0;transition:opacity 0.7s ease;transition-delay:0.55s;">
             <a href="#proyek"
@@ -180,6 +247,8 @@
               <i class="fas fa-envelope text-xs"></i><span data-i18n="hero_cta_kontak">Hubungi Saya</span>
             </a>
           </div>
+
+          <!-- Link sosial media: GitHub, LinkedIn, Instagram -->
           <div id="hero-social" class="flex items-center gap-5"
             style="opacity:0;transition:opacity 0.7s ease;transition-delay:0.65s;">
             <span class="num uppercase tracking-widest" data-i18n="hero_find">Temukan saya</span>
@@ -195,16 +264,23 @@
           </div>
         </div>
 
+        <!-- Kolom kanan: foto profil + badge -->
         <div class="flex justify-center lg:justify-end">
           <div class="relative" id="photo-card">
+            <!-- Bingkai dekoratif di sekitar foto -->
             <div class="absolute -inset-4 border border-stone-200 rounded-3xl pointer-events-none"></div>
             <div class="absolute -inset-8 border border-stone-100 rounded-[28px] pointer-events-none"></div>
+
+            <!-- Foto profil, grayscale → berwarna saat hover -->
             <img src="Fedy.png" alt="Fedy Fs. Gerana" id="hero-photo"
               class="relative w-64 h-80 lg:w-[300px] lg:h-[380px] object-cover rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-700" />
+
+            <!-- Badge kiri bawah: status ketersediaan -->
             <div
               class="absolute -bottom-5 -left-5 bg-white border border-stone-200 rounded-2xl px-4 py-3 shadow-xl z-10">
               <div class="num uppercase tracking-widest text-stone-400 mb-1">Status</div>
               <div class="flex items-center gap-2">
+                <!-- Indikator hijau berkedip (online/tersedia) -->
                 <div class="relative w-2 h-2">
                   <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 ping opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
@@ -212,6 +288,8 @@
                 <span class="text-sm font-medium text-stone-700" data-i18n="hero_status">Tersedia untuk proyek</span>
               </div>
             </div>
+
+            <!-- Badge kanan atas: jumlah tahun pengalaman -->
             <div class="absolute -top-4 -right-4 bg-stone-900 text-white rounded-2xl px-4 py-3 shadow-xl z-10">
               <div class="num text-stone-400 mb-0.5" data-i18n="hero_exp_label">Pengalaman</div>
               <div class="text-xl font-semibold" style="font-family:'DM Mono',monospace">2<span
@@ -222,8 +300,10 @@
         </div>
       </div>
 
+      <!-- Statistik bawah: angka dianimasikan lewat JS (counter) -->
       <div class="border-t border-stone-200 pt-10 pb-6 grid grid-cols-3 gap-8 fade-up">
         <div>
+          <!-- data-target = angka akhir animasi counter -->
           <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="6">0</div>
           <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_proyek">Proyek selesai</div>
         </div>
@@ -239,20 +319,30 @@
     </div>
   </section>
 
-  <!-- ── TENTANG ────────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       SECTION: TENTANG (#tentang)
+       Berisi foto workspace, deskripsi singkat tentang diri,
+       tag kepribadian, dan tombol unduh CV / kontak.
+  ============================================================ -->
   <section id="tentang" class="py-24 lg:py-32 bg-white">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+
+        <!-- Kolom kiri: judul, foto workspace, dan label lokasi -->
         <div class="lg:col-span-5 fade-up">
           <div class="section-label mb-4" data-i18n="about_label">Tentang Saya</div>
           <h2 class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug mb-6">
             <span data-i18n="about_heading">Bekerja dengan baik,</span><br />
             <span class="font-light text-stone-600" data-i18n="about_heading_sub">dibaca dengan mudah</span>
           </h2>
+
+          <!-- Foto workspace dengan overlay lokasi -->
           <div class="relative mt-8">
             <div class="absolute -inset-2 border border-stone-100 rounded-2xl"></div>
             <img src="https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=500&h=300&fit=crop"
               class="relative w-full h-52 object-cover rounded-xl grayscale" alt="Workspace Fedy" />
+            <!-- Kartu lokasi di atas foto -->
             <div
               class="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 shadow-md border border-stone-100">
               <div class="num text-stone-400 mb-0.5" data-i18n="contact_loc_label">Lokasi</div>
@@ -263,7 +353,10 @@
             </div>
           </div>
         </div>
+
+        <!-- Kolom kanan: paragraf bio, tag, dan tombol aksi -->
         <div class="lg:col-span-7 space-y-6 fade-up" style="transition-delay:0.15s">
+          <!-- data-i18n-html = konten bisa berisi tag HTML (misal <strong>) -->
           <p class="text-stone-600 leading-relaxed font-light text-lg" data-i18n-html="about_p1">
             Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya mengerjakan proyek web
             secara menyeluruh.
@@ -275,12 +368,16 @@
           <p class="text-stone-500 leading-relaxed font-light" data-i18n="about_p3">
             Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, dan Laravel.
           </p>
+
+          <!-- Tag-tag kepribadian / karakter -->
           <div class="pt-2 flex flex-wrap gap-2">
             <span class="tag" data-i18n="about_tag1">Pemecah Masalah</span>
             <span class="tag" data-i18n="about_tag2">Berorientasi Detail</span>
             <span class="tag" data-i18n="about_tag3">Pengembang Web</span>
-            <span class="tag" data-i18n="about_tag4">Konsisten & Terstruktur</span>
+            <span class="tag" data-i18n="about_tag4">Konsisten &amp; Terstruktur</span>
           </div>
+
+          <!-- Tombol: Unduh CV & Kontak Saya -->
           <div class="flex flex-wrap gap-3 pt-2">
             <a href="#"
               class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium">
@@ -296,9 +393,17 @@
     </div>
   </section>
 
-  <!-- ── KEAHLIAN ───────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       SECTION: KEAHLIAN (#keahlian)
+       Menampilkan teknologi yang dikuasai dalam 2 format:
+       1. Ticker/marquee (guliran otomatis kiri-kanan)
+       2. Kartu kategori: Frontend, Backend, Database, Dev & Prod
+  ============================================================ -->
   <section id="keahlian" class="py-24 lg:py-32 bg-stone-50">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <!-- Judul section -->
       <div class="flex items-end justify-between mb-16 fade-up">
         <div>
           <div class="section-label mb-4" data-i18n="skill_label">Keahlian</div>
@@ -307,6 +412,8 @@
         </div>
       </div>
 
+      <!-- Ticker marquee (2 baris): logo teknologi bergerak otomatis -->
+      <!-- Baris 1: bergerak ke kiri | Baris 2: bergerak ke kanan (reverse) -->
       <div class="ticker-rows mb-14 fade-up" style="transition-delay:0.05s">
         <div class="ticker-wrapper">
           <div class="ticker-track" id="ticker-row-1"></div>
@@ -316,8 +423,10 @@
         </div>
       </div>
 
+      <!-- Grid 4 kartu keahlian (2x2) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Frontend -->
+
+        <!-- Kartu 01: FRONTEND — Vue, React, Styling -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up">
           <div class="flex items-center gap-3 mb-7">
             <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
@@ -325,9 +434,12 @@
             <h3 class="font-medium text-stone-900">Frontend</h3>
             <span class="ml-auto num text-stone-300">01</span>
           </div>
+
+          <!-- Sub-kategori: Vue Stack -->
           <div class="mb-5">
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Vue Stack</div>
             <div class="flex flex-wrap gap-2">
+              <!-- Setiap tech-badge berisi ikon SVG inline + nama teknologi -->
               <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
                   <path d="M2 6h6l8 14 8-14h6L16 28z" fill="#41B883" />
                   <path d="M8 6l8 14 8-14h-5l-3 7-3-7z" fill="#35495E" />
@@ -350,6 +462,8 @@
                 </svg>Vite</span>
             </div>
           </div>
+
+          <!-- Sub-kategori: React Stack -->
           <div class="mb-5">
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">React Stack</div>
             <div class="flex flex-wrap gap-2">
@@ -377,6 +491,8 @@
                 </svg>React Query</span>
             </div>
           </div>
+
+          <!-- Sub-kategori: Styling -->
           <div>
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Styling</div>
             <div class="flex flex-wrap gap-2">
@@ -405,7 +521,7 @@
           </div>
         </div>
 
-        <!-- Backend -->
+        <!-- Kartu 02: BACKEND — Node.js, PHP (Laravel, CI), Keamanan -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
           <div class="flex items-center gap-3 mb-7">
             <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
@@ -413,6 +529,8 @@
             <h3 class="font-medium text-stone-900">Backend</h3>
             <span class="ml-auto num text-stone-300">02</span>
           </div>
+
+          <!-- Sub-kategori: Node.js Stack -->
           <div class="mb-5">
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Node.js Stack</div>
             <div class="flex flex-wrap gap-2">
@@ -444,6 +562,8 @@
                 </svg>Helmet + CORS</span>
             </div>
           </div>
+
+          <!-- Sub-kategori: PHP Stack -->
           <div class="mb-5">
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">PHP Stack</div>
             <div class="flex flex-wrap gap-2">
@@ -463,6 +583,8 @@
                 </svg>Filament</span>
             </div>
           </div>
+
+          <!-- Sub-kategori: Security & Validation -->
           <div>
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Security &amp; Validation</div>
             <div class="flex flex-wrap gap-2">
@@ -484,7 +606,7 @@
           </div>
         </div>
 
-        <!-- Database -->
+        <!-- Kartu 03: DATABASE — PostgreSQL, SQL Server, Prisma, pg -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.15s">
           <div class="flex items-center gap-3 mb-7">
             <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
@@ -492,6 +614,8 @@
             <h3 class="font-medium text-stone-900">Database Layer</h3>
             <span class="ml-auto num text-stone-300">03</span>
           </div>
+
+          <!-- Sub-kategori: Database -->
           <div class="mb-5">
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Database</div>
             <div class="flex flex-wrap gap-2">
@@ -507,6 +631,8 @@
                 </svg>SQL Server</span>
             </div>
           </div>
+
+          <!-- Sub-kategori: ORM / Driver -->
           <div>
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">ORM / Driver</div>
             <div class="flex flex-wrap gap-2">
@@ -522,7 +648,7 @@
           </div>
         </div>
 
-        <!-- Dev & Production -->
+        <!-- Kartu 04: DEV & PRODUCTION — DX, caching, logging, testing -->
         <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.2s">
           <div class="flex items-center gap-3 mb-7">
             <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
@@ -530,6 +656,8 @@
             <h3 class="font-medium text-stone-900">Dev &amp; Production</h3>
             <span class="ml-auto num text-stone-300">04</span>
           </div>
+
+          <!-- Sub-kategori: Developer Experience -->
           <div class="mb-5">
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Dev Experience</div>
             <div class="flex flex-wrap gap-2">
@@ -547,6 +675,8 @@
                 </svg>dotenv</span>
             </div>
           </div>
+
+          <!-- Sub-kategori: Production Readiness -->
           <div>
             <div class="num text-stone-400 mb-3 uppercase tracking-wider">Production Readiness</div>
             <div class="flex flex-wrap gap-2">
@@ -572,32 +702,47 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── PROYEK ──────────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       SECTION: PROYEK (#proyek)
+       Galeri kartu proyek dengan filter kategori.
+       Setiap kartu berisi: gambar, label, judul, deskripsi, tags.
+       Hover menampilkan tombol link & GitHub.
+  ============================================================ -->
   <section id="proyek" class="py-24 lg:py-32 bg-white">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <!-- Header + tombol filter -->
       <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-16 fade-up">
         <div>
           <div class="section-label mb-4" data-i18n="project_label">Karya Pilihan</div>
           <h2 class="text-3xl lg:text-4xl font-light text-stone-900" data-i18n="project_heading">Proyek Unggulan</h2>
         </div>
+        <!-- Filter: Semua | Aplikasi Web -->
+        <!-- data-filter digunakan JS untuk show/hide kartu -->
         <div class="flex flex-wrap gap-2">
           <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Semua</button>
           <button class="filter-btn" data-filter="web" data-i18n="filter_web">Aplikasi Web</button>
         </div>
       </div>
 
+      <!-- Grid 3 kolom kartu proyek -->
+      <!-- data-category digunakan untuk filtering -->
       <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
-        <!-- Card 1 -->
+
+        <!-- Proyek 01: Platform E-Commerce -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web">
           <div class="relative overflow-hidden bg-stone-100 h-48">
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
               alt="Project 1" />
+            <!-- Overlay hover: tombol live demo & GitHub -->
             <div
               class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
               <a href="#"
@@ -607,14 +752,15 @@
                 class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
                   class="fab fa-github text-stone-700 text-xs"></i></a>
             </div>
+            <!-- Label kategori di pojok kiri atas gambar -->
             <div class="absolute top-3 left-3"><span
                 class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
                 data-i18n="filter_web">Aplikasi Web</span></div>
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj1_title">Platform E-Commerce</h3><span
-                class="num">01</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj1_title">Platform E-Commerce</h3>
+              <span class="num">01</span>
             </div>
             <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj1_desc">Platform modern dengan
               pembayaran terintegrasi, inventaris real-time, dan dashboard analitik lengkap.</p>
@@ -623,7 +769,7 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
+        <!-- Proyek 02: Pelacak Kebugaran -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.05s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
@@ -645,8 +791,8 @@
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj2_title">Pelacak Kebugaran</h3><span
-                class="num">02</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj2_title">Pelacak Kebugaran</h3>
+              <span class="num">02</span>
             </div>
             <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj2_desc">Aplikasi web pelacakan latihan
               dengan dashboard statistik personal dan progress harian.</p>
@@ -655,7 +801,7 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
+        <!-- Proyek 03: UI Dashboard Perbankan -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.1s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
@@ -677,8 +823,8 @@
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj3_title">UI Dashboard Perbankan</h3><span
-                class="num">03</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj3_title">UI Dashboard Perbankan</h3>
+              <span class="num">03</span>
             </div>
             <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj3_desc">Dashboard admin fintech dengan
               aksesibilitas tinggi, sistem desain konsisten, dan laporan keuangan interaktif.</p>
@@ -687,7 +833,7 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
+        <!-- Proyek 04: Analitik Real-time -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.15s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
@@ -709,8 +855,8 @@
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj4_title">Analitik Real-time</h3><span
-                class="num">04</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj4_title">Analitik Real-time</h3>
+              <span class="num">04</span>
             </div>
             <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj4_desc">Dashboard intelijen bisnis
               dengan visualisasi data interaktif dan pelaporan otomatis berbasis Vue.js.</p>
@@ -719,7 +865,7 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
+        <!-- Proyek 05: Sistem Manajemen Toko -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.2s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
@@ -741,8 +887,8 @@
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj5_title">Sistem Manajemen Toko</h3><span
-                class="num">05</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj5_title">Sistem Manajemen Toko</h3>
+              <span class="num">05</span>
             </div>
             <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj5_desc">Aplikasi manajemen inventaris
               dan penjualan toko dengan laporan harian dan notifikasi stok otomatis.</p>
@@ -751,7 +897,7 @@
           </div>
         </div>
 
-        <!-- Card 6 -->
+        <!-- Proyek 06: Platform Belajar Online (LMS) -->
         <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
           data-category="web" style="transition-delay:0.25s">
           <div class="relative overflow-hidden bg-stone-100 h-48">
@@ -773,8 +919,8 @@
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj6_title">Platform Belajar Online</h3><span
-                class="num">06</span>
+              <h3 class="font-medium text-stone-900" data-i18n="proj6_title">Platform Belajar Online</h3>
+              <span class="num">06</span>
             </div>
             <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj6_desc">LMS sederhana dengan manajemen
               kursus, quiz interaktif, dan tracking progress siswa secara real-time.</p>
@@ -782,18 +928,31 @@
                 class="tag">Prisma</span></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── KONTAK ──────────────────────────────────────────────── -->
+
+  <!-- ============================================================
+       SECTION: KONTAK (#kontak)
+       Background gelap (stone-900).
+       Kiri: info kontak (email, telepon, lokasi), sosmed, rata-rata
+             waktu respons.
+       Kanan: form pesan (nama, email, subjek, pesan, kirim).
+  ============================================================ -->
   <section id="kontak" class="py-24 lg:py-32 bg-stone-900 text-white relative overflow-hidden">
+
+    <!-- Dekorasi lingkaran blur di sudut kanan atas & kiri bawah -->
     <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none"
       style="background:radial-gradient(circle,#fff 0%,transparent 70%);transform:translate(30%,-30%);"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
       style="background:radial-gradient(circle,#fff 0%,transparent 70%);transform:translate(-30%,30%);"></div>
+
     <div class="max-w-6xl mx-auto px-6 lg:px-10 relative">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+        <!-- Kolom kiri: info kontak -->
         <div class="space-y-8 fade-up">
           <div>
             <div class="section-label mb-4" style="color:rgba(255,255,255,0.3)" data-i18n="contact_label">Mari
@@ -805,6 +964,8 @@
           </div>
           <p class="text-stone-400 font-light leading-relaxed" data-i18n="contact_desc">Saya terbuka untuk kolaborasi
             maupun freelance — kirimkan pesan dan kita bisa mulai dari sana.</p>
+
+          <!-- Daftar info kontak: email, telepon, lokasi -->
           <div class="space-y-4">
             <div class="flex items-center gap-4">
               <div
@@ -837,6 +998,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Ikon sosial media (versi gelap) -->
           <div class="flex gap-3 pt-2">
             <a href="https://github.com"
               class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"><i
@@ -848,6 +1011,8 @@
               class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"><i
                 class="fab fa-instagram text-sm"></i><span class="tooltip">Instagram</span></a>
           </div>
+
+          <!-- Kartu waktu respons rata-rata -->
           <div class="border border-stone-700 rounded-2xl p-5 bg-stone-800/50">
             <div class="num text-stone-500 mb-2" data-i18n="contact_response">Waktu respons rata-rata</div>
             <div class="flex items-center gap-3">
@@ -857,20 +1022,25 @@
           </div>
         </div>
 
+        <!-- Kolom kanan: form kontak -->
         <div class="fade-up" style="transition-delay:0.15s">
           <div class="bg-stone-800 rounded-2xl p-8 border border-stone-700">
             <div class="num text-stone-500 mb-6" data-i18n="form_send_label">Kirim pesan</div>
+
+            <!-- Form: novalidate = validasi ditangani manual lewat JS -->
             <form id="contact-form" class="space-y-5" novalidate>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div class="form-field">
                   <label data-i18n="form_name">Nama</label>
                   <input type="text" name="name" required data-i18n-ph="form_name_ph" placeholder="Nama lengkap Anda" />
+                  <!-- Pesan error ditampilkan JS jika input kosong -->
                   <div class="text-xs text-red-400 mt-1 hidden err-name" data-i18n="form_err_name">Mohon isi nama Anda.
                   </div>
                 </div>
                 <div class="form-field">
                   <label data-i18n="form_email">Email</label>
                   <input type="email" name="email" required data-i18n-ph="form_email_ph" placeholder="email@anda.com" />
+                  <!-- Pesan error jika format email tidak valid -->
                   <div class="text-xs text-red-400 mt-1 hidden err-email" data-i18n="form_err_email">Mohon isi email
                     yang valid.</div>
                 </div>
@@ -885,6 +1055,8 @@
                 <textarea name="message" rows="5" required data-i18n-ph="form_message_ph"
                   placeholder="Ceritakan tentang proyek Anda..."></textarea>
               </div>
+
+              <!-- Tombol submit — state loading/sukses diubah via JS -->
               <button type="submit" id="submit-btn"
                 class="w-full py-3.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 group">
                 <span id="btn-text" data-i18n="form_submit">Kirim Pesan</span>
@@ -893,24 +1065,37 @@
             </form>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- Spacer bawah — memberi ruang untuk bottom nav di mobile -->
   <div class="h-20 md:hidden"></div>
 
+  <!-- ============================================================
+       FOOTER
+       Copyright dengan tahun yang diisi otomatis via JS.
+  ============================================================ -->
   <footer class="bg-stone-950 text-stone-500 py-8">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
       <span class="font-mono text-stone-600 text-sm">FFG<span class="text-stone-700">.</span></span>
+      <!-- #footer-year diisi dengan tahun saat ini oleh JavaScript -->
       <span>&copy; <span id="footer-year"></span> Fedy Fs. Gerana. <span data-i18n="footer_credit">Dibuat dengan
           perhatian pada detail.</span></span>
       <span></span>
     </div>
   </footer>
 
-  <!-- Load translations then main script -->
+  <!-- ============================================================
+       SKRIP
+       i18n.js  — inisialisasi i18next & data terjemahan
+       script.js — semua logika: loader, counter, scroll, form, dll.
+       Urutan penting: i18n dimuat lebih dulu.
+  ============================================================ -->
   <script src="i18n.js"></script>
   <script src="script.js"></script>
+
 </body>
 
 </html>
