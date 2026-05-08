@@ -782,6 +782,21 @@ nav#navbar.scrolled {
   transition: filter 0.2s;
 }
 
+.about-tag-ticker {
+  display: flex;
+  gap: 0.5rem;
+  width: max-content;
+  animation: aboutTagScroll 14s linear infinite;
+}
+
+.about-tag-ticker:hover {
+  animation-play-state: paused;
+}
+
+@keyframes aboutTagScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 /* ============================================================
    11. SECTION-SECTION

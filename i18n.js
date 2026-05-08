@@ -61,6 +61,10 @@ window.translations = {
     about_tag2: "Berorientasi Detail",
     about_tag3: "Pengembang Web",
     about_tag4: "Konsisten & Terstruktur",
+    about_tag5: "Pemecah Masalah",
+    about_tag6: "Berorientasi Detail",
+    about_tag7: "Pengembang Web",
+    about_tag8: "Konsisten & Terstruktur",
     about_cv: "Unduh CV",
     about_contact: "Kontak Saya",
 
@@ -182,6 +186,10 @@ window.translations = {
     about_tag2: "Detail Oriented",
     about_tag3: "Web Developer",
     about_tag4: "Consistent & Structured",
+    about_tag5: "Problem Solver",
+    about_tag6: "Detail Oriented",
+    about_tag7: "Web Developer",
+    about_tag8: "Consistent & Structured",
     about_cv: "Download CV",
     about_contact: "Contact Me",
 
