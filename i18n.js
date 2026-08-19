@@ -1,40 +1,21 @@
-// ============================================================
-//  i18n.js — Data terjemahan Bahasa Indonesia & English
-//
-//  Cara pakai di HTML:
-//    data-i18n="key"       → textContent biasa
-//    data-i18n-html="key"  → innerHTML (boleh ada tag HTML)
-//    data-i18n-ph="key"    → placeholder input/textarea
-//    data-i18n-aria="key"  → aria-label (aksesibilitas)
-//    data-i18n-title="key" → title tooltip
-//
-//  Diakses di script.js via: window.translations["id"] / ["en"]
-// ============================================================
-
 window.translations = {
-  // ==========================================================
-  //  BAHASA INDONESIA
-  // ==========================================================
   id: {
-    // ── Navbar ────────────────────────────────────────────────
     nav_tentang: "Tentang",
     nav_keahlian: "Keahlian",
     nav_proyek: "Proyek",
     nav_kontak: "Kontak",
     nav_hubungi: "Hubungi Saya",
 
-    // ── Bottom Nav (Mobile) ───────────────────────────────────
     bnav_beranda: "Beranda",
     bnav_tentang: "Tentang",
     bnav_keahlian: "Keahlian",
     bnav_proyek: "Proyek",
     bnav_tema: "Tema",
 
-    // ── Hero ──────────────────────────────────────────────────
-    hero_role: "Web Developer",
+    hero_role: "Programmer | Web Developer",
     hero_greeting: "Halo, saya",
     hero_desc:
-      "Saya seorang web developer yang mengerjakan proyek dari sisi tampilan hingga logika di baliknya — dengan fokus pada hasil yang bersih dan fungsional.",
+      "Saya seorang programmer yang fokus pada pengembangan web, dengan pengalaman membangun, mengintegrasikan, dan memelihara aplikasi menggunakan JavaScript/TypeScript modern serta .NET.",
     hero_cta_proyek: "Lihat Karya Saya",
     hero_cta_kontak: "Hubungi Saya",
     hero_find: "Temukan saya",
@@ -45,18 +26,16 @@ window.translations = {
     hero_stat_tahun: "Tahun pengalaman",
     hero_stat_klien: "Klien puas",
 
-    // ── Tentang ───────────────────────────────────────────────
     about_label: "Tentang Saya",
     about_heading: "Bekerja dengan baik,",
     about_heading_sub: "dibaca dengan mudah",
     about_location: "Riau, Indonesia",
-    // HTML diperbolehkan karena ada tag <strong>
     about_p1:
-      'Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya mengerjakan proyek web secara menyeluruh — merancang antarmuka yang nyaman dipakai sekaligus membangun backend yang stabil dan mudah dirawat.',
+      'Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya bekerja sebagai programmer, membangun aplikasi internal perusahaan, memelihara sistem yang berjalan, serta menerapkan autentikasi dan otorisasi berbasis peran.',
     about_p2:
       "Saya percaya kualitas kode terlihat bukan hanya saat pertama kali jalan, tapi saat proyek berkembang dan orang lain ikut terlibat.",
     about_p3:
-      "Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, dan Laravel — dipilih sesuai kebutuhan proyek, bukan sekadar kebiasaan.",
+      "Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, Laravel, dan C# / .NET — dipilih sesuai kebutuhan proyek, bukan sekadar kebiasaan.",
     about_tag1: "Pemecah Masalah",
     about_tag2: "Berorientasi Detail",
     about_tag3: "Pengembang Web",
@@ -68,15 +47,11 @@ window.translations = {
     about_cv: "Unduh CV",
     about_contact: "Kontak Saya",
 
-    // ── Keahlian ──────────────────────────────────────────────
     skill_label: "Keahlian",
     skill_heading: "Teknologi & Stack",
 
-    // ── Proyek ────────────────────────────────────────────────
     project_label: "Karya Pilihan",
     project_heading: "Proyek Unggulan",
-    filter_all: "Semua",
-    filter_web: "Aplikasi Web",
     proj1_title: "Platform E-Commerce",
     proj1_desc:
       "Platform modern dengan pembayaran terintegrasi, inventaris real-time, dan dashboard analitik lengkap.",
@@ -96,7 +71,6 @@ window.translations = {
     proj6_desc:
       "LMS sederhana dengan manajemen kursus, quiz interaktif, dan tracking progress siswa secara real-time.",
 
-    // ── Kontak ────────────────────────────────────────────────
     contact_label: "Mari Berkolaborasi",
     contact_heading: "Punya proyek",
     contact_heading_sub: "yang ingin diwujudkan?",
@@ -109,7 +83,6 @@ window.translations = {
     contact_response: "Waktu respons rata-rata",
     contact_response_unit: "jam pada hari kerja",
 
-    // ── Form ──────────────────────────────────────────────────
     form_send_label: "Kirim pesan",
     form_name: "Nama",
     form_name_ph: "Nama lengkap Anda",
@@ -124,12 +97,11 @@ window.translations = {
     form_err_name: "Mohon isi nama Anda.",
     form_err_email: "Mohon isi email yang valid.",
 
-    // ── Toast ─────────────────────────────────────────────────
     toast_success:
       "Pesan berhasil terkirim! Saya akan segera menghubungi Anda.",
     toast_error: "Mohon lengkapi form dengan benar.",
+    toast_cv_missing: "File CV belum tersedia.",
 
-    // ── Footer & Misc ─────────────────────────────────────────
     footer_credit: "Dibuat dengan perhatian pada detail.",
     loader_text: "Memuat portofolio",
     theme_light: "Mode terang",
@@ -137,29 +109,23 @@ window.translations = {
     theme_dark: "Mode gelap",
   },
 
-  // ==========================================================
-  //  ENGLISH
-  // ==========================================================
   en: {
-    // ── Navbar ────────────────────────────────────────────────
     nav_tentang: "About",
     nav_keahlian: "Skills",
     nav_proyek: "Projects",
     nav_kontak: "Contact",
     nav_hubungi: "Contact Me",
 
-    // ── Bottom Nav (Mobile) ───────────────────────────────────
     bnav_beranda: "Home",
     bnav_tentang: "About",
     bnav_keahlian: "Skills",
     bnav_proyek: "Projects",
     bnav_tema: "Theme",
 
-    // ── Hero ──────────────────────────────────────────────────
-    hero_role: "Web Developer",
+    hero_role: "Programmer | Web Developer",
     hero_greeting: "Hi, I'm",
     hero_desc:
-      "I build web projects from the interface down to the backend — focused on clean, functional results.",
+      "I'm a programmer focused on web development, with hands-on experience building, integrating, and maintaining applications using modern JavaScript/TypeScript and .NET.",
     hero_cta_proyek: "View My Work",
     hero_cta_kontak: "Contact Me",
     hero_find: "Find me on",
@@ -170,18 +136,16 @@ window.translations = {
     hero_stat_tahun: "Years experience",
     hero_stat_klien: "Happy clients",
 
-    // ── About ─────────────────────────────────────────────────
     about_label: "About Me",
     about_heading: "Works well,",
     about_heading_sub: "easy to read",
     about_location: "Riau, Indonesia",
-    // HTML diperbolehkan karena ada tag <strong>
     about_p1:
-      'For over <strong class="font-medium text-stone-800">2 years</strong> I\'ve been building web projects end-to-end — crafting intuitive interfaces and stable, maintainable backends.',
+      'For over <strong class="font-medium text-stone-800">2 years</strong> I\'ve worked as a programmer, building internal company applications, maintaining production systems, and implementing role-based authentication and authorization.',
     about_p2:
       "I believe code quality shows not just when it first runs, but as the project grows and others get involved.",
     about_p3:
-      "My go-to stack includes Vue.js, React, Node.js, and Laravel — chosen based on project needs, not habit.",
+      "My go-to stack includes Vue.js, React, Node.js, Laravel, and C# / .NET — chosen based on project needs, not habit.",
     about_tag1: "Problem Solver",
     about_tag2: "Detail Oriented",
     about_tag3: "Web Developer",
@@ -193,15 +157,11 @@ window.translations = {
     about_cv: "Download CV",
     about_contact: "Contact Me",
 
-    // ── Skills ────────────────────────────────────────────────
     skill_label: "Skills",
     skill_heading: "Technologies & Stack",
 
-    // ── Projects ──────────────────────────────────────────────
     project_label: "Selected Works",
     project_heading: "Featured Projects",
-    filter_all: "All",
-    filter_web: "Web App",
     proj1_title: "E-Commerce Platform",
     proj1_desc:
       "Modern platform with integrated payments, real-time inventory, and a complete analytics dashboard.",
@@ -221,7 +181,6 @@ window.translations = {
     proj6_desc:
       "Simple LMS with course management, interactive quizzes, and real-time student progress tracking.",
 
-    // ── Contact ───────────────────────────────────────────────
     contact_label: "Let's Collaborate",
     contact_heading: "Have a project",
     contact_heading_sub: "you'd like to build?",
@@ -234,7 +193,6 @@ window.translations = {
     contact_response: "Average response time",
     contact_response_unit: "hours on weekdays",
 
-    // ── Form ──────────────────────────────────────────────────
     form_send_label: "Send a message",
     form_name: "Name",
     form_name_ph: "Your full name",
@@ -249,11 +207,10 @@ window.translations = {
     form_err_name: "Please fill in your name.",
     form_err_email: "Please enter a valid email.",
 
-    // ── Toast ─────────────────────────────────────────────────
     toast_success: "Message sent! I'll get back to you shortly.",
     toast_error: "Please complete the form correctly.",
+    toast_cv_missing: "CV file is not available yet.",
 
-    // ── Footer & Misc ─────────────────────────────────────────
     footer_credit: "Crafted with attention to detail.",
     loader_text: "Loading portfolio",
     theme_light: "Light mode",

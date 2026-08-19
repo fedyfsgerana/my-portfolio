@@ -1,165 +1,184 @@
-/* ============================================================
-   STYLES.CSS — Portfolio Fedy Fs. Gerana
-   Struktur:
-   1.  CSS Variables (tema terang & gelap)
-   2.  Reset & Base
-   3.  Scrollbar
-   4.  Loading Screen
-   5.  Progress Bar & Tombol Back to Top
-   6.  Navbar (Desktop)
-   7.  Bottom Nav (Mobile)
-   8.  Komponen Umum (label, tag, badge, card, dll.)
-   9.  Animasi & Transisi
-   10. Ticker / Marquee
-   11. Section-section (Home, Tentang, Keahlian, Proyek, Kontak)
-   12. Form Kontak
-   13. Toast Notifikasi
-   14. Tooltip
-   15. Dark Mode Overrides
-============================================================ */
-
-
-/* ============================================================
-   1. CSS VARIABLES
-   Semua warna & shadow didefinisikan di sini agar mudah diubah.
-   Variabel --contact-* khusus untuk section kontak (selalu gelap).
-============================================================ */
-
 :root {
-  /* Warna teks */
-  --ink:        #1c1917;   /* teks utama */
-  --ink-soft:   #44403c;   /* teks sekunder */
-  --ink-muted:  #78716c;   /* teks abu-abu */
-  --ink-faint:  #a8a29e;   /* teks paling redup */
+  --ink: #1c1917;
+  --ink-soft: #44403c;
+  --ink-muted: #78716c;
+  --ink-faint: #a8a29e;
 
-  /* Warna background */
-  --cream:      #fafaf9;   /* bg halaman utama */
-  --warm:       #f5f5f4;   /* bg sedikit lebih gelap */
-  --warm-2:     #efefed;   /* bg satu level lebih gelap lagi */
-  --white:      #ffffff;
+  --cream: #fafaf9;
+  --warm: #f5f5f4;
+  --warm-2: #efefed;
+  --white: #ffffff;
 
-  /* Border & shadow */
-  --border:     #e7e5e4;
-  --border-2:   #d6d3d1;
-  --shadow:     rgba(0,0,0,0.08);
-  --shadow-lg:  rgba(0,0,0,0.12);
+  --border: #e7e5e4;
+  --border-2: #d6d3d1;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
 
-  /* Variabel khusus section kontak (tetap gelap di semua mode) */
-  --contact-bg:              #1c1917;
-  --contact-card:            #292524;
-  --contact-border:          #3a3534;
-  --contact-text:            rgba(255,255,255,0.85);
-  --contact-muted:           rgba(255,255,255,0.4);
-  --contact-input-bg:        rgba(255,255,255,0.05);
-  --contact-input-border:    rgba(255,255,255,0.12);
-  --contact-input-focus:     rgba(255,255,255,0.3);
-  --contact-placeholder:     rgba(255,255,255,0.22);
-  --contact-submit-bg:       #ffffff;
-  --contact-submit-text:     #1c1917;
-  --contact-submit-hover:    #f5f5f4;
+  --contact-bg: #1c1917;
+  --contact-card: #292524;
+  --contact-border: #3a3534;
+  --contact-text: rgba(255, 255, 255, 0.85);
+  --contact-muted: rgba(255, 255, 255, 0.4);
+  --contact-input-bg: rgba(255, 255, 255, 0.05);
+  --contact-input-border: rgba(255, 255, 255, 0.12);
+  --contact-input-focus: rgba(255, 255, 255, 0.3);
+  --contact-placeholder: rgba(255, 255, 255, 0.22);
+  --contact-submit-bg: #ffffff;
+  --contact-submit-text: #1c1917;
+  --contact-submit-hover: #f5f5f4;
 
   color-scheme: light;
 }
 
-/* Semua variabel dibalik untuk tema gelap */
 .dark {
-  --ink:        #f5f5f4;
-  --ink-soft:   #d6d3d1;
-  --ink-muted:  #a8a29e;
-  --ink-faint:  #78716c;
+  --ink: #f5f5f4;
+  --ink-soft: #d6d3d1;
+  --ink-muted: #a8a29e;
+  --ink-faint: #78716c;
 
-  --cream:      #0c0a09;
-  --warm:       #1c1917;
-  --warm-2:     #292524;
-  --white:      #1c1917;
+  --cream: #0c0a09;
+  --warm: #1c1917;
+  --warm-2: #292524;
+  --white: #1c1917;
 
-  --border:     #3a3534;
-  --border-2:   #44403c;
-  --shadow:     rgba(0,0,0,0.35);
-  --shadow-lg:  rgba(0,0,0,0.55);
+  --border: #3a3534;
+  --border-2: #44403c;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --shadow-lg: rgba(0, 0, 0, 0.55);
 
-  /* Kontak sedikit lebih gelap dari versi light */
-  --contact-bg:              #080705;
-  --contact-card:            #141210;
-  --contact-border:          #2a2826;
-  --contact-text:            rgba(245,245,244,0.9);
-  --contact-muted:           rgba(245,245,244,0.4);
-  --contact-input-bg:        rgba(255,255,255,0.04);
-  --contact-input-border:    rgba(255,255,255,0.08);
-  --contact-input-focus:     rgba(255,255,255,0.2);
-  --contact-placeholder:     rgba(255,255,255,0.18);
-  --contact-submit-bg:       #f5f5f4;
-  --contact-submit-text:     #1c1917;
-  --contact-submit-hover:    #e7e5e4;
+  --contact-bg: #080705;
+  --contact-card: #141210;
+  --contact-border: #2a2826;
+  --contact-text: rgba(245, 245, 244, 0.9);
+  --contact-muted: rgba(245, 245, 244, 0.4);
+  --contact-input-bg: rgba(255, 255, 255, 0.04);
+  --contact-input-border: rgba(255, 255, 255, 0.08);
+  --contact-input-focus: rgba(255, 255, 255, 0.2);
+  --contact-placeholder: rgba(255, 255, 255, 0.18);
+  --contact-submit-bg: #f5f5f4;
+  --contact-submit-text: #1c1917;
+  --contact-submit-hover: #e7e5e4;
 
   color-scheme: dark;
 }
 
+* {
+  box-sizing: border-box;
+}
 
-/* ============================================================
-   2. RESET & BASE
-============================================================ */
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   background: var(--cream);
   color: var(--ink);
-  overflow-x: hidden; /* cegah scroll horizontal */
+  overflow-x: hidden;
   transition: background 0.35s ease, color 0.35s ease;
 }
 
-/* Noise texture tipis di seluruh halaman (overlay) */
 body::before {
   content: '';
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9000;
   opacity: 0.4;
 }
 
-/* Override warna Tailwind agar ikut CSS variable (dark mode) */
-.text-stone-900  { color: var(--ink) !important;       transition: color 0.3s; }
-.text-stone-800  { color: var(--ink-soft) !important;   transition: color 0.3s; }
-.text-stone-700  { color: var(--ink-soft) !important;   transition: color 0.3s; }
-.text-stone-600  { color: var(--ink-muted) !important;  transition: color 0.3s; }
-.text-stone-500  { color: var(--ink-muted) !important;  transition: color 0.3s; }
-.text-stone-400  { color: var(--ink-faint) !important;  transition: color 0.3s; }
-.text-stone-300  { color: var(--border-2) !important;   transition: color 0.3s; }
+.text-stone-900 {
+  color: var(--ink) !important;
+  transition: color 0.3s;
+}
 
-.bg-white      { background: var(--white) !important;  transition: background 0.3s; }
-.bg-stone-50   { background: var(--cream) !important;  transition: background 0.3s; }
-.bg-stone-100  { background: var(--warm) !important;   transition: background 0.3s; }
-.bg-stone-800  { background: var(--warm-2) !important; transition: background 0.3s; }
-.bg-stone-900  { background: var(--ink) !important;    transition: background 0.3s; }
+.text-stone-800 {
+  color: var(--ink-soft) !important;
+  transition: color 0.3s;
+}
 
-.border-stone-100 { border-color: var(--warm-2) !important;  transition: border-color 0.3s; }
-.border-stone-200 { border-color: var(--border) !important;  transition: border-color 0.3s; }
-.border-stone-300 { border-color: var(--border-2) !important; transition: border-color 0.3s; }
+.text-stone-700 {
+  color: var(--ink-soft) !important;
+  transition: color 0.3s;
+}
 
+.text-stone-600 {
+  color: var(--ink-muted) !important;
+  transition: color 0.3s;
+}
 
-/* ============================================================
-   3. SCROLLBAR KUSTOM
-   Scrollbar tipis 4px, warna menyesuaikan tema.
-============================================================ */
+.text-stone-500 {
+  color: var(--ink-muted) !important;
+  transition: color 0.3s;
+}
 
-::-webkit-scrollbar         { width: 4px; }
-::-webkit-scrollbar-track   { background: transparent; }
-::-webkit-scrollbar-thumb   { background: var(--border-2); border-radius: 2px; }
+.text-stone-400 {
+  color: var(--ink-faint) !important;
+  transition: color 0.3s;
+}
 
+.text-stone-300 {
+  color: var(--border-2) !important;
+  transition: color 0.3s;
+}
 
-/* ============================================================
-   4. LOADING SCREEN
-   Tampil di atas semua elemen saat halaman pertama dimuat.
-   Dihapus (class .hidden) oleh JavaScript setelah load selesai.
-============================================================ */
+.bg-white {
+  background: var(--white) !important;
+  transition: background 0.3s;
+}
+
+.bg-stone-50 {
+  background: var(--cream) !important;
+  transition: background 0.3s;
+}
+
+.bg-stone-100 {
+  background: var(--warm) !important;
+  transition: background 0.3s;
+}
+
+.bg-stone-800 {
+  background: var(--warm-2) !important;
+  transition: background 0.3s;
+}
+
+.bg-stone-900 {
+  background: var(--ink) !important;
+  transition: background 0.3s;
+}
+
+.border-stone-100 {
+  border-color: var(--warm-2) !important;
+  transition: border-color 0.3s;
+}
+
+.border-stone-200 {
+  border-color: var(--border) !important;
+  transition: border-color 0.3s;
+}
+
+.border-stone-300 {
+  border-color: var(--border-2) !important;
+  transition: border-color 0.3s;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 2px;
+}
 
 #loader {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: #1c1917;
   z-index: 10000;
   display: flex;
@@ -172,18 +191,16 @@ body::before {
 
 #loader.hidden {
   opacity: 0;
-  visibility: hidden; /* nonaktifkan pointer events saat tersembunyi */
+  visibility: hidden;
 }
 
-/* Kontainer progress bar loader */
 .loader-bar {
   width: 200px;
   height: 1px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
 
-/* Garis putih yang bergerak dari 0 → 100% */
 .loader-fill {
   height: 100%;
   background: white;
@@ -192,88 +209,78 @@ body::before {
 }
 
 @keyframes loaderAnim {
-  to { width: 100%; }
+  to {
+    width: 100%;
+  }
 }
 
-
-/* ============================================================
-   5. PROGRESS BAR & TOMBOL BACK TO TOP
-============================================================ */
-
-/* Progress bar scroll — garis tipis di paling atas halaman */
 #progress-bar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   height: 2px;
   background: var(--ink);
   z-index: 9990;
-  width: 0; /* diupdate via JavaScript sesuai posisi scroll */
+  width: 0;
   transition: width 0.1s linear;
 }
 
-/* Tombol kembali ke atas (pojok kanan bawah) */
 #back-top {
   position: fixed;
-  bottom: 28px; right: 28px;
-  width: 44px; height: 44px;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
   background: var(--ink);
   color: var(--cream);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 900;
   opacity: 0;
-  transform: translateY(16px); /* tersembunyi di bawah */
+  transform: translateY(16px);
   transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s;
   cursor: pointer;
   font-size: 0.75rem;
 }
 
-/* Muncul saat user scroll ke bawah (class ditambah via JS) */
 #back-top.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Sembunyikan di mobile (sudah ada bottom nav) */
 @media (max-width: 767px) {
-  #back-top { display: none; }
+  #back-top {
+    display: none;
+  }
 }
 
-/* Varian putih — digunakan di section dengan background gelap */
 #back-top.light {
   background: #ffffff;
   color: #1c1917;
-  border: 1px solid rgba(28,25,23,0.1);
+  border: 1px solid rgba(28, 25, 23, 0.1);
 }
 
-
-/* ============================================================
-   6. NAVBAR (Desktop)
-   Fixed di atas, background semi-transparan dengan blur.
-   Saat di-scroll, background menjadi lebih solid.
-============================================================ */
-
 nav#navbar {
-  background: rgba(250,250,249,0.8);
+  background: rgba(250, 250, 249, 0.8);
   transition: all 0.3s ease;
 }
 
 .dark nav#navbar {
-  background: rgba(12,10,9,0.8) !important;
+  background: rgba(12, 10, 9, 0.8) !important;
 }
 
-/* Navbar lebih solid setelah scroll (class .scrolled ditambah JS) */
 nav#navbar.scrolled {
-  background: rgba(250,250,249,0.95) !important;
+  background: rgba(250, 250, 249, 0.95) !important;
   box-shadow: 0 1px 0 var(--border);
 }
 
 .dark nav#navbar.scrolled {
-  background: rgba(12,10,9,0.95) !important;
+  background: rgba(12, 10, 9, 0.95) !important;
   box-shadow: 0 1px 0 var(--border);
 }
 
-/* Link navigasi dengan underline animasi saat hover/aktif */
 .nav-link {
   position: relative;
   font-size: 0.8rem;
@@ -285,21 +292,28 @@ nav#navbar.scrolled {
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -3px; left: 0;
-  width: 0; height: 1px;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
   background: var(--ink);
   transition: width 0.3s ease;
 }
 
 .nav-link:hover,
-.nav-link.active           { color: var(--ink); }
+.nav-link.active {
+  color: var(--ink);
+}
+
 .nav-link:hover::after,
-.nav-link.active::after    { width: 100%; }
+.nav-link.active::after {
+  width: 100%;
+}
 
-/* Koreksi underline di dark mode */
-.dark .nav-link::after { background: var(--ink); }
+.dark .nav-link::after {
+  background: var(--ink);
+}
 
-/* ── Switcher Tema (Light / System / Dark) ── */
 #theme-toggle {
   display: flex;
   align-items: center;
@@ -315,7 +329,8 @@ nav#navbar.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px; height: 28px;
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
   background: transparent;
   border: none;
@@ -326,14 +341,24 @@ nav#navbar.scrolled {
   flex-shrink: 0;
 }
 
-.theme-btn:hover         { color: var(--ink-soft); transform: scale(1.1); }
-.theme-btn.active        { background: var(--white); color: var(--ink); box-shadow: 0 1px 4px var(--shadow); }
+.theme-btn:hover {
+  color: var(--ink-soft);
+  transform: scale(1.1);
+}
 
-/* Versi titik tema di bottom nav mobile */
+.theme-btn.active {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
 .theme-dot {
-  width: 18px; height: 18px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.6rem;
   color: var(--ink-faint);
   cursor: pointer;
@@ -345,7 +370,6 @@ nav#navbar.scrolled {
   color: var(--cream);
 }
 
-/* ── Switcher Bahasa (ID / EN) ── */
 #lang-toggle {
   display: flex;
   align-items: center;
@@ -361,7 +385,8 @@ nav#navbar.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px; height: 28px;
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
   background: transparent;
   border: none;
@@ -369,45 +394,49 @@ nav#navbar.scrolled {
   color: var(--ink-faint);
   font-size: 0.6rem;
   font-weight: 700;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   letter-spacing: 0.04em;
   transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   flex-shrink: 0;
 }
 
-.lang-btn:hover  { color: var(--ink-soft); transform: scale(1.1); }
-.lang-btn.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 4px var(--shadow); }
+.lang-btn:hover {
+  color: var(--ink-soft);
+  transform: scale(1.1);
+}
 
-
-/* ============================================================
-   7. BOTTOM NAV (Mobile)
-   Muncul hanya di layar ≤ 767px (mobile).
-   Fixed di bawah layar, berisi 4 ikon navigasi + switcher tema.
-============================================================ */
+.lang-btn.active {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 1px 4px var(--shadow);
+}
 
 #bottom-nav {
-  display: none; /* tersembunyi secara default (mobile show via media query) */
+  display: none;
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 800;
-  background: rgba(250,250,249,0.88);
+  background: rgba(250, 250, 249, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 1px solid rgba(214,211,209,0.6);
-  padding-bottom: env(safe-area-inset-bottom, 0px); /* iPhone notch safe area */
-  box-shadow: 0 -8px 32px rgba(28,25,23,0.06);
+  border-top: 1px solid rgba(214, 211, 209, 0.6);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-shadow: 0 -8px 32px rgba(28, 25, 23, 0.06);
   transition: background 0.35s, border-color 0.35s;
 }
 
 .dark #bottom-nav {
-  background: rgba(12,10,9,0.88);
-  border-top: 1px solid rgba(58,53,52,0.6);
-  box-shadow: 0 -8px 32px rgba(0,0,0,0.3);
+  background: rgba(12, 10, 9, 0.88);
+  border-top: 1px solid rgba(58, 53, 52, 0.6);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* Tampilkan di mobile */
 @media (max-width: 767px) {
-  #bottom-nav { display: block; }
+  #bottom-nav {
+    display: block;
+  }
 }
 
 .bottom-nav-inner {
@@ -418,7 +447,6 @@ nav#navbar.scrolled {
   padding: 0 4px;
 }
 
-/* Setiap item navigasi bawah */
 .bottom-nav-item {
   display: flex;
   flex-direction: column;
@@ -430,30 +458,37 @@ nav#navbar.scrolled {
   cursor: pointer;
   text-decoration: none;
   position: relative;
-  -webkit-tap-highlight-color: transparent; /* hilangkan highlight biru di tap iOS */
+  -webkit-tap-highlight-color: transparent;
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.bottom-nav-item:active { transform: scale(0.88); }
+.bottom-nav-item:active {
+  transform: scale(0.88);
+}
 
-/* Garis indikator di atas item aktif */
 .bottom-nav-item::before {
   content: '';
   position: absolute;
-  top: 6px; left: 50%;
+  top: 6px;
+  left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 20px; height: 2px;
+  width: 20px;
+  height: 2px;
   border-radius: 2px;
   background: var(--ink);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.bottom-nav-item.active::before { transform: translateX(-50%) scaleX(1); }
+.bottom-nav-item.active::before {
+  transform: translateX(-50%) scaleX(1);
+}
 
-/* Ikon di dalam item nav bawah */
 .bottom-nav-icon {
-  width: 36px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
+  width: 36px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
   font-size: 0.9rem;
   color: var(--ink-faint);
@@ -462,17 +497,16 @@ nav#navbar.scrolled {
 
 .bottom-nav-item.active .bottom-nav-icon {
   color: var(--ink);
-  background: rgba(28,25,23,0.07);
+  background: rgba(28, 25, 23, 0.07);
   transform: translateY(-1px) scale(1.08);
 }
 
 .dark .bottom-nav-item.active .bottom-nav-icon {
-  background: rgba(245,245,244,0.1);
+  background: rgba(245, 245, 244, 0.1);
 }
 
-/* Label teks di bawah ikon */
 .bottom-nav-label {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.5rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -481,34 +515,32 @@ nav#navbar.scrolled {
   line-height: 1;
 }
 
-.bottom-nav-item.active .bottom-nav-label { color: var(--ink); }
+.bottom-nav-item.active .bottom-nav-label {
+  color: var(--ink);
+}
 
-/* Efek ripple saat tap item nav */
 .bottom-nav-item .ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(28,25,23,0.08);
+  background: rgba(28, 25, 23, 0.08);
   transform: scale(0);
   animation: ripple-anim 0.45s ease-out forwards;
   pointer-events: none;
 }
 
 .dark .bottom-nav-item .ripple {
-  background: rgba(245,245,244,0.08);
+  background: rgba(245, 245, 244, 0.08);
 }
 
 @keyframes ripple-anim {
-  to { transform: scale(3.5); opacity: 0; }
+  to {
+    transform: scale(3.5);
+    opacity: 0;
+  }
 }
 
-
-/* ============================================================
-   8. KOMPONEN UMUM
-============================================================ */
-
-/* Label section kecil bermonospace dengan garis dekoratif */
 .section-label {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -521,18 +553,17 @@ nav#navbar.scrolled {
 .section-label::before {
   content: '';
   display: inline-block;
-  width: 20px; height: 1px;
+  width: 20px;
+  height: 1px;
   background: var(--ink-faint);
 }
 
-/* Teks kecil monospace untuk angka/nomor */
 .num {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 0.65rem;
   color: var(--ink-faint);
 }
 
-/* Tag oval kecil (kepribadian / kategori) */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -547,7 +578,6 @@ nav#navbar.scrolled {
   transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 
-/* Badge teknologi (dengan ikon SVG inline) */
 .tech-badge {
   display: inline-flex;
   align-items: center;
@@ -558,35 +588,35 @@ nav#navbar.scrolled {
   border-radius: 6px;
   font-size: 0.68rem;
   font-weight: 500;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
   cursor: default;
   transition: background 0.18s, border-color 0.18s, color 0.18s;
 }
 
-/* Hover: warna terbalik (gelap) */
 .tech-badge:hover {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--cream);
 }
 
-/* Ikon SVG di dalam badge ikut jadi putih saat hover */
-.tech-badge:hover .ti { filter: brightness(0) invert(1); }
+.tech-badge:hover .ti {
+  filter: brightness(0) invert(1);
+}
 
 .tech-badge .ti {
-  width: 13px; height: 13px;
+  width: 13px;
+  height: 13px;
   flex-shrink: 0;
   display: block;
   transition: filter 0.18s;
 }
 
-/* Card dengan efek naik saat hover */
 .card-lift {
   transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-              box-shadow 0.35s ease,
-              background 0.35s, border-color 0.35s;
+    box-shadow 0.35s ease,
+    background 0.35s, border-color 0.35s;
 }
 
 .card-lift:hover {
@@ -594,12 +624,14 @@ nav#navbar.scrolled {
   box-shadow: 0 24px 48px var(--shadow-lg);
 }
 
-/* Ikon sosial (GitHub, LinkedIn, Instagram) */
 .social-icon {
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--ink-faint);
   font-size: 0.8rem;
   transition: all 0.2s ease;
@@ -611,100 +643,91 @@ nav#navbar.scrolled {
   background: var(--warm);
 }
 
-/* Link ikon versi gelap (di section kontak) */
 .dark-link {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   transition: color 0.2s;
 }
-.dark-link:hover { color: white; }
 
-/* Filter proyek (Semua / Aplikasi Web) */
-.filter-btn {
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--border-2);
-  color: var(--ink-muted);
-  cursor: pointer;
-  background: transparent;
-  transition: all 0.2s ease;
+.dark-link:hover {
+  color: white;
 }
 
-.filter-btn:hover  { border-color: var(--ink-soft); color: var(--ink-soft); }
-.filter-btn.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-
-/* Kartu proyek — tersembunyi saat tidak sesuai filter */
 .project-card {
   background: var(--white);
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.project-card.hidden-card {
-  opacity: 0;
-  transform: scale(0.96);
-  pointer-events: none;
-  position: absolute; /* keluarkan dari flow agar tidak makan tempat */
+.reveal-word {
+  display: inline-block;
+  overflow: hidden;
 }
-
-
-/* ============================================================
-   9. ANIMASI & TRANSISI
-============================================================ */
-
-/* Animasi masuk teks per-kata (hero heading) */
-.reveal-word { display: inline-block; overflow: hidden; }
 
 .reveal-word span {
   display: inline-block;
-  transform: translateY(110%); /* mulai dari bawah */
+  transform: translateY(110%);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Class .visible ditambahkan JS setelah halaman selesai dimuat */
-.reveal-word.visible span { transform: translateY(0); }
+.reveal-word.visible span {
+  transform: translateY(0);
+}
 
-/* Animasi fade + naik — untuk elemen saat masuk viewport */
 .fade-up {
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.75s ease,
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* Animasi counter angka statistik */
 @keyframes countUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.counted { animation: countUp 0.6s ease both; }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 
-/* Efek ketik kursor berkedip */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counted {
+  animation: countUp 0.6s ease both;
+}
+
 .typing-cursor::after {
   content: '|';
   animation: blink 0.9s step-end infinite;
   margin-left: 2px;
 }
-@keyframes blink { 50% { opacity: 0; } }
 
-/* Animasi ping (lingkaran status tersedia berkedip) */
-@keyframes ping {
-  75%, 100% { transform: scale(2); opacity: 0; }
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
-.ping { animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
 
-/* Transisi lebar bar keahlian */
-.skill-fill { transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes ping {
 
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
 
-/* ============================================================
-   10. TICKER / MARQUEE
-   Dua baris logo teknologi yang bergerak otomatis.
-   Baris 1: kiri → kanan | Baris 2: kanan → kiri (reverse).
-   Berhenti saat di-hover.
-============================================================ */
+.ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.skill-fill {
+  transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .ticker-rows {
   display: flex;
@@ -715,13 +738,13 @@ nav#navbar.scrolled {
 .ticker-wrapper {
   position: relative;
   overflow: hidden;
-  /* Fade kiri-kanan agar terlihat "menghilang" di ujung */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
-/* Pause animasi saat hover */
-.ticker-wrapper:hover .ticker-track { animation-play-state: paused; }
+.ticker-wrapper:hover .ticker-track {
+  animation-play-state: paused;
+}
 
 .ticker-track {
   display: flex;
@@ -731,22 +754,30 @@ nav#navbar.scrolled {
   animation: tickerScroll 38s linear infinite;
 }
 
-/* Arah berlawanan untuk baris ke-2 */
 .ticker-track.reverse {
   animation: tickerScrollReverse 42s linear infinite;
 }
 
 @keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); } /* konten diduplikasi 2x di JS */
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes tickerScrollReverse {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
-/* "Pil" teknologi di dalam ticker */
 .ticker-pill {
   display: inline-flex;
   align-items: center;
@@ -757,7 +788,7 @@ nav#navbar.scrolled {
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 500;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -773,10 +804,13 @@ nav#navbar.scrolled {
   transform: translateY(-2px);
 }
 
-.ticker-pill:hover .ti { filter: brightness(0) invert(1); }
+.ticker-pill:hover .ti {
+  filter: brightness(0) invert(1);
+}
 
 .ticker-pill .ti {
-  width: 14px; height: 14px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
   display: block;
   transition: filter 0.2s;
@@ -794,47 +828,87 @@ nav#navbar.scrolled {
 }
 
 @keyframes aboutTagScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-/* ============================================================
-   11. SECTION-SECTION
-   Background tiap section menggunakan variabel agar ikut dark mode.
-============================================================ */
-
-#home     { background: var(--cream);  transition: background 0.35s; }
-#tentang  { background: var(--white);  transition: background 0.35s; }
-#keahlian { background: var(--warm);   transition: background 0.35s; }
-#proyek   { background: var(--white);  transition: background 0.35s; }
-#kontak   { background: var(--contact-bg); transition: background 0.35s; }
-
-/* Section kontak: override warna komponen-komponennya */
-#kontak .bg-stone-800      { background: var(--contact-card) !important; border-color: var(--contact-border) !important; }
-#kontak .border-stone-700  { border-color: var(--contact-border) !important; }
-#kontak .bg-stone-800\/50  { background: rgba(255,255,255,0.03) !important; }
-#kontak .text-white        { color: var(--contact-text) !important; }
-#kontak .text-stone-300    { color: rgba(245,245,244,0.65) !important; }
-#kontak .text-stone-400    { color: var(--contact-muted) !important; }
-#kontak .text-stone-500    { color: rgba(245,245,244,0.25) !important; }
-
-/* Footer selalu hitam pekat */
-footer {
-  background: #0c0a09 !important;
-  border-top: 1px solid rgba(255,255,255,0.1);
+#home {
+  background: var(--cream);
   transition: background 0.35s;
 }
 
-footer .text-stone-600 { color: rgba(245,245,244,0.6) !important; }
-footer .text-stone-500 { color: rgba(245,245,244,0.6) !important; }
-footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
+#tentang {
+  background: var(--white);
+  transition: background 0.35s;
+}
 
+#keahlian {
+  background: var(--warm);
+  transition: background 0.35s;
+}
 
-/* ============================================================
-   12. FORM KONTAK
-============================================================ */
+#proyek {
+  background: var(--white);
+  transition: background 0.35s;
+}
 
-/* Label input */
+#kontak {
+  background: var(--contact-bg);
+  transition: background 0.35s;
+}
+
+#kontak .bg-stone-800 {
+  background: var(--contact-card) !important;
+  border-color: var(--contact-border) !important;
+}
+
+#kontak .border-stone-700 {
+  border-color: var(--contact-border) !important;
+}
+
+#kontak .bg-stone-800\/50 {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+#kontak .text-white {
+  color: var(--contact-text) !important;
+}
+
+#kontak .text-stone-300 {
+  color: rgba(245, 245, 244, 0.65) !important;
+}
+
+#kontak .text-stone-400 {
+  color: var(--contact-muted) !important;
+}
+
+#kontak .text-stone-500 {
+  color: rgba(245, 245, 244, 0.25) !important;
+}
+
+footer {
+  background: #0c0a09 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.35s;
+}
+
+footer .text-stone-600 {
+  color: rgba(245, 245, 244, 0.6) !important;
+}
+
+footer .text-stone-500 {
+  color: rgba(245, 245, 244, 0.6) !important;
+}
+
+footer .text-stone-700 {
+  color: rgba(245, 245, 244, 0.35) !important;
+}
+
 .form-field label {
   display: block;
   font-size: 0.65rem;
@@ -842,10 +916,9 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   text-transform: uppercase;
   color: var(--contact-muted);
   margin-bottom: 8px;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
 }
 
-/* Input & textarea */
 .form-field input,
 .form-field textarea {
   width: 100%;
@@ -855,22 +928,22 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   padding: 14px 16px;
   color: var(--contact-text);
   font-size: 0.875rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   outline: none;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .form-field input::placeholder,
-.form-field textarea::placeholder { color: var(--contact-placeholder); }
+.form-field textarea::placeholder {
+  color: var(--contact-placeholder);
+}
 
-/* Fokus: border lebih terang */
 .form-field input:focus,
 .form-field textarea:focus {
   border-color: var(--contact-input-focus);
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
 }
 
-/* Tombol kirim pesan */
 #submit-btn {
   background: var(--contact-submit-bg) !important;
   color: var(--contact-submit-text) !important;
@@ -878,25 +951,19 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
 
 #submit-btn:hover {
   background: var(--contact-submit-hover) !important;
-  transform: none !important; /* cegah efek naik yang tidak diinginkan */
+  transform: none !important;
 }
-
-
-/* ============================================================
-   13. TOAST NOTIFIKASI
-   Muncul di pojok kanan atas setelah form dikirim.
-   Dua varian: .success (gelap) dan .error (merah).
-============================================================ */
 
 #toast-container {
   position: fixed;
-  top: 72px; right: 24px;
+  top: 72px;
+  right: 24px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
-  pointer-events: none; /* tidak menghalangi klik di bawahnya */
+  pointer-events: none;
 }
 
 .toast {
@@ -906,58 +973,69 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   padding: 12px 20px;
   border-radius: 999px;
   font-size: 0.8rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 500;
   white-space: nowrap;
   pointer-events: auto;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   opacity: 0;
-  transform: translateX(24px) scale(0.95); /* mulai dari kanan */
-  transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1),
-              transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  transform: translateX(24px) scale(0.95);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Masuk ke layar */
-.toast.show { opacity: 1; transform: translateX(0) scale(1); }
+.toast.show {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
 
-/* Keluar ke kanan */
-.toast.hide { opacity: 0; transform: translateX(24px) scale(0.95); }
+.toast.hide {
+  opacity: 0;
+  transform: translateX(24px) scale(0.95);
+}
 
 .toast.success {
   background: #1c1917;
   color: #f5f5f4;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .toast.error {
   background: #450a0a;
   color: #fca5a5;
-  border: 1px solid rgba(252,165,165,0.2);
+  border: 1px solid rgba(252, 165, 165, 0.2);
 }
 
 .toast .toast-icon {
-  width: 20px; height: 20px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.65rem;
   flex-shrink: 0;
 }
 
-.toast.success .toast-icon { background: #10b981; color: white; }
-.toast.error .toast-icon   { background: #ef4444; color: white; }
+.toast.success .toast-icon {
+  background: #10b981;
+  color: white;
+}
 
+.toast.error .toast-icon {
+  background: #ef4444;
+  color: white;
+}
 
-/* ============================================================
-   14. TOOLTIP
-   Muncul di atas elemen saat hover (sosial media, dll.)
-============================================================ */
-
-.has-tooltip { position: relative; }
+.has-tooltip {
+  position: relative;
+}
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 8px); left: 50%;
-  transform: translateX(-50%) translateY(4px); /* sedikit di bawah posisi akhir */
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
   background: var(--ink);
   color: var(--cream);
   font-size: 0.65rem;
@@ -966,65 +1044,68 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   transition: all 0.2s ease;
 }
 
-/* Muncul & naik saat hover */
 .has-tooltip:hover .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
+.dark #tentang {
+  background: var(--warm) !important;
+}
 
-/* ============================================================
-   15. DARK MODE OVERRIDES
-   Koreksi spesifik untuk elemen yang tidak otomatis ikut variabel.
-============================================================ */
+.dark #keahlian {
+  background: var(--cream) !important;
+}
 
-/* Section backgrounds */
-.dark #tentang  { background: var(--warm) !important; }
-.dark #keahlian { background: var(--cream) !important; }
-.dark #proyek   { background: var(--warm) !important; }
-.dark #kontak   { background: #080705 !important; }
+.dark #proyek {
+  background: var(--warm) !important;
+}
 
-/* Photo card: bingkai & badge status */
+.dark #kontak {
+  background: #080705 !important;
+}
+
 .dark #photo-card .absolute.-inset-4,
-.dark #photo-card .absolute.-inset-8    { border-color: var(--border) !important; }
-.dark #photo-card .bg-white             { background: var(--warm-2) !important; border-color: var(--border) !important; }
-.dark #photo-card .absolute.-bottom-5  { background: var(--warm-2) !important; border-color: var(--border) !important; }
+.dark #photo-card .absolute.-inset-8 {
+  border-color: var(--border) !important;
+}
 
-/* Badge pengalaman di foto (bg gelap di hero) */
+.dark #photo-card .bg-white {
+  background: var(--warm-2) !important;
+  border-color: var(--border) !important;
+}
+
+.dark #photo-card .absolute.-bottom-5 {
+  background: var(--warm-2) !important;
+  border-color: var(--border) !important;
+}
+
 .dark .bg-stone-900.text-white {
   background: var(--warm-2) !important;
   color: var(--ink) !important;
   border: 1px solid var(--border);
 }
 
-.dark .bg-stone-900.text-white:hover { background: var(--border-2) !important; }
+.dark .bg-stone-900.text-white:hover {
+  background: var(--border-2) !important;
+}
 
-/* Link & tombol bg-stone-900 */
 .dark a.bg-stone-900.text-white,
 .dark button.bg-stone-900.text-white {
   background: var(--warm-2) !important;
   color: var(--ink) !important;
 }
 
-/* Filter button aktif */
-.dark .filter-btn.active {
-  background: var(--ink);
-  color: var(--cream);
-  border-color: var(--ink);
-}
-
-/* Tag kepribadian */
 .dark .tag {
   background: var(--warm-2);
   border-color: var(--border-2);
   color: var(--ink-soft);
 }
 
-/* Tech badge & ticker pill */
 .dark .tech-badge,
 .dark .ticker-pill {
   background: var(--warm-2);
@@ -1032,21 +1113,27 @@ footer .text-stone-700 { color: rgba(245,245,244,0.35) !important; }
   color: var(--ink-soft);
 }
 
-/* Border kartu */
-.dark .card-lift { border-color: var(--border) !important; }
+.dark .card-lift {
+  border-color: var(--border) !important;
+}
 
-/* Ikon sosial */
-.dark .social-icon              { border-color: var(--border); color: var(--ink-faint); }
-.dark .social-icon:hover        { border-color: var(--ink); color: var(--ink); background: var(--warm-2); }
+.dark .social-icon {
+  border-color: var(--border);
+  color: var(--ink-faint);
+}
 
-/* Kontak: hilangkan efek hover pada input agar tidak berubah warna */
+.dark .social-icon:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: var(--warm-2);
+}
+
 .dark #kontak .form-field input:hover,
 .dark #kontak .form-field textarea:hover {
   border-color: var(--contact-input-border) !important;
   background: var(--contact-input-bg) !important;
 }
 
-/* Kontak: response time box */
 .dark #kontak .border-stone-700 {
-  background: rgba(255,255,255,0.03) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
 }
