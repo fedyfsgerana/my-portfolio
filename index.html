@@ -1,1006 +1,2076 @@
 <!doctype html>
 <html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fedy Fs. Gerana — Portfolio</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fedy Fs. Gerana — Programmer | Web Developer</title>
+    <script>
+      (function () {
+        var saved = localStorage.getItem("theme") || "system";
+        var dark =
+          saved === "dark" ||
+          (saved === "system" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (dark) document.documentElement.classList.add("dark");
+      })();
+    </script>
 
-  <script>
-    (function () {
-      var saved = localStorage.getItem('theme') || 'system';
-      var dark = saved === 'dark' || (saved === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      if (dark) document.documentElement.classList.add('dark');
-    })();
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      emailjs.init("qxIJgSnQkAvC_hw8o");
+    </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    emailjs.init("qxIJgSnQkAvC_hw8o");
-  </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["Geist", "sans-serif"],
-            mono: ["Geist Mono", "monospace"],
-            display: ["Playfair Display", "serif"],
-          },
-          colors: {
-            stone: {
-              50: "#fafaf9", 100: "#f5f5f4", 150: "#efefed", 200: "#e7e5e4",
-              300: "#d6d3d1", 400: "#a8a29e", 500: "#78716c", 600: "#57534e",
-              700: "#44403c", 800: "#292524", 900: "#1c1917", 950: "#0c0a09",
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Geist", "sans-serif"],
+              mono: ["Geist Mono", "monospace"],
+              display: ["Playfair Display", "serif"],
+            },
+            colors: {
+              stone: {
+                50: "#fafaf9",
+                100: "#f5f5f4",
+                150: "#efefed",
+                200: "#e7e5e4",
+                300: "#d6d3d1",
+                400: "#a8a29e",
+                500: "#78716c",
+                600: "#57534e",
+                700: "#44403c",
+                800: "#292524",
+                900: "#1c1917",
+                950: "#0c0a09",
+              },
             },
           },
         },
-      },
-    };
-  </script>
+      };
+    </script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
 
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c1917'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' fill='white'>FFG</text></svg>" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c1917'/><text x='16' y='21' text-anchor='middle' font-family='Geist Mono,monospace' font-size='13' font-weight='700' letter-spacing='-0.5' fill='white'>FFG</text></svg>"
+    />
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<div id="toast-container"></div>
+  <div id="toast-container"></div>
 
-<body>
-
-  <div id="loader">
-    <div id="loader-text"
-      style="font-family:'Geist Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;"
-      data-i18n="loader_text">
-      Memuat portofolio
-    </div>
-    <div class="loader-bar">
-      <div class="loader-fill"></div>
-    </div>
-    <div id="loader-pct" style="font-family:'Geist Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.25);">0%
-    </div>
-  </div>
-
-  <div id="progress-bar"></div>
-
-  <div id="back-top"><i class="fas fa-arrow-up"></i></div>
-
-  <nav id="navbar" class="fixed top-0 w-full z-50 backdrop-blur-lg border-b border-transparent">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10 flex items-center justify-between h-14">
-
-      <a href="#home" class="font-mono text-sm font-medium text-stone-900 tracking-wide flex items-center gap-1.5">
-        <span>FFG.</span><span class="text-stone-300">.</span>
-      </a>
-
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#tentang" class="nav-link flex items-center gap-1.5"><i class="fas fa-user text-xs"></i><span
-            data-i18n="nav_tentang">Tentang</span></a>
-        <a href="#keahlian" class="nav-link flex items-center gap-1.5"><i class="fas fa-code text-xs"></i><span
-            data-i18n="nav_keahlian">Keahlian</span></a>
-        <a href="#proyek" class="nav-link flex items-center gap-1.5"><i class="fas fa-briefcase text-xs"></i><span
-            data-i18n="nav_proyek">Proyek</span></a>
-        <a href="#kontak" class="nav-link flex items-center gap-1.5"><i class="fas fa-envelope text-xs"></i><span
-            data-i18n="nav_kontak">Kontak</span></a>
+  <body>
+    <div id="loader">
+      <div
+        id="loader-text"
+        style="
+          font-family: &quot;Geist Mono&quot;, monospace;
+          font-size: 0.7rem;
+          letter-spacing: 0.2em;
+          color: rgba(255, 255, 255, 0.4);
+          text-transform: uppercase;
+        "
+        data-i18n="loader_text"
+      >
+        Memuat portofolio
       </div>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+      <div
+        id="loader-pct"
+        style="
+          font-family: &quot;Geist Mono&quot;, monospace;
+          font-size: 0.65rem;
+          color: rgba(255, 255, 255, 0.25);
+        "
+      >
+        0%
+      </div>
+    </div>
 
-      <div class="flex items-center gap-3">
+    <div id="progress-bar"></div>
 
-        <div id="lang-toggle" role="group" aria-label="Language switcher">
-          <button class="lang-btn active" data-lang="id" aria-label="Bahasa Indonesia" aria-pressed="true"
-            title="Indonesia">
-            ID
-          </button>
-          <button class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false" title="English">
-            EN
-          </button>
+    <div id="back-top"><i class="fas fa-arrow-up"></i></div>
+
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-50 backdrop-blur-lg border-b border-transparent"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 lg:px-10 flex items-center justify-between h-14"
+      >
+        <a
+          href="#home"
+          class="font-mono text-sm font-medium text-stone-900 tracking-wide flex items-center gap-1.5"
+        >
+          <span>FFG.</span><span class="text-stone-300">.</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#tentang" class="nav-link flex items-center gap-1.5"
+            ><i class="fas fa-user text-xs"></i
+            ><span data-i18n="nav_tentang">Tentang</span></a
+          >
+          <a href="#keahlian" class="nav-link flex items-center gap-1.5"
+            ><i class="fas fa-code text-xs"></i
+            ><span data-i18n="nav_keahlian">Keahlian</span></a
+          >
+          <a href="#proyek" class="nav-link flex items-center gap-1.5"
+            ><i class="fas fa-briefcase text-xs"></i
+            ><span data-i18n="nav_proyek">Proyek</span></a
+          >
+          <a href="#kontak" class="nav-link flex items-center gap-1.5"
+            ><i class="fas fa-envelope text-xs"></i
+            ><span data-i18n="nav_kontak">Kontak</span></a
+          >
         </div>
 
-        <div id="theme-toggle" role="group">
-          <button class="theme-btn" data-mode="light" data-i18n-aria="theme_light" data-i18n-title="theme_light"
-            aria-pressed="false"><i class="fas fa-sun"></i></button>
-          <button class="theme-btn" data-mode="system" data-i18n-aria="theme_system" data-i18n-title="theme_system"
-            aria-pressed="true"><i class="fas fa-circle-half-stroke"></i></button>
-          <button class="theme-btn" data-mode="dark" data-i18n-aria="theme_dark" data-i18n-title="theme_dark"
-            aria-pressed="false"><i class="fas fa-moon"></i></button>
-        </div>
+        <div class="flex items-center gap-3">
+          <div id="lang-toggle" role="group" aria-label="Language switcher">
+            <button
+              class="lang-btn active"
+              data-lang="id"
+              aria-label="Bahasa Indonesia"
+              aria-pressed="true"
+              title="Indonesia"
+            >
+              ID
+            </button>
+            <button
+              class="lang-btn"
+              data-lang="en"
+              aria-label="English"
+              aria-pressed="false"
+              title="English"
+            >
+              EN
+            </button>
+          </div>
 
-        <a href="#kontak"
-          class="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium">
-          <span data-i18n="nav_hubungi">Hubungi Saya</span> <i class="fas fa-arrow-right text-xs"></i>
+          <div id="theme-toggle" role="group">
+            <button
+              class="theme-btn"
+              data-mode="light"
+              data-i18n-aria="theme_light"
+              data-i18n-title="theme_light"
+              aria-pressed="false"
+            >
+              <i class="fas fa-sun"></i>
+            </button>
+            <button
+              class="theme-btn"
+              data-mode="system"
+              data-i18n-aria="theme_system"
+              data-i18n-title="theme_system"
+              aria-pressed="true"
+            >
+              <i class="fas fa-circle-half-stroke"></i>
+            </button>
+            <button
+              class="theme-btn"
+              data-mode="dark"
+              data-i18n-aria="theme_dark"
+              data-i18n-title="theme_dark"
+              aria-pressed="false"
+            >
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+
+          <a
+            href="#kontak"
+            class="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium"
+          >
+            <span data-i18n="nav_hubungi">Hubungi Saya</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <nav id="bottom-nav" aria-label="Navigasi utama">
+      <div class="bottom-nav-inner">
+        <a href="#home" class="bottom-nav-item active" data-section="home">
+          <div class="bottom-nav-icon"><i class="fas fa-house"></i></div>
+          <span class="bottom-nav-label" data-i18n="bnav_beranda">Beranda</span>
+        </a>
+        <a href="#tentang" class="bottom-nav-item" data-section="tentang">
+          <div class="bottom-nav-icon"><i class="fas fa-user"></i></div>
+          <span class="bottom-nav-label" data-i18n="bnav_tentang">Tentang</span>
+        </a>
+        <a href="#keahlian" class="bottom-nav-item" data-section="keahlian">
+          <div class="bottom-nav-icon"><i class="fas fa-code"></i></div>
+          <span class="bottom-nav-label" data-i18n="bnav_keahlian"
+            >Keahlian</span
+          >
+        </a>
+        <a href="#proyek" class="bottom-nav-item" data-section="proyek">
+          <div class="bottom-nav-icon"><i class="fas fa-briefcase"></i></div>
+          <span class="bottom-nav-label" data-i18n="bnav_proyek">Proyek</span>
+        </a>
+        <a href="#kontak" class="bottom-nav-item" data-section="kontak">
+          <div class="bottom-nav-icon"><i class="fas fa-envelope"></i></div>
+          <span class="bottom-nav-label" data-i18n="bnav_kontak">Kontak</span>
         </a>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <nav id="bottom-nav" aria-label="Navigasi utama">
-    <div class="bottom-nav-inner">
-      <a href="#home" class="bottom-nav-item active" data-section="home">
-        <div class="bottom-nav-icon"><i class="fas fa-house"></i></div>
-        <span class="bottom-nav-label" data-i18n="bnav_beranda">Beranda</span>
-      </a>
-      <a href="#tentang" class="bottom-nav-item" data-section="tentang">
-        <div class="bottom-nav-icon"><i class="fas fa-user"></i></div>
-        <span class="bottom-nav-label" data-i18n="bnav_tentang">Tentang</span>
-      </a>
-      <a href="#keahlian" class="bottom-nav-item" data-section="keahlian">
-        <div class="bottom-nav-icon"><i class="fas fa-code"></i></div>
-        <span class="bottom-nav-label" data-i18n="bnav_keahlian">Keahlian</span>
-      </a>
-      <a href="#proyek" class="bottom-nav-item" data-section="proyek">
-        <div class="bottom-nav-icon"><i class="fas fa-briefcase"></i></div>
-        <span class="bottom-nav-label" data-i18n="bnav_proyek">Proyek</span>
-      </a>
-      <a href="#kontak" class="bottom-nav-item" data-section="kontak">
-        <div class="bottom-nav-icon"><i class="fas fa-envelope"></i></div>
-        <span class="bottom-nav-label" data-i18n="bnav_kontak">Kontak</span>
-      </a>
-    </div>
-  </nav>
+    <section id="home" class="min-h-screen flex items-center pt-14">
+      <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center py-20 lg:py-28"
+        >
+          <div class="space-y-8">
+            <div class="space-y-3">
+              <div class="section-label" data-i18n="hero_role">
+                Programmer | Web Developer
+              </div>
 
-  <section id="home" class="min-h-screen flex items-center pt-14">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center py-20 lg:py-28">
-
-        <div class="space-y-8">
-          <div class="space-y-3">
-            <div class="section-label" data-i18n="hero_role">Programmer | Web Developer</div>
-
-            <h1 class="text-5xl lg:text-6xl xl:text-[4.5rem] font-light leading-[1.05] text-stone-900 tracking-tight">
-              <div class="reveal-word"><span data-i18n="hero_greeting">Halo, saya</span></div>
-              <br />
-              <div class="reveal-word" style="transition-delay:0.08s"><span><strong
-                    class="font-semibold tracking-tight">Fedy Fs.</strong></span></div>
-              <br />
-              <div class="reveal-word" style="transition-delay:0.16s"><span><strong
-                    class="font-semibold">Gerana</strong></span></div>
-            </h1>
-          </div>
-
-          <p id="hero-desc" class="text-base lg:text-lg text-stone-500 leading-relaxed max-w-md font-light"
-            style="opacity:0;transition:opacity 0.7s ease,transform 0.7s ease;transition-delay:0.4s;"
-            data-i18n="hero_desc">
-            Saya seorang programmer yang fokus pada pengembangan web, dengan pengalaman membangun, mengintegrasikan,
-            dan memelihara aplikasi menggunakan JavaScript/TypeScript modern serta .NET.
-          </p>
-
-          <div id="hero-btns" class="flex flex-wrap gap-3"
-            style="opacity:0;transition:opacity 0.7s ease;transition-delay:0.55s;">
-            <a href="#proyek"
-              class="px-6 py-3 bg-stone-900 text-white text-sm rounded-full hover:bg-stone-700 transition-colors font-medium inline-flex items-center gap-2">
-              <i class="fas fa-briefcase text-xs"></i><span data-i18n="hero_cta_proyek">Lihat Karya Saya</span>
-            </a>
-            <a href="#kontak"
-              class="px-6 py-3 border border-stone-300 text-stone-700 text-sm rounded-full hover:bg-stone-100 transition-colors inline-flex items-center gap-2">
-              <i class="fas fa-envelope text-xs"></i><span data-i18n="hero_cta_kontak">Hubungi Saya</span>
-            </a>
-          </div>
-
-          <div id="hero-social" class="flex items-center gap-5"
-            style="opacity:0;transition:opacity 0.7s ease;transition-delay:0.65s;">
-            <span class="num uppercase tracking-widest" data-i18n="hero_find">Temukan saya</span>
-            <div class="h-px bg-stone-200 w-8"></div>
-            <div class="flex gap-3">
-              <a href="https://github.com" class="social-icon has-tooltip"><i class="fab fa-github"></i><span
-                  class="tooltip">GitHub</span></a>
-              <a href="https://linkedin.com/in/fedy-fs-gerana" target="_blank" rel="noopener"
-                class="social-icon has-tooltip"><i class="fab fa-linkedin"></i><span class="tooltip">LinkedIn</span></a>
-              <a href="https://instagram.com/fedyfsg" target="_blank" rel="noopener" class="social-icon has-tooltip"><i
-                  class="fab fa-instagram"></i><span class="tooltip">Instagram</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-center lg:justify-end">
-          <div class="relative" id="photo-card">
-            <div class="absolute -inset-4 border border-stone-200 rounded-3xl pointer-events-none"></div>
-            <div class="absolute -inset-8 border border-stone-100 rounded-[28px] pointer-events-none"></div>
-
-            <img src="Fedy.png" alt="Fedy Fs. Gerana" id="hero-photo"
-              class="relative w-64 h-80 lg:w-[300px] lg:h-[380px] object-cover rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-700" />
-
-            <div
-              class="absolute -bottom-5 -left-5 bg-white border border-stone-200 rounded-2xl px-4 py-3 shadow-xl z-10">
-              <div class="num uppercase tracking-widest text-stone-400 mb-1">Status</div>
-              <div class="flex items-center gap-2">
-                <div class="relative w-2 h-2">
-                  <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 ping opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              <h1
+                class="text-5xl lg:text-6xl xl:text-[4.5rem] font-light leading-[1.05] text-stone-900 tracking-tight"
+              >
+                <div class="reveal-word">
+                  <span data-i18n="hero_greeting">Halo, saya</span>
                 </div>
-                <span class="text-sm font-medium text-stone-700" data-i18n="hero_status">Tersedia untuk proyek</span>
+                <br />
+                <div class="reveal-word" style="transition-delay: 0.08s">
+                  <span
+                    ><strong class="font-semibold tracking-tight"
+                      >Fedy Fs.</strong
+                    ></span
+                  >
+                </div>
+                <br />
+                <div class="reveal-word" style="transition-delay: 0.16s">
+                  <span><strong class="font-semibold">Gerana</strong></span>
+                </div>
+              </h1>
+            </div>
+
+            <p
+              id="hero-desc"
+              class="text-base lg:text-lg text-stone-500 leading-relaxed max-w-md font-light"
+              style="
+                opacity: 0;
+                transition:
+                  opacity 0.7s ease,
+                  transform 0.7s ease;
+                transition-delay: 0.4s;
+              "
+              data-i18n="hero_desc"
+            >
+              Saya seorang programmer yang fokus pada pengembangan web, dengan
+              pengalaman membangun, mengintegrasikan, dan memelihara aplikasi
+              menggunakan JavaScript/TypeScript modern serta .NET.
+            </p>
+
+            <div
+              id="hero-btns"
+              class="flex flex-wrap gap-3"
+              style="
+                opacity: 0;
+                transition: opacity 0.7s ease;
+                transition-delay: 0.55s;
+              "
+            >
+              <a
+                href="#proyek"
+                class="px-6 py-3 bg-stone-900 text-white text-sm rounded-full hover:bg-stone-700 transition-colors font-medium inline-flex items-center gap-2"
+              >
+                <i class="fas fa-briefcase text-xs"></i
+                ><span data-i18n="hero_cta_proyek">Lihat Karya Saya</span>
+              </a>
+              <a
+                href="#kontak"
+                class="px-6 py-3 border border-stone-300 text-stone-700 text-sm rounded-full hover:bg-stone-100 transition-colors inline-flex items-center gap-2"
+              >
+                <i class="fas fa-envelope text-xs"></i
+                ><span data-i18n="hero_cta_kontak">Hubungi Saya</span>
+              </a>
+            </div>
+
+            <div
+              id="hero-social"
+              class="flex items-center gap-5"
+              style="
+                opacity: 0;
+                transition: opacity 0.7s ease;
+                transition-delay: 0.65s;
+              "
+            >
+              <span class="num uppercase tracking-widest" data-i18n="hero_find"
+                >Temukan saya</span
+              >
+              <div class="h-px bg-stone-200 w-8"></div>
+              <div class="flex gap-3">
+                <a href="https://github.com" class="social-icon has-tooltip"
+                  ><i class="fab fa-github"></i
+                  ><span class="tooltip">GitHub</span></a
+                >
+                <a
+                  href="https://linkedin.com/in/fedy-fs-gerana"
+                  target="_blank"
+                  rel="noopener"
+                  class="social-icon has-tooltip"
+                  ><i class="fab fa-linkedin"></i
+                  ><span class="tooltip">LinkedIn</span></a
+                >
+                <a
+                  href="https://instagram.com/fedyfsg"
+                  target="_blank"
+                  rel="noopener"
+                  class="social-icon has-tooltip"
+                  ><i class="fab fa-instagram"></i
+                  ><span class="tooltip">Instagram</span></a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center lg:justify-end">
+            <div class="relative" id="photo-card">
+              <div
+                class="absolute -inset-4 border border-stone-200 rounded-3xl pointer-events-none"
+              ></div>
+              <div
+                class="absolute -inset-8 border border-stone-100 rounded-[28px] pointer-events-none"
+              ></div>
+
+              <img
+                src="Fedy.png"
+                alt="Fedy Fs. Gerana"
+                id="hero-photo"
+                class="relative w-64 h-80 lg:w-[300px] lg:h-[380px] object-cover rounded-2xl shadow-lg grayscale hover:grayscale-0 transition-all duration-700"
+              />
+
+              <div
+                class="absolute -bottom-5 -left-5 bg-white border border-stone-200 rounded-2xl px-4 py-3 shadow-xl z-10"
+              >
+                <div class="num uppercase tracking-widest text-stone-400 mb-1">
+                  Status
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="relative w-2 h-2">
+                    <span
+                      class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 ping opacity-75"
+                    ></span>
+                    <span
+                      class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"
+                    ></span>
+                  </div>
+                  <span
+                    class="text-sm font-medium text-stone-700"
+                    data-i18n="hero_status"
+                    >Tersedia untuk proyek</span
+                  >
+                </div>
+              </div>
+
+              <div
+                class="absolute -top-4 -right-4 bg-stone-900 text-white rounded-2xl px-4 py-3 shadow-xl z-10"
+              >
+                <div
+                  class="num text-stone-400 mb-0.5"
+                  data-i18n="hero_exp_label"
+                >
+                  Pengalaman
+                </div>
+                <div
+                  class="text-xl font-semibold"
+                  style="font-family: &quot;Geist Mono&quot;, monospace"
+                >
+                  2<span class="text-stone-400 text-base">+</span>
+                </div>
+                <div class="text-xs text-stone-400" data-i18n="hero_exp_unit">
+                  tahun
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-stone-200 pt-10 pb-6 grid grid-cols-3 gap-8 fade-up"
+        >
+          <div>
+            <div
+              class="font-mono text-2xl font-semibold text-stone-900 counter"
+              data-target="6"
+            >
+              0
+            </div>
+            <div
+              class="text-sm text-stone-400 mt-1"
+              data-i18n="hero_stat_proyek"
+            >
+              Proyek selesai
+            </div>
+          </div>
+          <div>
+            <div
+              class="font-mono text-2xl font-semibold text-stone-900 counter"
+              data-target="2"
+            >
+              0
+            </div>
+            <div
+              class="text-sm text-stone-400 mt-1"
+              data-i18n="hero_stat_tahun"
+            >
+              Tahun pengalaman
+            </div>
+          </div>
+          <div>
+            <div
+              class="font-mono text-2xl font-semibold text-stone-900 counter"
+              data-target="10"
+            >
+              0
+            </div>
+            <div
+              class="text-sm text-stone-400 mt-1"
+              data-i18n="hero_stat_klien"
+            >
+              Klien puas
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang" class="py-24 lg:py-32 bg-white">
+      <div class="max-w-6xl mx-auto px-6 lg:px-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          <div class="lg:col-span-5 fade-up">
+            <div class="section-label mb-4" data-i18n="about_label">
+              Tentang Saya
+            </div>
+            <h2
+              class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug mb-6"
+            >
+              <span data-i18n="about_heading">Bekerja dengan baik,</span><br />
+              <span
+                class="font-light text-stone-600"
+                data-i18n="about_heading_sub"
+                >dibaca dengan mudah</span
+              >
+            </h2>
+
+            <div class="relative mt-8">
+              <div
+                class="absolute -inset-2 border border-stone-100 rounded-2xl"
+              ></div>
+              <img
+                src="https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=500&h=300&fit=crop"
+                class="relative w-full h-52 object-cover rounded-xl grayscale"
+                alt="Workspace Fedy"
+              />
+              <div
+                class="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 shadow-md border border-stone-100"
+              >
+                <div
+                  class="num text-stone-400 mb-0.5"
+                  data-i18n="contact_loc_label"
+                >
+                  Lokasi
+                </div>
+                <div
+                  class="text-sm font-medium text-stone-800 flex items-center gap-1.5"
+                >
+                  <i class="fas fa-map-marker-alt text-xs text-stone-400"></i>
+                  <span data-i18n="about_location">Riau, Indonesia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="lg:col-span-7 space-y-6 fade-up"
+            style="transition-delay: 0.15s"
+          >
+            <p
+              class="text-stone-600 leading-relaxed font-light text-lg"
+              data-i18n-html="about_p1"
+            >
+              Sudah lebih dari
+              <strong class="font-medium text-stone-800">2 tahun</strong> saya
+              bekerja sebagai programmer, membangun aplikasi internal
+              perusahaan, memelihara sistem yang berjalan, serta menerapkan
+              autentikasi dan otorisasi berbasis peran.
+            </p>
+            <p
+              class="text-stone-500 leading-relaxed font-light"
+              data-i18n="about_p2"
+            >
+              Saya percaya kualitas kode terlihat bukan hanya saat pertama kali
+              jalan, tapi saat proyek berkembang dan orang lain ikut terlibat.
+            </p>
+            <p
+              class="text-stone-500 leading-relaxed font-light"
+              data-i18n="about_p3"
+            >
+              Stack yang sering saya gunakan mencakup Vue.js, React, Node.js,
+              Laravel, dan C# / .NET.
+            </p>
+
+            <div
+              class="pt-2 overflow-hidden"
+              style="
+                mask-image: linear-gradient(
+                  to right,
+                  transparent 0%,
+                  black 8%,
+                  black 92%,
+                  transparent 100%
+                );
+                -webkit-mask-image: linear-gradient(
+                  to right,
+                  transparent 0%,
+                  black 8%,
+                  black 92%,
+                  transparent 100%
+                );
+              "
+            >
+              <div class="about-tag-ticker">
+                <span class="tag" data-i18n="about_tag1">Pemecah Masalah</span>
+                <span class="tag" data-i18n="about_tag2"
+                  >Berorientasi Detail</span
+                >
+                <span class="tag" data-i18n="about_tag3">Pengembang Web</span>
+                <span class="tag" data-i18n="about_tag4"
+                  >Konsisten &amp; Terstruktur</span
+                >
+                <span class="tag" data-i18n="about_tag5">Pemecah Masalah</span>
+                <span class="tag" data-i18n="about_tag6"
+                  >Berorientasi Detail</span
+                >
+                <span class="tag" data-i18n="about_tag7">Pengembang Web</span>
+                <span class="tag" data-i18n="about_tag8"
+                  >Konsisten &amp; Terstruktur</span
+                >
               </div>
             </div>
 
-            <div class="absolute -top-4 -right-4 bg-stone-900 text-white rounded-2xl px-4 py-3 shadow-xl z-10">
-              <div class="num text-stone-400 mb-0.5" data-i18n="hero_exp_label">Pengalaman</div>
-              <div class="text-xl font-semibold" style="font-family:'Geist Mono',monospace">2<span
-                  class="text-stone-400 text-base">+</span></div>
-              <div class="text-xs text-stone-400" data-i18n="hero_exp_unit">tahun</div>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a
+                href="CV.%20Fedy%20Fs.%20Gerana.pdf"
+                id="cv-download"
+                download="CV. Fedy Fs. Gerana.pdf"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium"
+              >
+                <i class="fas fa-file-arrow-down text-xs"></i>
+                <span data-i18n="about_cv">Unduh CV</span>
+              </a>
+              <a
+                href="#kontak"
+                class="inline-flex items-center gap-2 px-5 py-2.5 border border-stone-300 text-stone-700 text-xs rounded-full hover:bg-stone-100 transition-colors font-medium"
+              >
+                <i class="fas fa-envelope text-xs"></i>
+                <span data-i18n="about_contact">Kontak Saya</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="border-t border-stone-200 pt-10 pb-6 grid grid-cols-3 gap-8 fade-up">
-        <div>
-          <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="6">0</div>
-          <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_proyek">Proyek selesai</div>
-        </div>
-        <div>
-          <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="2">0</div>
-          <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_tahun">Tahun pengalaman</div>
-        </div>
-        <div>
-          <div class="font-mono text-2xl font-semibold text-stone-900 counter" data-target="10">0</div>
-          <div class="text-sm text-stone-400 mt-1" data-i18n="hero_stat_klien">Klien puas</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="tentang" class="py-24 lg:py-32 bg-white">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-
-        <div class="lg:col-span-5 fade-up">
-          <div class="section-label mb-4" data-i18n="about_label">Tentang Saya</div>
-          <h2 class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug mb-6">
-            <span data-i18n="about_heading">Bekerja dengan baik,</span><br />
-            <span class="font-light text-stone-600" data-i18n="about_heading_sub">dibaca dengan mudah</span>
-          </h2>
-
-          <div class="relative mt-8">
-            <div class="absolute -inset-2 border border-stone-100 rounded-2xl"></div>
-            <img src="https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=500&h=300&fit=crop"
-              class="relative w-full h-52 object-cover rounded-xl grayscale" alt="Workspace Fedy" />
-            <div
-              class="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 shadow-md border border-stone-100">
-              <div class="num text-stone-400 mb-0.5" data-i18n="contact_loc_label">Lokasi</div>
-              <div class="text-sm font-medium text-stone-800 flex items-center gap-1.5">
-                <i class="fas fa-map-marker-alt text-xs text-stone-400"></i>
-                <span data-i18n="about_location">Riau, Indonesia</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-7 space-y-6 fade-up" style="transition-delay:0.15s">
-          <p class="text-stone-600 leading-relaxed font-light text-lg" data-i18n-html="about_p1">
-            Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya bekerja sebagai
-            programmer, membangun aplikasi internal perusahaan, memelihara sistem yang berjalan, serta menerapkan
-            autentikasi dan otorisasi berbasis peran.
-          </p>
-          <p class="text-stone-500 leading-relaxed font-light" data-i18n="about_p2">
-            Saya percaya kualitas kode terlihat bukan hanya saat pertama kali jalan, tapi saat proyek berkembang dan
-            orang lain ikut terlibat.
-          </p>
-          <p class="text-stone-500 leading-relaxed font-light" data-i18n="about_p3">
-            Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, Laravel, dan C# / .NET.
-          </p>
-
-          <div class="pt-2 overflow-hidden"
-            style="mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);">
-            <div class="about-tag-ticker">
-              <span class="tag" data-i18n="about_tag1">Pemecah Masalah</span>
-              <span class="tag" data-i18n="about_tag2">Berorientasi Detail</span>
-              <span class="tag" data-i18n="about_tag3">Pengembang Web</span>
-              <span class="tag" data-i18n="about_tag4">Konsisten &amp; Terstruktur</span>
-              <span class="tag" data-i18n="about_tag5">Pemecah Masalah</span>
-              <span class="tag" data-i18n="about_tag6">Berorientasi Detail</span>
-              <span class="tag" data-i18n="about_tag7">Pengembang Web</span>
-              <span class="tag" data-i18n="about_tag8">Konsisten &amp; Terstruktur</span>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="CV.%20Fedy%20Fs.%20Gerana.pdf" id="cv-download" download="CV. Fedy Fs. Gerana.pdf" target="_blank" rel="noopener"
-              class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium">
-              <i class="fas fa-file-arrow-down text-xs"></i> <span data-i18n="about_cv">Unduh CV</span>
-            </a>
-            <a href="#kontak"
-              class="inline-flex items-center gap-2 px-5 py-2.5 border border-stone-300 text-stone-700 text-xs rounded-full hover:bg-stone-100 transition-colors font-medium">
-              <i class="fas fa-envelope text-xs"></i> <span data-i18n="about_contact">Kontak Saya</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="keahlian" class="py-24 lg:py-32 bg-stone-50">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10">
-
-      <div class="flex items-end justify-between mb-16 fade-up">
-        <div>
-          <div class="section-label mb-4" data-i18n="skill_label">Keahlian</div>
-          <h2 class="text-3xl lg:text-4xl font-light text-stone-900" data-i18n="skill_heading">Teknologi &amp; Stack
-          </h2>
-        </div>
-      </div>
-
-      <div class="ticker-rows mb-14 fade-up" style="transition-delay:0.05s">
-        <div class="ticker-wrapper">
-          <div class="ticker-track" id="ticker-row-1"></div>
-        </div>
-        <div class="ticker-wrapper">
-          <div class="ticker-track reverse" id="ticker-row-2"></div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up">
-          <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
-                class="fas fa-layer-group text-stone-600 text-sm"></i></div>
-            <h3 class="font-medium text-stone-900">Frontend</h3>
-            <span class="ml-auto num text-stone-300">01</span>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Vue Stack</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path d="M2 6h6l8 14 8-14h6L16 28z" fill="#41B883" />
-                  <path d="M8 6l8 14 8-14h-5l-3 7-3-7z" fill="#35495E" />
-                </svg>Vue (Composition API)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path d="M2 6h6l8 14 8-14h6L16 28z" fill="#41B883" opacity=".5" />
-                  <path d="M10 20l6-6 6 6" stroke="#41B883" stroke-width="2" fill="none" />
-                </svg>Vue Router</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#FFD84E" /><text x="6" y="22" font-family="monospace"
-                    font-weight="900" font-size="15" fill="#333">P</text>
-                </svg>Pinia</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#5A29E4" />
-                  <path d="M7 16h18M19 10l6 6-6 6" stroke="white" stroke-width="2" fill="none" />
-                </svg>Axios</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path d="M28 6L16 28 4 6h8l4 8 4-8z" fill="#646CFF" />
-                  <path d="M20 6l-4 8" stroke="#FFBD2E" stroke-width="2" />
-                </svg>Vite</span>
-            </div>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">React Stack</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <ellipse cx="16" cy="16" rx="12" ry="5" stroke="#61DAFB" stroke-width="1.5" fill="none" />
-                  <ellipse cx="16" cy="16" rx="12" ry="5" stroke="#61DAFB" stroke-width="1.5" fill="none"
-                    transform="rotate(60 16 16)" />
-                  <ellipse cx="16" cy="16" rx="12" ry="5" stroke="#61DAFB" stroke-width="1.5" fill="none"
-                    transform="rotate(120 16 16)" />
-                  <circle cx="16" cy="16" r="2.2" fill="#61DAFB" />
-                </svg>React (Vite)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <ellipse cx="16" cy="16" rx="12" ry="5" stroke="#61DAFB" stroke-width="1.5" fill="none"
-                    transform="rotate(60 16 16)" />
-                  <path d="M10 22l6-12 6 12" stroke="#61DAFB" stroke-width="1.5" fill="none" />
-                </svg>React Router</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="16" fill="#000" /><text x="6" y="22" font-family="monospace"
-                    font-weight="900" font-size="14" fill="white">N</text>
-                </svg>Next.js</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#FF4154" />
-                  <circle cx="16" cy="16" r="5" stroke="white" stroke-width="1.5" fill="none" />
-                </svg>Zustand</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#FF4154" />
-                  <path d="M9 22c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="white" stroke-width="1.5" fill="none" />
-                  <circle cx="16" cy="12" r="3" fill="white" />
-                </svg>React Query</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#1A1A1A" />
-                  <path d="M9 9h5.5a4 4 0 010 8H9V9z" stroke="#F56565" stroke-width="1.5" fill="none" />
-                  <path d="M13 17l6 6" stroke="#F56565" stroke-width="1.5" />
-                </svg>lucide-react</span>
-            </div>
-          </div>
-
+    <section id="keahlian" class="py-24 lg:py-32 bg-stone-50">
+      <div class="max-w-6xl mx-auto px-6 lg:px-10">
+        <div class="flex items-end justify-between mb-16 fade-up">
           <div>
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Styling</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path
-                    d="M16 8c-4 0-6.5 2-7.5 6 1.5-2 3.25-2.75 5.25-2.25 1.14.285 1.955 1.11 2.855 2.025C18.03 15.26 19.648 17 23.5 17c4 0 6.5-2 7.5-6C29.5 13 27.75 13.75 25.75 13.25c-1.14-.285-1.955-1.11-2.855-2.025C21.47 9.74 19.852 8 16 8zm-7.5 9C4.5 17 2 19 1 23c1.5-2 3.25-2.75 5.25-2.25 1.14.285 1.955 1.11 2.855 2.025C10.53 24.26 12.148 26 16 26c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.14-.285-1.955-1.11-2.855-2.025C13.97 18.74 12.352 17 8.5 17z"
-                    fill="#06B6D4" />
-                </svg>Tailwind CSS</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#7952B3" />
-                  <path d="M10 8h7.5a4.5 4.5 0 010 9H10V8z" stroke="white" stroke-width="1.5" fill="none" />
-                  <path d="M10 17h8a4 4 0 010 8H10" stroke="white" stroke-width="1.5" fill="none" />
-                </svg>Bootstrap</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#00DC82" />
-                  <path d="M8 22l8-14 4 7-2 3h6l-3-5" stroke="white" stroke-width="2" fill="none"
-                    stroke-linejoin="round" />
-                </svg>Nuxt.js</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#3178C6" />
-                  <path
-                    d="M6 18h6M9 12v12M20 20c0 1.6 1 2.5 2.5 2.5S25 22 25 20.5c0-1.7-1.5-2.3-3-3-1.5-.7-3-1.3-3-3.2C19 12.8 20 12 22 12c1.6 0 2.8.8 3 2"
-                    stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none" />
-                </svg>TypeScript</span>
+            <div class="section-label mb-4" data-i18n="skill_label">
+              Keahlian
             </div>
-          </div>
-        </div>
-
-        <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
-          <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
-                class="fas fa-server text-stone-600 text-sm"></i></div>
-            <h3 class="font-medium text-stone-900">Backend</h3>
-            <span class="ml-auto num text-stone-300">02</span>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Node.js Stack</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#000" /><text x="4" y="22" font-family="monospace"
-                    font-weight="700" font-size="9" fill="white">Ex.js</text>
-                </svg>Express.js</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#E0234E" />
-                  <path d="M12 8c-2 3-2 8 4 10 6-2 6-7 4-10" stroke="white" stroke-width="1.5" fill="none" />
-                  <path d="M20 8c2 3 2 8-4 10C10 16 10 11 12 8" stroke="white" stroke-width="1.5" fill="none" />
-                </svg>NestJS</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#000" />
-                  <path d="M10 10h12v4l-5 5v3H15v-3l-5-5z" fill="white" opacity=".9" />
-                </svg>JWT</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#4A5568" />
-                  <circle cx="16" cy="16" r="6" stroke="white" stroke-width="1.5" fill="none" />
-                  <path d="M13 13l6 6M19 13l-6 6" stroke="white" stroke-width="1.5" />
-                </svg>bcrypt</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#3068B7" /><text x="5" y="23" font-family="monospace"
-                    font-weight="700" font-size="14" fill="white">Z</text>
-                </svg>Zod</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#333" />
-                  <path d="M8 12h16M8 16h16M8 20h10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                </svg>Helmet + CORS</span>
-            </div>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">PHP Stack</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path d="M28 8l-6 2-8-4-8 4v12l8 4 8-4 6 2V8z" stroke="#FF2D20" stroke-width="1.5" fill="none" />
-                  <path d="M14 6v12M20 8v12" stroke="#FF2D20" stroke-width="1.5" />
-                </svg>Laravel</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#EE4323" />
-                  <path d="M16 8c4 0 7 2.5 7 8 0 6-5 10-7 10S9 22 9 16c0-5.5 3-8 7-8z" stroke="white" stroke-width="1.5"
-                    fill="none" />
-                </svg>CodeIgniter</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#FBBF24" />
-                  <path d="M10 22l3-8 3 4 3-6 3 10" stroke="#1c1917" stroke-width="2" stroke-linejoin="round"
-                    fill="none" />
-                </svg>Filament</span>
-            </div>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">.NET Stack</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#512BD4" /><text x="4" y="21" font-family="monospace"
-                    font-weight="700" font-size="10" fill="white">C#</text>
-                </svg>C#</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#512BD4" /><text x="3" y="21" font-family="monospace"
-                    font-weight="700" font-size="9" fill="white">.NET</text>
-                </svg>.NET</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#512BD4" /><text x="4" y="21" font-family="monospace"
-                    font-weight="700" font-size="9" fill="white">EF</text>
-                </svg>Entity Framework Core</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#336791" /><text x="3" y="21" font-family="monospace"
-                    font-weight="700" font-size="9" fill="white">Np</text>
-                </svg>Npgsql</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#512BD4" />
-                  <path d="M16 6l9 4.5v10L16 26l-9-5.5v-10z" stroke="white" stroke-width="1.4" fill="none" />
-                </svg>ASP.NET Core Identity</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#333" /><text x="4" y="21" font-family="monospace"
-                    font-weight="700" font-size="8" fill="white">Se</text>
-                </svg>Serilog.AspNetCore</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#85EA2D" />
-                  <path d="M8 16h16M16 9l7 7-7 7" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round"
-                    fill="none" />
-                </svg>Swashbuckle / OpenAPI</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Security &amp; Validation</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path d="M16 5l10 5v9c0 3-4 7-10 9C10 26 6 22 6 19V10z" stroke="#4A5568" stroke-width="1.5"
-                    fill="none" />
-                  <path d="M12 16l3 3 5-5" stroke="#4A5568" stroke-width="1.5" stroke-linecap="round" fill="none" />
-                </svg>JWT Auth</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#4A5568" />
-                  <circle cx="16" cy="16" r="5" stroke="white" stroke-width="1.5" fill="none" />
-                  <path d="M16 11v5l3 3" stroke="white" stroke-width="1.5" />
-                </svg>Bcrypt</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#3068B7" /><text x="5" y="23" font-family="monospace"
-                    font-weight="700" font-size="14" fill="white">Z</text>
-                </svg>Zod</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.15s">
-          <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
-                class="fas fa-database text-stone-600 text-sm"></i></div>
-            <h3 class="font-medium text-stone-900">Database Layer</h3>
-            <span class="ml-auto num text-stone-300">03</span>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Database</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <ellipse cx="16" cy="10" rx="8" ry="3.5" stroke="#336791" stroke-width="1.5" fill="none" />
-                  <path d="M8 10v12c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5V10" stroke="#336791" stroke-width="1.5" fill="none" />
-                  <path d="M8 16c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5" stroke="#336791" stroke-width="1.5" fill="none" />
-                </svg>PostgreSQL</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#CC2927" />
-                  <ellipse cx="16" cy="10" rx="7" ry="3" stroke="white" stroke-width="1.3" fill="none" />
-                  <path d="M9 10v12c0 1.7 3.1 3 7 3s7-1.3 7-3V10" stroke="white" stroke-width="1.3" fill="none" />
-                </svg>SQL Server</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">ORM / Driver</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <path d="M16 4L6 26l10-6 10 6z" stroke="#2D3748" stroke-width="1.5" fill="none" />
-                  <path d="M16 4L26 26" stroke="#2D3748" stroke-width="1.5" />
-                </svg>Prisma</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#336791" /><text x="5" y="22" font-family="monospace"
-                    font-weight="700" font-size="11" fill="white">pg</text>
-                </svg>pg (node-postgres)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#336791" /><text x="3" y="21" font-family="monospace"
-                    font-weight="700" font-size="9" fill="white">Np</text>
-                </svg>Npgsql</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up" style="transition-delay:0.2s">
-          <div class="flex items-center gap-3 mb-7">
-            <div class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"><i
-                class="fas fa-rocket text-stone-600 text-sm"></i></div>
-            <h3 class="font-medium text-stone-900">Dev &amp; Production</h3>
-            <span class="ml-auto num text-stone-300">04</span>
-          </div>
-
-          <div class="mb-5">
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Dev Experience</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#F05033" />
-                  <circle cx="12" cy="12" r="2.4" fill="white" />
-                  <circle cx="20" cy="20" r="2.4" fill="white" />
-                  <path d="M13.7 13.7L18.3 18.3" stroke="white" stroke-width="1.6" />
-                </svg>Git</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#4B32C3" />
-                  <path d="M8 22l6-6-6-6M17 22h7" stroke="white" stroke-width="2" stroke-linecap="round" />
-                </svg>ESLint</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#F7BA3E" />
-                  <path d="M16 8l2 6h6l-5 4 2 6-5-3-5 3 2-6-5-4h6z" fill="white" />
-                </svg>Prettier</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#ECD53F" /><text x="4" y="22" font-family="monospace"
-                    font-weight="700" font-size="10" fill="#333">.env</text>
-                </svg>dotenv</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="num text-stone-400 mb-3 uppercase tracking-wider">Production Readiness</div>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#2496ED" />
-                  <path d="M7 16h4v4H7zM12 16h4v4h-4zM17 16h4v4h-4zM12 11h4v4h-4z" fill="white" />
-                </svg>Docker Compose</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#DC382D" />
-                  <path d="M8 20l8-4 8 4-8 4z" fill="white" opacity=".9" />
-                  <path d="M8 16l8-4 8 4-8 4z" fill="white" opacity=".7" />
-                  <path d="M8 12l8-4 8 4-8 4z" fill="white" opacity=".5" />
-                </svg>Redis (Caching)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#333" /><text x="5" y="22" font-family="monospace"
-                    font-weight="700" font-size="10" fill="white">pino</text>
-                </svg>Pino (Logging)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#C21325" />
-                  <path d="M14 8l-6 16M18 8l6 16M10 18h12" stroke="white" stroke-width="1.8" stroke-linecap="round" />
-                </svg>Jest (Testing)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#2EAD33" /><text x="4" y="22" font-family="monospace"
-                    font-weight="700" font-size="9" fill="white">PW</text>
-                </svg>Playwright (E2E)</span>
-              <span class="tech-badge"><svg class="ti" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="4" fill="#85EA2D" />
-                  <path d="M8 16h16M16 9l7 7-7 7" stroke="#1B1B1B" stroke-width="2" stroke-linecap="round"
-                    fill="none" />
-                </svg>Swagger (API Docs)</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="proyek" class="py-24 lg:py-32 bg-white">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10">
-
-      <div class="mb-16 fade-up">
-        <div class="section-label mb-4" data-i18n="project_label">Karya Pilihan</div>
-        <h2 class="text-3xl lg:text-4xl font-light text-stone-900" data-i18n="project_heading">Proyek Unggulan</h2>
-      </div>
-
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
-
-        <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up">
-          <div class="relative overflow-hidden bg-stone-100 h-48">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Project 1" />
-            <div
-              class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fas fa-external-link-alt text-stone-700 text-xs"></i></a>
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fab fa-github text-stone-700 text-xs"></i></a>
-            </div>
-            <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
-                data-i18n="filter_web">Aplikasi Web</span></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj1_title">Platform E-Commerce</h3>
-              <span class="num">01</span>
-            </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj1_desc">Platform modern dengan
-              pembayaran terintegrasi, inventaris real-time, dan dashboard analitik lengkap.</p>
-            <div class="flex flex-wrap gap-1.5"><span class="tag">React</span><span class="tag">Node.js</span><span
-                class="tag">PostgreSQL</span></div>
-          </div>
-        </div>
-
-        <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
-          style="transition-delay:0.05s">
-          <div class="relative overflow-hidden bg-stone-100 h-48">
-            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Project 2" />
-            <div
-              class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fas fa-external-link-alt text-stone-700 text-xs"></i></a>
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fab fa-github text-stone-700 text-xs"></i></a>
-            </div>
-            <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
-                data-i18n="filter_web">Aplikasi Web</span></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj2_title">Pelacak Kebugaran</h3>
-              <span class="num">02</span>
-            </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj2_desc">Aplikasi web pelacakan latihan
-              dengan dashboard statistik personal dan progress harian.</p>
-            <div class="flex flex-wrap gap-1.5"><span class="tag">Vue.js</span><span class="tag">Laravel</span><span
-                class="tag">PostgreSQL</span></div>
-          </div>
-        </div>
-
-        <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
-          style="transition-delay:0.1s">
-          <div class="relative overflow-hidden bg-stone-100 h-48">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Project 3" />
-            <div
-              class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fas fa-external-link-alt text-stone-700 text-xs"></i></a>
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fab fa-github text-stone-700 text-xs"></i></a>
-            </div>
-            <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
-                data-i18n="filter_web">Aplikasi Web</span></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj3_title">UI Dashboard Perbankan</h3>
-              <span class="num">03</span>
-            </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj3_desc">Dashboard admin fintech dengan
-              aksesibilitas tinggi, sistem desain konsisten, dan laporan keuangan interaktif.</p>
-            <div class="flex flex-wrap gap-1.5"><span class="tag">React</span><span class="tag">Tailwind</span><span
-                class="tag">NestJS</span></div>
-          </div>
-        </div>
-
-        <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
-          style="transition-delay:0.15s">
-          <div class="relative overflow-hidden bg-stone-100 h-48">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Project 4" />
-            <div
-              class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fas fa-external-link-alt text-stone-700 text-xs"></i></a>
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fab fa-github text-stone-700 text-xs"></i></a>
-            </div>
-            <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
-                data-i18n="filter_web">Aplikasi Web</span></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj4_title">Analitik Real-time</h3>
-              <span class="num">04</span>
-            </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj4_desc">Dashboard intelijen bisnis
-              dengan visualisasi data interaktif dan pelaporan otomatis berbasis Vue.js.</p>
-            <div class="flex flex-wrap gap-1.5"><span class="tag">Vue.js</span><span class="tag">Express.js</span><span
-                class="tag">Redis</span></div>
-          </div>
-        </div>
-
-        <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
-          style="transition-delay:0.2s">
-          <div class="relative overflow-hidden bg-stone-100 h-48">
-            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Project 5" />
-            <div
-              class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fas fa-external-link-alt text-stone-700 text-xs"></i></a>
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fab fa-github text-stone-700 text-xs"></i></a>
-            </div>
-            <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
-                data-i18n="filter_web">Aplikasi Web</span></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj5_title">Sistem Manajemen Toko</h3>
-              <span class="num">05</span>
-            </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj5_desc">Aplikasi manajemen inventaris
-              dan penjualan toko dengan laporan harian dan notifikasi stok otomatis.</p>
-            <div class="flex flex-wrap gap-1.5"><span class="tag">Laravel</span><span class="tag">Filament</span><span
-                class="tag">PostgreSQL</span></div>
-          </div>
-        </div>
-
-        <div class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
-          style="transition-delay:0.25s">
-          <div class="relative overflow-hidden bg-stone-100 h-48">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-              alt="Project 6" />
-            <div
-              class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fas fa-external-link-alt text-stone-700 text-xs"></i></a>
-              <a href="#"
-                class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"><i
-                  class="fab fa-github text-stone-700 text-xs"></i></a>
-            </div>
-            <div class="absolute top-3 left-3"><span
-                class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
-                data-i18n="filter_web">Aplikasi Web</span></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-medium text-stone-900" data-i18n="proj6_title">Platform Belajar Online</h3>
-              <span class="num">06</span>
-            </div>
-            <p class="text-sm text-stone-500 leading-relaxed mb-4" data-i18n="proj6_desc">LMS sederhana dengan manajemen
-              kursus, quiz interaktif, dan tracking progress siswa secara real-time.</p>
-            <div class="flex flex-wrap gap-1.5"><span class="tag">Nuxt.js</span><span class="tag">NestJS</span><span
-                class="tag">Prisma</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="kontak" class="py-24 lg:py-32 bg-stone-900 text-white relative overflow-hidden">
-
-    <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none"
-      style="background:radial-gradient(circle,#fff 0%,transparent 70%);transform:translate(30%,-30%);"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
-      style="background:radial-gradient(circle,#fff 0%,transparent 70%);transform:translate(-30%,30%);"></div>
-
-    <div class="max-w-6xl mx-auto px-6 lg:px-10 relative">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-
-        <div class="space-y-8 fade-up">
-          <div>
-            <div class="section-label mb-4" style="color:rgba(255,255,255,0.3)" data-i18n="contact_label">Mari
-              Berkolaborasi</div>
-            <h2 class="text-3xl lg:text-5xl font-light text-white leading-tight">
-              <span data-i18n="contact_heading">Punya proyek</span><br />
-              <span class="font-light text-stone-300" data-i18n="contact_heading_sub">yang ingin diwujudkan?</span>
+            <h2
+              class="text-3xl lg:text-4xl font-light text-stone-900"
+              data-i18n="skill_heading"
+            >
+              Teknologi &amp; Stack
             </h2>
           </div>
-          <p class="text-stone-400 font-light leading-relaxed" data-i18n="contact_desc">Saya terbuka untuk kolaborasi
-            maupun freelance — kirimkan pesan dan kita bisa mulai dari sana.</p>
+        </div>
 
-          <div class="space-y-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-envelope text-stone-400 text-xs"></i>
-              </div>
-              <div>
-                <div class="num text-stone-500 mb-0.5" data-i18n="contact_email_label">Email</div>
-                <span class="text-stone-300 text-sm">fedfg30@gmail.com</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-phone text-stone-400 text-xs"></i>
-              </div>
-              <div>
-                <div class="num text-stone-500 mb-0.5" data-i18n="contact_phone_label">Telepon</div>
-                <span class="text-stone-300 text-sm">+62 822-6839-1862</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-map-marker-alt text-stone-400 text-xs"></i>
-              </div>
-              <div>
-                <div class="num text-stone-500 mb-0.5" data-i18n="contact_loc_label">Lokasi</div>
-                <span class="text-stone-300 text-sm" data-i18n="contact_loc_val">Riau, Indonesia</span>
-              </div>
-            </div>
+        <div class="ticker-rows mb-14 fade-up" style="transition-delay: 0.05s">
+          <div class="ticker-wrapper">
+            <div class="ticker-track" id="ticker-row-1"></div>
           </div>
-
-          <div class="flex gap-3 pt-2">
-            <a href="https://github.com"
-              class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"><i
-                class="fab fa-github text-sm"></i><span class="tooltip">GitHub</span></a>
-            <a href="https://linkedin.com/in/fedy-fs-gerana" target="_blank" rel="noopener"
-              class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"><i
-                class="fab fa-linkedin text-sm"></i><span class="tooltip">LinkedIn</span></a>
-            <a href="https://instagram.com/fedyfsg" target="_blank" rel="noopener"
-              class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"><i
-                class="fab fa-instagram text-sm"></i><span class="tooltip">Instagram</span></a>
-          </div>
-
-          <div class="border border-stone-700 rounded-2xl p-5 bg-stone-800/50">
-            <div class="num text-stone-500 mb-2" data-i18n="contact_response">Waktu respons rata-rata</div>
-            <div class="flex items-center gap-3">
-              <div class="text-2xl font-mono font-semibold text-white">&lt; 24</div>
-              <div class="text-stone-400 text-sm" data-i18n="contact_response_unit">jam pada hari kerja</div>
-            </div>
+          <div class="ticker-wrapper">
+            <div class="ticker-track reverse" id="ticker-row-2"></div>
           </div>
         </div>
 
-        <div class="fade-up" style="transition-delay:0.15s">
-          <div class="bg-stone-800 rounded-2xl p-8 border border-stone-700">
-            <div class="num text-stone-500 mb-6" data-i18n="form_send_label">Kirim pesan</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up"
+          >
+            <div class="flex items-center gap-3 mb-7">
+              <div
+                class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"
+              >
+                <i class="fas fa-layer-group text-stone-600 text-sm"></i>
+              </div>
+              <h3 class="font-medium text-stone-900">Frontend</h3>
+              <span class="ml-auto num text-stone-300">01</span>
+            </div>
 
-            <form id="contact-form" class="space-y-5" novalidate>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div class="form-field">
-                  <label data-i18n="form_name">Nama</label>
-                  <input type="text" name="name" required data-i18n-ph="form_name_ph" placeholder="Nama lengkap Anda" />
-                  <div class="text-xs text-red-400 mt-1 hidden err-name" data-i18n="form_err_name">Mohon isi nama Anda.
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Vue Stack
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path d="M2 6h6l8 14 8-14h6L16 28z" fill="#41B883" />
+                    <path d="M8 6l8 14 8-14h-5l-3 7-3-7z" fill="#35495E" /></svg
+                  >Vue (Composition API)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M2 6h6l8 14 8-14h6L16 28z"
+                      fill="#41B883"
+                      opacity=".5"
+                    />
+                    <path
+                      d="M10 20l6-6 6 6"
+                      stroke="#41B883"
+                      stroke-width="2"
+                      fill="none"
+                    /></svg
+                  >Vue Router</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#FFD84E" />
+                    <text
+                      x="6"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="900"
+                      font-size="15"
+                      fill="#333"
+                    >
+                      P
+                    </text></svg
+                  >Pinia</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#5A29E4" />
+                    <path
+                      d="M7 16h18M19 10l6 6-6 6"
+                      stroke="white"
+                      stroke-width="2"
+                      fill="none"
+                    /></svg
+                  >Axios</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path d="M28 6L16 28 4 6h8l4 8 4-8z" fill="#646CFF" />
+                    <path
+                      d="M20 6l-4 8"
+                      stroke="#FFBD2E"
+                      stroke-width="2"
+                    /></svg
+                  >Vite</span
+                >
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                React Stack
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="12"
+                      ry="5"
+                      stroke="#61DAFB"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="12"
+                      ry="5"
+                      stroke="#61DAFB"
+                      stroke-width="1.5"
+                      fill="none"
+                      transform="rotate(60 16 16)"
+                    />
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="12"
+                      ry="5"
+                      stroke="#61DAFB"
+                      stroke-width="1.5"
+                      fill="none"
+                      transform="rotate(120 16 16)"
+                    />
+                    <circle cx="16" cy="16" r="2.2" fill="#61DAFB" /></svg
+                  >React (Vite)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <ellipse
+                      cx="16"
+                      cy="16"
+                      rx="12"
+                      ry="5"
+                      stroke="#61DAFB"
+                      stroke-width="1.5"
+                      fill="none"
+                      transform="rotate(60 16 16)"
+                    />
+                    <path
+                      d="M10 22l6-12 6 12"
+                      stroke="#61DAFB"
+                      stroke-width="1.5"
+                      fill="none"
+                    /></svg
+                  >React Router</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="16" fill="#000" />
+                    <text
+                      x="6"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="900"
+                      font-size="14"
+                      fill="white"
+                    >
+                      N
+                    </text></svg
+                  >Next.js</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#FF4154" />
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="5"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    /></svg
+                  >Zustand</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#FF4154" />
+                    <path
+                      d="M9 22c0-3.9 3.1-7 7-7s7 3.1 7 7"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <circle cx="16" cy="12" r="3" fill="white" /></svg
+                  >React Query</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#1A1A1A" />
+                    <path
+                      d="M9 9h5.5a4 4 0 010 8H9V9z"
+                      stroke="#F56565"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M13 17l6 6"
+                      stroke="#F56565"
+                      stroke-width="1.5"
+                    /></svg
+                  >lucide-react</span
+                >
+              </div>
+            </div>
+
+            <div>
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Styling
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M16 8c-4 0-6.5 2-7.5 6 1.5-2 3.25-2.75 5.25-2.25 1.14.285 1.955 1.11 2.855 2.025C18.03 15.26 19.648 17 23.5 17c4 0 6.5-2 7.5-6C29.5 13 27.75 13.75 25.75 13.25c-1.14-.285-1.955-1.11-2.855-2.025C21.47 9.74 19.852 8 16 8zm-7.5 9C4.5 17 2 19 1 23c1.5-2 3.25-2.75 5.25-2.25 1.14.285 1.955 1.11 2.855 2.025C10.53 24.26 12.148 26 16 26c4 0 6.5-2 7.5-6-1.5 2-3.25 2.75-5.25 2.25-1.14-.285-1.955-1.11-2.855-2.025C13.97 18.74 12.352 17 8.5 17z"
+                      fill="#06B6D4"
+                    /></svg
+                  >Tailwind CSS</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#7952B3" />
+                    <path
+                      d="M10 8h7.5a4.5 4.5 0 010 9H10V8z"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M10 17h8a4 4 0 010 8H10"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    /></svg
+                  >Bootstrap</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#00DC82" />
+                    <path
+                      d="M8 22l8-14 4 7-2 3h6l-3-5"
+                      stroke="white"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Nuxt.js</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#3178C6" />
+                    <path
+                      d="M6 18h6M9 12v12M20 20c0 1.6 1 2.5 2.5 2.5S25 22 25 20.5c0-1.7-1.5-2.3-3-3-1.5-.7-3-1.3-3-3.2C19 12.8 20 12 22 12c1.6 0 2.8.8 3 2"
+                      stroke="white"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      fill="none"
+                    /></svg
+                  >TypeScript</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up"
+            style="transition-delay: 0.1s"
+          >
+            <div class="flex items-center gap-3 mb-7">
+              <div
+                class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"
+              >
+                <i class="fas fa-server text-stone-600 text-sm"></i>
+              </div>
+              <h3 class="font-medium text-stone-900">Backend</h3>
+              <span class="ml-auto num text-stone-300">02</span>
+            </div>
+
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Node.js Stack
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#000" />
+                    <text
+                      x="4"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="9"
+                      fill="white"
+                    >
+                      Ex.js
+                    </text></svg
+                  >Express.js</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#E0234E" />
+                    <path
+                      d="M12 8c-2 3-2 8 4 10 6-2 6-7 4-10"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M20 8c2 3 2 8-4 10C10 16 10 11 12 8"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    /></svg
+                  >NestJS</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#000" />
+                    <path
+                      d="M10 10h12v4l-5 5v3H15v-3l-5-5z"
+                      fill="white"
+                      opacity=".9"
+                    /></svg
+                  >JWT</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#4A5568" />
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="6"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M13 13l6 6M19 13l-6 6"
+                      stroke="white"
+                      stroke-width="1.5"
+                    /></svg
+                  >bcrypt</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#3068B7" />
+                    <text
+                      x="5"
+                      y="23"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="14"
+                      fill="white"
+                    >
+                      Z
+                    </text></svg
+                  >Zod</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#333" />
+                    <path
+                      d="M8 12h16M8 16h16M8 20h10"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    /></svg
+                  >Helmet + CORS</span
+                >
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                PHP Stack
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M28 8l-6 2-8-4-8 4v12l8 4 8-4 6 2V8z"
+                      stroke="#FF2D20"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M14 6v12M20 8v12"
+                      stroke="#FF2D20"
+                      stroke-width="1.5"
+                    /></svg
+                  >Laravel</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#EE4323" />
+                    <path
+                      d="M16 8c4 0 7 2.5 7 8 0 6-5 10-7 10S9 22 9 16c0-5.5 3-8 7-8z"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    /></svg
+                  >CodeIgniter</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#FBBF24" />
+                    <path
+                      d="M10 22l3-8 3 4 3-6 3 10"
+                      stroke="#1c1917"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                      fill="none"
+                    /></svg
+                  >Filament</span
+                >
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                .NET Stack
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#512BD4" />
+                    <text
+                      x="4"
+                      y="21"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="10"
+                      fill="white"
+                    >
+                      C#
+                    </text></svg
+                  >C#</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#512BD4" />
+                    <text
+                      x="3"
+                      y="21"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="9"
+                      fill="white"
+                    >
+                      .NET
+                    </text></svg
+                  >.NET</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#512BD4" />
+                    <text
+                      x="4"
+                      y="21"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="9"
+                      fill="white"
+                    >
+                      EF
+                    </text></svg
+                  >Entity Framework Core</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#336791" />
+                    <text
+                      x="3"
+                      y="21"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="9"
+                      fill="white"
+                    >
+                      Np
+                    </text></svg
+                  >Npgsql</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#512BD4" />
+                    <path
+                      d="M16 6l9 4.5v10L16 26l-9-5.5v-10z"
+                      stroke="white"
+                      stroke-width="1.4"
+                      fill="none"
+                    /></svg
+                  >ASP.NET Core Identity</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#333" />
+                    <text
+                      x="4"
+                      y="21"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="8"
+                      fill="white"
+                    >
+                      Se
+                    </text></svg
+                  >Serilog.AspNetCore</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#85EA2D" />
+                    <path
+                      d="M8 16h16M16 9l7 7-7 7"
+                      stroke="#1B1B1B"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      fill="none"
+                    /></svg
+                  >Swashbuckle / OpenAPI</span
+                >
+              </div>
+            </div>
+
+            <div>
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Security &amp; Validation
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M16 5l10 5v9c0 3-4 7-10 9C10 26 6 22 6 19V10z"
+                      stroke="#4A5568"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 16l3 3 5-5"
+                      stroke="#4A5568"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      fill="none"
+                    /></svg
+                  >JWT Auth</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#4A5568" />
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="5"
+                      stroke="white"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M16 11v5l3 3"
+                      stroke="white"
+                      stroke-width="1.5"
+                    /></svg
+                  >Bcrypt</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#3068B7" />
+                    <text
+                      x="5"
+                      y="23"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="14"
+                      fill="white"
+                    >
+                      Z
+                    </text></svg
+                  >Zod</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up"
+            style="transition-delay: 0.15s"
+          >
+            <div class="flex items-center gap-3 mb-7">
+              <div
+                class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"
+              >
+                <i class="fas fa-database text-stone-600 text-sm"></i>
+              </div>
+              <h3 class="font-medium text-stone-900">Database Layer</h3>
+              <span class="ml-auto num text-stone-300">03</span>
+            </div>
+
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Database
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <ellipse
+                      cx="16"
+                      cy="10"
+                      rx="8"
+                      ry="3.5"
+                      stroke="#336791"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M8 10v12c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5V10"
+                      stroke="#336791"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M8 16c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5"
+                      stroke="#336791"
+                      stroke-width="1.5"
+                      fill="none"
+                    /></svg
+                  >PostgreSQL</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#CC2927" />
+                    <ellipse
+                      cx="16"
+                      cy="10"
+                      rx="7"
+                      ry="3"
+                      stroke="white"
+                      stroke-width="1.3"
+                      fill="none"
+                    />
+                    <path
+                      d="M9 10v12c0 1.7 3.1 3 7 3s7-1.3 7-3V10"
+                      stroke="white"
+                      stroke-width="1.3"
+                      fill="none"
+                    /></svg
+                  >SQL Server</span
+                >
+              </div>
+            </div>
+
+            <div>
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                ORM / Driver
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M16 4L6 26l10-6 10 6z"
+                      stroke="#2D3748"
+                      stroke-width="1.5"
+                      fill="none"
+                    />
+                    <path
+                      d="M16 4L26 26"
+                      stroke="#2D3748"
+                      stroke-width="1.5"
+                    /></svg
+                  >Prisma</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#336791" />
+                    <text
+                      x="5"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="11"
+                      fill="white"
+                    >
+                      pg
+                    </text></svg
+                  >pg (node-postgres)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#336791" />
+                    <text
+                      x="3"
+                      y="21"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="9"
+                      fill="white"
+                    >
+                      Np
+                    </text></svg
+                  >Npgsql</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-lift bg-white border border-stone-200 rounded-2xl p-8 fade-up"
+            style="transition-delay: 0.2s"
+          >
+            <div class="flex items-center gap-3 mb-7">
+              <div
+                class="w-9 h-9 rounded-xl bg-stone-100 flex items-center justify-center"
+              >
+                <i class="fas fa-rocket text-stone-600 text-sm"></i>
+              </div>
+              <h3 class="font-medium text-stone-900">Dev &amp; Production</h3>
+              <span class="ml-auto num text-stone-300">04</span>
+            </div>
+
+            <div class="mb-5">
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Dev Experience
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#F05033" />
+                    <circle cx="12" cy="12" r="2.4" fill="white" />
+                    <circle cx="20" cy="20" r="2.4" fill="white" />
+                    <path
+                      d="M13.7 13.7L18.3 18.3"
+                      stroke="white"
+                      stroke-width="1.6"
+                    /></svg
+                  >Git</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#4B32C3" />
+                    <path
+                      d="M8 22l6-6-6-6M17 22h7"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    /></svg
+                  >ESLint</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#F7BA3E" />
+                    <path
+                      d="M16 8l2 6h6l-5 4 2 6-5-3-5 3 2-6-5-4h6z"
+                      fill="white"
+                    /></svg
+                  >Prettier</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#ECD53F" />
+                    <text
+                      x="4"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="10"
+                      fill="#333"
+                    >
+                      .env
+                    </text></svg
+                  >dotenv</span
+                >
+              </div>
+            </div>
+
+            <div>
+              <div class="num text-stone-400 mb-3 uppercase tracking-wider">
+                Production Readiness
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#2496ED" />
+                    <path
+                      d="M7 16h4v4H7zM12 16h4v4h-4zM17 16h4v4h-4zM12 11h4v4h-4z"
+                      fill="white"
+                    /></svg
+                  >Docker Compose</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#DC382D" />
+                    <path d="M8 20l8-4 8 4-8 4z" fill="white" opacity=".9" />
+                    <path d="M8 16l8-4 8 4-8 4z" fill="white" opacity=".7" />
+                    <path
+                      d="M8 12l8-4 8 4-8 4z"
+                      fill="white"
+                      opacity=".5"
+                    /></svg
+                  >Redis (Caching)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#333" />
+                    <text
+                      x="5"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="10"
+                      fill="white"
+                    >
+                      pino
+                    </text></svg
+                  >Pino (Logging)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#C21325" />
+                    <path
+                      d="M14 8l-6 16M18 8l6 16M10 18h12"
+                      stroke="white"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    /></svg
+                  >Jest (Testing)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#2EAD33" />
+                    <text
+                      x="4"
+                      y="22"
+                      font-family="monospace"
+                      font-weight="700"
+                      font-size="9"
+                      fill="white"
+                    >
+                      PW
+                    </text></svg
+                  >Playwright (E2E)</span
+                >
+                <span class="tech-badge"
+                  ><svg class="ti" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="4" fill="#85EA2D" />
+                    <path
+                      d="M8 16h16M16 9l7 7-7 7"
+                      stroke="#1B1B1B"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      fill="none"
+                    /></svg
+                  >Swagger (API Docs)</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyek" class="py-24 lg:py-32 bg-white">
+      <div class="max-w-6xl mx-auto px-6 lg:px-10">
+        <div class="mb-16 fade-up">
+          <div class="section-label mb-4" data-i18n="project_label">
+            Karya Pilihan
+          </div>
+          <h2
+            class="text-3xl lg:text-4xl font-light text-stone-900"
+            data-i18n="project_heading"
+          >
+            Proyek Unggulan
+          </h2>
+        </div>
+
+        <div
+          id="projects-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative"
+        >
+          <div
+            class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
+          >
+            <div class="relative overflow-hidden bg-stone-100 h-48">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                alt="Project 1"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100"
+              >
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i
+                    class="fas fa-external-link-alt text-stone-700 text-xs"
+                  ></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i class="fab fa-github text-stone-700 text-xs"></i
+                ></a>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span
+                  class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                  data-i18n="filter_web"
+                  >Aplikasi Web</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-stone-900" data-i18n="proj1_title">
+                  Platform E-Commerce
+                </h3>
+                <span class="num">01</span>
+              </div>
+              <p
+                class="text-sm text-stone-500 leading-relaxed mb-4"
+                data-i18n="proj1_desc"
+              >
+                Platform modern dengan pembayaran terintegrasi, inventaris
+                real-time, dan dashboard analitik lengkap.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">React</span><span class="tag">Node.js</span
+                ><span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
+            style="transition-delay: 0.05s"
+          >
+            <div class="relative overflow-hidden bg-stone-100 h-48">
+              <img
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                alt="Project 2"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100"
+              >
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i
+                    class="fas fa-external-link-alt text-stone-700 text-xs"
+                  ></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i class="fab fa-github text-stone-700 text-xs"></i
+                ></a>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span
+                  class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                  data-i18n="filter_web"
+                  >Aplikasi Web</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-stone-900" data-i18n="proj2_title">
+                  Pelacak Kebugaran
+                </h3>
+                <span class="num">02</span>
+              </div>
+              <p
+                class="text-sm text-stone-500 leading-relaxed mb-4"
+                data-i18n="proj2_desc"
+              >
+                Aplikasi web pelacakan latihan dengan dashboard statistik
+                personal dan progress harian.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Vue.js</span><span class="tag">Laravel</span
+                ><span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
+            style="transition-delay: 0.1s"
+          >
+            <div class="relative overflow-hidden bg-stone-100 h-48">
+              <img
+                src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                alt="Project 3"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100"
+              >
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i
+                    class="fas fa-external-link-alt text-stone-700 text-xs"
+                  ></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i class="fab fa-github text-stone-700 text-xs"></i
+                ></a>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span
+                  class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                  data-i18n="filter_web"
+                  >Aplikasi Web</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-stone-900" data-i18n="proj3_title">
+                  UI Dashboard Perbankan
+                </h3>
+                <span class="num">03</span>
+              </div>
+              <p
+                class="text-sm text-stone-500 leading-relaxed mb-4"
+                data-i18n="proj3_desc"
+              >
+                Dashboard admin fintech dengan aksesibilitas tinggi, sistem
+                desain konsisten, dan laporan keuangan interaktif.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">React</span><span class="tag">Tailwind</span
+                ><span class="tag">NestJS</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
+            style="transition-delay: 0.15s"
+          >
+            <div class="relative overflow-hidden bg-stone-100 h-48">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                alt="Project 4"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100"
+              >
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i
+                    class="fas fa-external-link-alt text-stone-700 text-xs"
+                  ></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i class="fab fa-github text-stone-700 text-xs"></i
+                ></a>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span
+                  class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                  data-i18n="filter_web"
+                  >Aplikasi Web</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-stone-900" data-i18n="proj4_title">
+                  Analitik Real-time
+                </h3>
+                <span class="num">04</span>
+              </div>
+              <p
+                class="text-sm text-stone-500 leading-relaxed mb-4"
+                data-i18n="proj4_desc"
+              >
+                Dashboard intelijen bisnis dengan visualisasi data interaktif
+                dan pelaporan otomatis berbasis Vue.js.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Vue.js</span
+                ><span class="tag">Express.js</span
+                ><span class="tag">Redis</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
+            style="transition-delay: 0.2s"
+          >
+            <div class="relative overflow-hidden bg-stone-100 h-48">
+              <img
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                alt="Project 5"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100"
+              >
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i
+                    class="fas fa-external-link-alt text-stone-700 text-xs"
+                  ></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i class="fab fa-github text-stone-700 text-xs"></i
+                ></a>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span
+                  class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                  data-i18n="filter_web"
+                  >Aplikasi Web</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-stone-900" data-i18n="proj5_title">
+                  Sistem Manajemen Toko
+                </h3>
+                <span class="num">05</span>
+              </div>
+              <p
+                class="text-sm text-stone-500 leading-relaxed mb-4"
+                data-i18n="proj5_desc"
+              >
+                Aplikasi manajemen inventaris dan penjualan toko dengan laporan
+                harian dan notifikasi stok otomatis.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Laravel</span><span class="tag">Filament</span
+                ><span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card card-lift group border border-stone-200 rounded-2xl overflow-hidden fade-up"
+            style="transition-delay: 0.25s"
+          >
+            <div class="relative overflow-hidden bg-stone-100 h-48">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                alt="Project 6"
+              />
+              <div
+                class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100"
+              >
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i
+                    class="fas fa-external-link-alt text-stone-700 text-xs"
+                  ></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                  ><i class="fab fa-github text-stone-700 text-xs"></i
+                ></a>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span
+                  class="bg-white/90 backdrop-blur text-stone-600 text-xs px-2.5 py-1 rounded-full font-medium"
+                  data-i18n="filter_web"
+                  >Aplikasi Web</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-stone-900" data-i18n="proj6_title">
+                  Platform Belajar Online
+                </h3>
+                <span class="num">06</span>
+              </div>
+              <p
+                class="text-sm text-stone-500 leading-relaxed mb-4"
+                data-i18n="proj6_desc"
+              >
+                LMS sederhana dengan manajemen kursus, quiz interaktif, dan
+                tracking progress siswa secara real-time.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Nuxt.js</span><span class="tag">NestJS</span
+                ><span class="tag">Prisma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="kontak"
+      class="py-24 lg:py-32 bg-stone-900 text-white relative overflow-hidden"
+    >
+      <div
+        class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none"
+        style="
+          background: radial-gradient(circle, #fff 0%, transparent 70%);
+          transform: translate(30%, -30%);
+        "
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
+        style="
+          background: radial-gradient(circle, #fff 0%, transparent 70%);
+          transform: translate(-30%, 30%);
+        "
+      ></div>
+
+      <div class="max-w-6xl mx-auto px-6 lg:px-10 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div class="space-y-8 fade-up">
+            <div>
+              <div
+                class="section-label mb-4"
+                style="color: rgba(255, 255, 255, 0.3)"
+                data-i18n="contact_label"
+              >
+                Mari Berkolaborasi
+              </div>
+              <h2
+                class="text-3xl lg:text-5xl font-light text-white leading-tight"
+              >
+                <span data-i18n="contact_heading">Punya proyek</span><br />
+                <span
+                  class="font-light text-stone-300"
+                  data-i18n="contact_heading_sub"
+                  >yang ingin diwujudkan?</span
+                >
+              </h2>
+            </div>
+            <p
+              class="text-stone-400 font-light leading-relaxed"
+              data-i18n="contact_desc"
+            >
+              Saya terbuka untuk kolaborasi maupun freelance — kirimkan pesan
+              dan kita bisa mulai dari sana.
+            </p>
+
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-envelope text-stone-400 text-xs"></i>
+                </div>
+                <div>
+                  <div
+                    class="num text-stone-500 mb-0.5"
+                    data-i18n="contact_email_label"
+                  >
+                    Email
+                  </div>
+                  <span class="text-stone-300 text-sm">fedfg30@gmail.com</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-phone text-stone-400 text-xs"></i>
+                </div>
+                <div>
+                  <div
+                    class="num text-stone-500 mb-0.5"
+                    data-i18n="contact_phone_label"
+                  >
+                    Telepon
+                  </div>
+                  <span class="text-stone-300 text-sm">+62 822-6839-1862</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-map-marker-alt text-stone-400 text-xs"></i>
+                </div>
+                <div>
+                  <div
+                    class="num text-stone-500 mb-0.5"
+                    data-i18n="contact_loc_label"
+                  >
+                    Lokasi
+                  </div>
+                  <span
+                    class="text-stone-300 text-sm"
+                    data-i18n="contact_loc_val"
+                    >Riau, Indonesia</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+              <a
+                href="https://github.com"
+                class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"
+                ><i class="fab fa-github text-sm"></i
+                ><span class="tooltip">GitHub</span></a
+              >
+              <a
+                href="https://linkedin.com/in/fedy-fs-gerana"
+                target="_blank"
+                rel="noopener"
+                class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"
+                ><i class="fab fa-linkedin text-sm"></i
+                ><span class="tooltip">LinkedIn</span></a
+              >
+              <a
+                href="https://instagram.com/fedyfsg"
+                target="_blank"
+                rel="noopener"
+                class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"
+                ><i class="fab fa-instagram text-sm"></i
+                ><span class="tooltip">Instagram</span></a
+              >
+            </div>
+
+            <div
+              class="border border-stone-700 rounded-2xl p-5 bg-stone-800/50"
+            >
+              <div class="num text-stone-500 mb-2" data-i18n="contact_response">
+                Waktu respons rata-rata
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="text-2xl font-mono font-semibold text-white">
+                  &lt; 24
+                </div>
+                <div
+                  class="text-stone-400 text-sm"
+                  data-i18n="contact_response_unit"
+                >
+                  jam pada hari kerja
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-up" style="transition-delay: 0.15s">
+            <div class="bg-stone-800 rounded-2xl p-8 border border-stone-700">
+              <div class="num text-stone-500 mb-6" data-i18n="form_send_label">
+                Kirim pesan
+              </div>
+
+              <form id="contact-form" class="space-y-5" novalidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div class="form-field">
+                    <label data-i18n="form_name">Nama</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      data-i18n-ph="form_name_ph"
+                      placeholder="Nama lengkap Anda"
+                    />
+                    <div
+                      class="text-xs text-red-400 mt-1 hidden err-name"
+                      data-i18n="form_err_name"
+                    >
+                      Mohon isi nama Anda.
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <label data-i18n="form_email">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      data-i18n-ph="form_email_ph"
+                      placeholder="email@anda.com"
+                    />
+                    <div
+                      class="text-xs text-red-400 mt-1 hidden err-email"
+                      data-i18n="form_err_email"
+                    >
+                      Mohon isi email yang valid.
+                    </div>
                   </div>
                 </div>
                 <div class="form-field">
-                  <label data-i18n="form_email">Email</label>
-                  <input type="email" name="email" required data-i18n-ph="form_email_ph" placeholder="email@anda.com" />
-                  <div class="text-xs text-red-400 mt-1 hidden err-email" data-i18n="form_err_email">Mohon isi email
-                    yang valid.</div>
+                  <label data-i18n="form_subject">Subjek</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    data-i18n-ph="form_subject_ph"
+                    placeholder="Diskusi proyek / Konsultasi"
+                  />
                 </div>
-              </div>
-              <div class="form-field">
-                <label data-i18n="form_subject">Subjek</label>
-                <input type="text" name="subject" required data-i18n-ph="form_subject_ph"
-                  placeholder="Diskusi proyek / Konsultasi" />
-              </div>
-              <div class="form-field">
-                <label data-i18n="form_message">Pesan</label>
-                <textarea name="message" rows="5" required data-i18n-ph="form_message_ph"
-                  placeholder="Ceritakan tentang proyek Anda..."></textarea>
-              </div>
+                <div class="form-field">
+                  <label data-i18n="form_message">Pesan</label>
+                  <textarea
+                    name="message"
+                    rows="5"
+                    required
+                    data-i18n-ph="form_message_ph"
+                    placeholder="Ceritakan tentang proyek Anda..."
+                  ></textarea>
+                </div>
 
-              <button type="submit" id="submit-btn"
-                class="w-full py-3.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 group">
-                <span id="btn-text" data-i18n="form_submit">Kirim Pesan</span>
-                <i id="btn-icon" class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="w-full py-3.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 group"
+                >
+                  <span id="btn-text" data-i18n="form_submit">Kirim Pesan</span>
+                  <i
+                    id="btn-icon"
+                    class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
+                  ></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="h-20 md:hidden"></div>
+    <div class="h-20 md:hidden"></div>
 
-  <footer class="bg-stone-950 text-stone-500 py-8">
-    <div class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-      <span class="font-mono text-stone-600 text-sm">FFG<span class="text-stone-700">.</span></span>
-      <span>&copy; <span id="footer-year"></span> Fedy Fs. Gerana. <span data-i18n="footer_credit">Dibuat dengan
-          perhatian pada detail.</span></span>
-      <span></span>
-    </div>
-  </footer>
+    <footer class="bg-stone-950 text-stone-500 py-8">
+      <div
+        class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
+      >
+        <span class="font-mono text-stone-600 text-sm"
+          >FFG<span class="text-stone-700">.</span></span
+        >
+        <span
+          >&copy; <span id="footer-year"></span> Fedy Fs. Gerana.
+          <span data-i18n="footer_credit"
+            >Dibuat dengan perhatian pada detail.</span
+          ></span
+        >
+        <span></span>
+      </div>
+    </footer>
 
-  <script src="i18n.js"></script>
-  <script src="script.js"></script>
-
-</body>
-
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
