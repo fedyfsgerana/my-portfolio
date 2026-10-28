@@ -1,4 +1,14 @@
 :root {
+  /* Tipografi: satu font teks dan satu font mono untuk label & angka */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Warna status */
+  --success: #10b981;
+  --danger: #dc2626;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+
   --ink: #1c1917;
   --ink-soft: #44403c;
   --ink-muted: #78716c;
@@ -14,23 +24,29 @@
   --shadow: rgba(0, 0, 0, 0.08);
   --shadow-lg: rgba(0, 0, 0, 0.12);
 
-  --contact-bg: #1c1917;
-  --contact-card: #292524;
-  --contact-border: #3a3534;
-  --contact-text: rgba(255, 255, 255, 0.85);
-  --contact-muted: rgba(255, 255, 255, 0.4);
-  --contact-input-bg: rgba(255, 255, 255, 0.05);
-  --contact-input-border: rgba(255, 255, 255, 0.12);
-  --contact-input-focus: rgba(255, 255, 255, 0.3);
-  --contact-placeholder: rgba(255, 255, 255, 0.22);
-  --contact-submit-bg: #ffffff;
-  --contact-submit-text: #1c1917;
-  --contact-submit-hover: #f5f5f4;
+  /* Section kontak memakai palet global yang sama dengan section lain */
+  --contact-bg: var(--warm);
+  --contact-card: var(--white);
+  --contact-border: var(--border);
+  --contact-text: var(--ink);
+  --contact-soft: var(--ink-soft);
+  --contact-muted: var(--ink-muted);
+  --contact-faint: var(--ink-faint);
+  --contact-subtle: var(--white);
+  --contact-input-bg: var(--cream);
+  --contact-input-border: var(--border-2);
+  --contact-input-focus: var(--ink-muted);
+  --contact-focus-bg: var(--white);
+  --contact-placeholder: var(--ink-faint);
 
   color-scheme: light;
 }
 
 .dark {
+  --danger: #f87171;
+  --danger-bg: #2a0f0f;
+  --danger-border: rgba(248, 113, 113, 0.25);
+
   --ink: #f5f5f4;
   --ink-soft: #d6d3d1;
   --ink-muted: #a8a29e;
@@ -46,18 +62,7 @@
   --shadow: rgba(0, 0, 0, 0.35);
   --shadow-lg: rgba(0, 0, 0, 0.55);
 
-  --contact-bg: #080705;
-  --contact-card: #141210;
-  --contact-border: #2a2826;
-  --contact-text: rgba(245, 245, 244, 0.9);
-  --contact-muted: rgba(245, 245, 244, 0.4);
-  --contact-input-bg: rgba(255, 255, 255, 0.04);
-  --contact-input-border: rgba(255, 255, 255, 0.08);
-  --contact-input-focus: rgba(255, 255, 255, 0.2);
-  --contact-placeholder: rgba(255, 255, 255, 0.18);
-  --contact-submit-bg: #f5f5f4;
-  --contact-submit-text: #1c1917;
-  --contact-submit-hover: #e7e5e4;
+  --contact-bg: var(--cream);
 
   color-scheme: dark;
 }
@@ -71,7 +76,7 @@ html {
 }
 
 body {
-  font-family: 'Geist', sans-serif;
+  font-family: var(--font-sans);
   background: var(--cream);
   color: var(--ink);
   overflow-x: hidden;
@@ -163,6 +168,27 @@ body::before {
   transition: border-color 0.3s;
 }
 
+.bg-stone-200 {
+  background: var(--border) !important;
+}
+
+/* Tombol utama & sekunder: hover yang sama di seluruh halaman */
+.hover\:bg-stone-700:hover {
+  background: var(--ink-soft) !important;
+}
+
+.hover\:bg-stone-100:hover {
+  background: var(--warm) !important;
+}
+
+.text-red-400 {
+  color: var(--danger) !important;
+}
+
+.bg-emerald-400 {
+  background: var(--success) !important;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -179,7 +205,7 @@ body::before {
 #loader {
   position: fixed;
   inset: 0;
-  background: #1c1917;
+  background: var(--cream);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -187,6 +213,34 @@ body::before {
   flex-direction: column;
   gap: 16px;
   transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+#loader-pct {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+}
+
+/* Logo teks FFG. di loading screen, sama dengan navbar & footer */
+#loader-logo {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+#loader-logo span {
+  color: var(--ink-faint);
 }
 
 #loader.hidden {
@@ -197,13 +251,13 @@ body::before {
 .loader-bar {
   width: 200px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--border);
   overflow: hidden;
 }
 
 .loader-fill {
   height: 100%;
-  background: white;
+  background: var(--ink);
   width: 0;
   animation: loaderAnim 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -394,7 +448,7 @@ nav#navbar.scrolled {
   color: var(--ink-faint);
   font-size: 0.6rem;
   font-weight: 700;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   letter-spacing: 0.04em;
   transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   flex-shrink: 0;
@@ -506,7 +560,7 @@ nav#navbar.scrolled {
 }
 
 .bottom-nav-label {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -540,7 +594,7 @@ nav#navbar.scrolled {
 }
 
 .section-label {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -559,7 +613,7 @@ nav#navbar.scrolled {
 }
 
 .num {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   color: var(--ink-faint);
 }
@@ -588,7 +642,7 @@ nav#navbar.scrolled {
   border-radius: 6px;
   font-size: 0.68rem;
   font-weight: 500;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   color: var(--ink-soft);
   letter-spacing: 0.02em;
   cursor: default;
@@ -643,14 +697,6 @@ nav#navbar.scrolled {
   background: var(--warm);
 }
 
-.dark-link {
-  color: rgba(255, 255, 255, 0.5);
-  transition: color 0.2s;
-}
-
-.dark-link:hover {
-  color: white;
-}
 
 .project-card {
   background: var(--white);
@@ -788,7 +834,7 @@ nav#navbar.scrolled {
   border-radius: 999px;
   font-size: 0.72rem;
   font-weight: 500;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   color: var(--ink-soft);
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -862,51 +908,24 @@ nav#navbar.scrolled {
   transition: background 0.35s;
 }
 
-#kontak .bg-stone-800 {
-  background: var(--contact-card) !important;
-  border-color: var(--contact-border) !important;
-}
 
-#kontak .border-stone-700 {
-  border-color: var(--contact-border) !important;
-}
-
-#kontak .bg-stone-800\/50 {
-  background: rgba(255, 255, 255, 0.03) !important;
-}
-
-#kontak .text-white {
-  color: var(--contact-text) !important;
-}
-
-#kontak .text-stone-300 {
-  color: rgba(245, 245, 244, 0.65) !important;
-}
-
-#kontak .text-stone-400 {
-  color: var(--contact-muted) !important;
-}
-
-#kontak .text-stone-500 {
-  color: rgba(245, 245, 244, 0.25) !important;
-}
-
+/* Footer terang mengikuti tema halaman (gelap hanya saat mode gelap aktif) */
 footer {
-  background: #0c0a09 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background 0.35s;
+  background: var(--cream);
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border);
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 
-footer .text-stone-600 {
-  color: rgba(245, 245, 244, 0.6) !important;
+footer .footer-logo {
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-decoration: none;
 }
 
-footer .text-stone-500 {
-  color: rgba(245, 245, 244, 0.6) !important;
-}
-
-footer .text-stone-700 {
-  color: rgba(245, 245, 244, 0.35) !important;
+footer .footer-dot {
+  color: var(--ink-faint);
 }
 
 .form-field label {
@@ -916,10 +935,11 @@ footer .text-stone-700 {
   text-transform: uppercase;
   color: var(--contact-muted);
   margin-bottom: 8px;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .form-field input,
+.form-field select,
 .form-field textarea {
   width: 100%;
   background: var(--contact-input-bg);
@@ -928,7 +948,7 @@ footer .text-stone-700 {
   padding: 14px 16px;
   color: var(--contact-text);
   font-size: 0.875rem;
-  font-family: 'Geist', sans-serif;
+  font-family: var(--font-sans);
   outline: none;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
@@ -939,20 +959,45 @@ footer .text-stone-700 {
 }
 
 .form-field input:focus,
+.form-field select:focus,
 .form-field textarea:focus {
   border-color: var(--contact-input-focus);
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--contact-focus-bg);
 }
 
-#submit-btn {
-  background: var(--contact-submit-bg) !important;
-  color: var(--contact-submit-text) !important;
+.form-field .select-wrap {
+  position: relative;
 }
 
-#submit-btn:hover {
-  background: var(--contact-submit-hover) !important;
-  transform: none !important;
+.form-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
 }
+
+/* Opsi kosong "Pilih subjek" tampil seperti placeholder */
+.form-field select:invalid {
+  color: var(--contact-placeholder);
+}
+
+/* Daftar opsi bawaan browser tetap terbaca di latar gelap */
+.form-field select option {
+  color: #1c1917;
+  background: #ffffff;
+}
+
+.form-field .select-wrap i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: var(--contact-text);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 
 #toast-container {
   position: fixed;
@@ -973,7 +1018,7 @@ footer .text-stone-700 {
   padding: 12px 20px;
   border-radius: 999px;
   font-size: 0.8rem;
-  font-family: 'Geist', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 500;
   white-space: nowrap;
   pointer-events: auto;
@@ -995,15 +1040,15 @@ footer .text-stone-700 {
 }
 
 .toast.success {
-  background: #1c1917;
-  color: #f5f5f4;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--ink);
+  color: var(--cream);
+  border: 1px solid var(--border-2);
 }
 
 .toast.error {
-  background: #450a0a;
-  color: #fca5a5;
-  border: 1px solid rgba(252, 165, 165, 0.2);
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
 }
 
 .toast .toast-icon {
@@ -1044,7 +1089,7 @@ footer .text-stone-700 {
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   transition: all 0.2s ease;
 }
 
@@ -1066,7 +1111,7 @@ footer .text-stone-700 {
 }
 
 .dark #kontak {
-  background: #080705 !important;
+  background: var(--contact-bg) !important;
 }
 
 .dark #photo-card .absolute.-inset-4,
@@ -1084,20 +1129,15 @@ footer .text-stone-700 {
   border-color: var(--border) !important;
 }
 
+/* Label kecil di atas gambar proyek tetap terbaca di mode gelap */
+.dark .bg-white\/90,
+.dark .bg-white\/95 {
+  background: rgba(28, 25, 23, 0.85) !important;
+}
+
+/* Mode gelap: tombol & badge utama dibalik jadi terang dengan teks gelap */
 .dark .bg-stone-900.text-white {
-  background: var(--warm-2) !important;
-  color: var(--ink) !important;
-  border: 1px solid var(--border);
-}
-
-.dark .bg-stone-900.text-white:hover {
-  background: var(--border-2) !important;
-}
-
-.dark a.bg-stone-900.text-white,
-.dark button.bg-stone-900.text-white {
-  background: var(--warm-2) !important;
-  color: var(--ink) !important;
+  color: var(--cream) !important;
 }
 
 .dark .tag {
@@ -1132,8 +1172,4 @@ footer .text-stone-700 {
 .dark #kontak .form-field textarea:hover {
   border-color: var(--contact-input-border) !important;
   background: var(--contact-input-bg) !important;
-}
-
-.dark #kontak .border-stone-700 {
-  background: rgba(255, 255, 255, 0.03) !important;
 }

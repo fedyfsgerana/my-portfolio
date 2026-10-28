@@ -29,9 +29,8 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Geist", "sans-serif"],
-              mono: ["Geist Mono", "monospace"],
-              display: ["Playfair Display", "serif"],
+              sans: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+              mono: ["Geist Mono", "ui-monospace", "monospace"],
             },
             colors: {
               stone: {
@@ -66,11 +65,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/i18next.min.js"></script>
 
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c1917'/><text x='16' y='21' text-anchor='middle' font-family='Geist Mono,monospace' font-size='13' font-weight='700' letter-spacing='-0.5' fill='white'>FFG</text></svg>"
-    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -79,32 +76,12 @@
 
   <body>
     <div id="loader">
-      <div
-        id="loader-text"
-        style="
-          font-family: &quot;Geist Mono&quot;, monospace;
-          font-size: 0.7rem;
-          letter-spacing: 0.2em;
-          color: rgba(255, 255, 255, 0.4);
-          text-transform: uppercase;
-        "
-        data-i18n="loader_text"
-      >
-        Memuat portofolio
-      </div>
+      <div id="loader-logo">FFG<span>.</span></div>
+      <div id="loader-text" data-i18n="loader_text">Memuat portofolio</div>
       <div class="loader-bar">
         <div class="loader-fill"></div>
       </div>
-      <div
-        id="loader-pct"
-        style="
-          font-family: &quot;Geist Mono&quot;, monospace;
-          font-size: 0.65rem;
-          color: rgba(255, 255, 255, 0.25);
-        "
-      >
-        0%
-      </div>
+      <div id="loader-pct">0%</div>
     </div>
 
     <div id="progress-bar"></div>
@@ -120,9 +97,10 @@
       >
         <a
           href="#home"
-          class="font-mono text-sm font-medium text-stone-900 tracking-wide flex items-center gap-1.5"
+          class="font-mono text-sm font-medium text-stone-900 tracking-wide flex items-center"
+          aria-label="Fedy Fs. Gerana, kembali ke beranda"
         >
-          <span>FFG.</span><span class="text-stone-300">.</span>
+          <span>FFG<span class="text-stone-400">.</span></span>
         </a>
 
         <div class="hidden md:flex items-center gap-8">
@@ -200,8 +178,8 @@
             href="#kontak"
             class="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium"
           >
+            <i class="fas fa-paper-plane text-xs" aria-hidden="true"></i>
             <span data-i18n="nav_hubungi">Hubungi Saya</span>
-            <i class="fas fa-arrow-right text-xs"></i>
           </a>
         </div>
       </div>
@@ -280,7 +258,7 @@
             >
               Saya seorang programmer yang fokus pada pengembangan web, dengan
               pengalaman membangun, mengintegrasikan, dan memelihara aplikasi
-              menggunakan JavaScript/TypeScript modern serta .NET.
+              dari tahap awal hingga berjalan stabil dan siap dipakai.
             </p>
 
             <div
@@ -296,14 +274,14 @@
                 href="#proyek"
                 class="px-6 py-3 bg-stone-900 text-white text-sm rounded-full hover:bg-stone-700 transition-colors font-medium inline-flex items-center gap-2"
               >
-                <i class="fas fa-briefcase text-xs"></i
+                <i class="fas fa-briefcase text-xs" aria-hidden="true"></i
                 ><span data-i18n="hero_cta_proyek">Lihat Karya Saya</span>
               </a>
               <a
                 href="#kontak"
-                class="px-6 py-3 border border-stone-300 text-stone-700 text-sm rounded-full hover:bg-stone-100 transition-colors inline-flex items-center gap-2"
+                class="px-6 py-3 border border-stone-300 text-stone-700 text-sm rounded-full hover:bg-stone-100 transition-colors font-medium inline-flex items-center gap-2"
               >
-                <i class="fas fa-envelope text-xs"></i
+                <i class="fas fa-paper-plane text-xs" aria-hidden="true"></i
                 ><span data-i18n="hero_cta_kontak">Hubungi Saya</span>
               </a>
             </div>
@@ -394,11 +372,9 @@
                 >
                   Pengalaman
                 </div>
-                <div
-                  class="text-xl font-semibold"
-                  style="font-family: &quot;Geist Mono&quot;, monospace"
-                >
-                  2<span class="text-stone-400 text-base">+</span>
+                <div class="font-mono text-xl font-semibold">
+                  <span data-exp-years>2</span
+                  ><span class="text-stone-400 text-base">+</span>
                 </div>
                 <div class="text-xs text-stone-400" data-i18n="hero_exp_unit">
                   tahun
@@ -429,6 +405,7 @@
             <div
               class="font-mono text-2xl font-semibold text-stone-900 counter"
               data-target="2"
+              data-exp
             >
               0
             </div>
@@ -465,7 +442,7 @@
               Tentang Saya
             </div>
             <h2
-              class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug mb-6"
+              class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug tracking-tight mb-6"
             >
               <span data-i18n="about_heading">Bekerja dengan baik,</span><br />
               <span
@@ -512,8 +489,10 @@
               data-i18n-html="about_p1"
             >
               Sudah lebih dari
-              <strong class="font-medium text-stone-800">2 tahun</strong> saya
-              bekerja sebagai programmer, membangun aplikasi internal
+              <strong class="font-medium text-stone-800"
+                ><span data-exp-years>2</span> tahun</strong
+              >
+              saya bekerja sebagai programmer, membangun aplikasi internal
               perusahaan, memelihara sistem yang berjalan, serta menerapkan
               autentikasi dan otorisasi berbasis peran.
             </p>
@@ -528,8 +507,9 @@
               class="text-stone-500 leading-relaxed font-light"
               data-i18n="about_p3"
             >
-              Stack yang sering saya gunakan mencakup Vue.js, React, Node.js,
-              Laravel, dan C# / .NET.
+              Saya memilih alat dan pendekatan sesuai kebutuhan proyek, bukan
+              sekadar kebiasaan, dan selalu berusaha menulis kode yang mudah
+              dipahami seluruh tim.
             </p>
 
             <div
@@ -578,16 +558,16 @@
                 download="CV. Fedy Fs. Gerana.pdf"
                 target="_blank"
                 rel="noopener"
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 text-white text-xs rounded-full hover:bg-stone-700 transition-colors font-medium"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-white text-sm rounded-full hover:bg-stone-700 transition-colors font-medium"
               >
                 <i class="fas fa-file-arrow-down text-xs"></i>
                 <span data-i18n="about_cv">Unduh CV</span>
               </a>
               <a
                 href="#kontak"
-                class="inline-flex items-center gap-2 px-5 py-2.5 border border-stone-300 text-stone-700 text-xs rounded-full hover:bg-stone-100 transition-colors font-medium"
+                class="inline-flex items-center gap-2 px-6 py-3 border border-stone-300 text-stone-700 text-sm rounded-full hover:bg-stone-100 transition-colors font-medium"
               >
-                <i class="fas fa-envelope text-xs"></i>
+                <i class="fas fa-paper-plane text-xs" aria-hidden="true"></i>
                 <span data-i18n="about_contact">Kontak Saya</span>
               </a>
             </div>
@@ -604,7 +584,7 @@
               Keahlian
             </div>
             <h2
-              class="text-3xl lg:text-4xl font-light text-stone-900"
+              class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug tracking-tight"
               data-i18n="skill_heading"
             >
               Teknologi &amp; Stack
@@ -1478,7 +1458,7 @@
             Karya Pilihan
           </div>
           <h2
-            class="text-3xl lg:text-4xl font-light text-stone-900"
+            class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug tracking-tight"
             data-i18n="project_heading"
           >
             Proyek Unggulan
@@ -1824,19 +1804,19 @@
 
     <section
       id="kontak"
-      class="py-24 lg:py-32 bg-stone-900 text-white relative overflow-hidden"
+      class="py-24 lg:py-32 bg-stone-100 relative overflow-hidden"
     >
       <div
         class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none"
         style="
-          background: radial-gradient(circle, #fff 0%, transparent 70%);
+          background: radial-gradient(circle, var(--ink) 0%, transparent 70%);
           transform: translate(30%, -30%);
         "
       ></div>
       <div
         class="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-5 pointer-events-none"
         style="
-          background: radial-gradient(circle, #fff 0%, transparent 70%);
+          background: radial-gradient(circle, var(--ink) 0%, transparent 70%);
           transform: translate(-30%, 30%);
         "
       ></div>
@@ -1845,26 +1825,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div class="space-y-8 fade-up">
             <div>
-              <div
-                class="section-label mb-4"
-                style="color: rgba(255, 255, 255, 0.3)"
-                data-i18n="contact_label"
-              >
+              <div class="section-label mb-4" data-i18n="contact_label">
                 Mari Berkolaborasi
               </div>
               <h2
-                class="text-3xl lg:text-5xl font-light text-white leading-tight"
+                class="text-3xl lg:text-4xl font-light text-stone-900 leading-snug tracking-tight"
               >
                 <span data-i18n="contact_heading">Punya proyek</span><br />
                 <span
-                  class="font-light text-stone-300"
+                  class="font-light text-stone-600"
                   data-i18n="contact_heading_sub"
                   >yang ingin diwujudkan?</span
                 >
               </h2>
             </div>
             <p
-              class="text-stone-400 font-light leading-relaxed"
+              class="text-stone-500 font-light leading-relaxed"
               data-i18n="contact_desc"
             >
               Saya terbuka untuk kolaborasi maupun freelance — kirimkan pesan
@@ -1874,7 +1850,7 @@
             <div class="space-y-4">
               <div class="flex items-center gap-4">
                 <div
-                  class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0"
+                  class="w-10 h-10 rounded-xl bg-white border border-stone-200 flex items-center justify-center flex-shrink-0"
                 >
                   <i class="fas fa-envelope text-stone-400 text-xs"></i>
                 </div>
@@ -1885,12 +1861,12 @@
                   >
                     Email
                   </div>
-                  <span class="text-stone-300 text-sm">fedfg30@gmail.com</span>
+                  <span class="text-stone-700 text-sm">fedfg30@gmail.com</span>
                 </div>
               </div>
               <div class="flex items-center gap-4">
                 <div
-                  class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0"
+                  class="w-10 h-10 rounded-xl bg-white border border-stone-200 flex items-center justify-center flex-shrink-0"
                 >
                   <i class="fas fa-phone text-stone-400 text-xs"></i>
                 </div>
@@ -1901,12 +1877,12 @@
                   >
                     Telepon
                   </div>
-                  <span class="text-stone-300 text-sm">+62 822-6839-1862</span>
+                  <span class="text-stone-700 text-sm">+62 822-6839-1862</span>
                 </div>
               </div>
               <div class="flex items-center gap-4">
                 <div
-                  class="w-10 h-10 rounded-xl bg-stone-800 border border-stone-700 flex items-center justify-center flex-shrink-0"
+                  class="w-10 h-10 rounded-xl bg-white border border-stone-200 flex items-center justify-center flex-shrink-0"
                 >
                   <i class="fas fa-map-marker-alt text-stone-400 text-xs"></i>
                 </div>
@@ -1918,7 +1894,7 @@
                     Lokasi
                   </div>
                   <span
-                    class="text-stone-300 text-sm"
+                    class="text-stone-700 text-sm"
                     data-i18n="contact_loc_val"
                     >Riau, Indonesia</span
                   >
@@ -1927,9 +1903,7 @@
             </div>
 
             <div class="flex gap-3 pt-2">
-              <a
-                href="https://github.com"
-                class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"
+              <a href="https://github.com" class="social-icon has-tooltip"
                 ><i class="fab fa-github text-sm"></i
                 ><span class="tooltip">GitHub</span></a
               >
@@ -1937,7 +1911,7 @@
                 href="https://linkedin.com/in/fedy-fs-gerana"
                 target="_blank"
                 rel="noopener"
-                class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"
+                class="social-icon has-tooltip"
                 ><i class="fab fa-linkedin text-sm"></i
                 ><span class="tooltip">LinkedIn</span></a
               >
@@ -1945,20 +1919,18 @@
                 href="https://instagram.com/fedyfsg"
                 target="_blank"
                 rel="noopener"
-                class="w-10 h-10 border border-stone-700 rounded-xl flex items-center justify-center dark-link has-tooltip"
+                class="social-icon has-tooltip"
                 ><i class="fab fa-instagram text-sm"></i
                 ><span class="tooltip">Instagram</span></a
               >
             </div>
 
-            <div
-              class="border border-stone-700 rounded-2xl p-5 bg-stone-800/50"
-            >
+            <div class="border border-stone-200 rounded-2xl p-5 bg-white">
               <div class="num text-stone-500 mb-2" data-i18n="contact_response">
                 Waktu respons rata-rata
               </div>
               <div class="flex items-center gap-3">
-                <div class="text-2xl font-mono font-semibold text-white">
+                <div class="text-2xl font-mono font-semibold text-stone-900">
                   &lt; 24
                 </div>
                 <div
@@ -1972,7 +1944,7 @@
           </div>
 
           <div class="fade-up" style="transition-delay: 0.15s">
-            <div class="bg-stone-800 rounded-2xl p-8 border border-stone-700">
+            <div class="bg-white rounded-2xl p-8 border border-stone-200">
               <div class="num text-stone-500 mb-6" data-i18n="form_send_label">
                 Kirim pesan
               </div>
@@ -2013,14 +1985,52 @@
                   </div>
                 </div>
                 <div class="form-field">
-                  <label data-i18n="form_subject">Subjek</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    required
-                    data-i18n-ph="form_subject_ph"
-                    placeholder="Diskusi proyek / Konsultasi"
-                  />
+                  <label for="form-subject" data-i18n="form_subject"
+                    >Subjek</label
+                  >
+                  <div class="select-wrap">
+                    <select id="form-subject" name="subject" required>
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        data-i18n="form_subject_ph"
+                      >
+                        Pilih subjek
+                      </option>
+                      <option
+                        value="Tawaran pekerjaan"
+                        data-i18n="form_subject_opt1"
+                      >
+                        Tawaran pekerjaan
+                      </option>
+                      <option
+                        value="Proyek freelance"
+                        data-i18n="form_subject_opt2"
+                      >
+                        Proyek freelance
+                      </option>
+                      <option value="Kolaborasi" data-i18n="form_subject_opt3">
+                        Kolaborasi
+                      </option>
+                      <option
+                        value="Konsultasi teknis"
+                        data-i18n="form_subject_opt4"
+                      >
+                        Konsultasi teknis
+                      </option>
+                      <option value="Lainnya" data-i18n="form_subject_opt5">
+                        Lainnya
+                      </option>
+                    </select>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </div>
+                  <div
+                    class="text-xs text-red-400 mt-1 hidden err-subject"
+                    data-i18n="form_err_subject"
+                  >
+                    Mohon pilih subjek.
+                  </div>
                 </div>
                 <div class="form-field">
                   <label data-i18n="form_message">Pesan</label>
@@ -2036,13 +2046,14 @@
                 <button
                   type="submit"
                   id="submit-btn"
-                  class="w-full py-3.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 group"
+                  class="w-full py-3.5 rounded-full text-sm font-medium bg-stone-900 text-white hover:bg-stone-700 transition-colors flex items-center justify-center gap-2 group"
                 >
-                  <span id="btn-text" data-i18n="form_submit">Kirim Pesan</span>
                   <i
                     id="btn-icon"
-                    class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
+                    class="fas fa-paper-plane text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
                   ></i>
+                  <span id="btn-text" data-i18n="form_submit">Kirim Pesan</span>
                 </button>
               </form>
             </div>
@@ -2053,13 +2064,17 @@
 
     <div class="h-20 md:hidden"></div>
 
-    <footer class="bg-stone-950 text-stone-500 py-8">
+    <footer class="py-8">
       <div
         class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
       >
-        <span class="font-mono text-stone-600 text-sm"
-          >FFG<span class="text-stone-700">.</span></span
+        <a
+          href="#home"
+          class="footer-logo font-mono text-sm"
+          aria-label="Fedy Fs. Gerana, kembali ke atas"
         >
+          FFG<span class="footer-dot">.</span>
+        </a>
         <span
           >&copy; <span id="footer-year"></span> Fedy Fs. Gerana.
           <span data-i18n="footer_credit"

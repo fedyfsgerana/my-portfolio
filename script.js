@@ -81,7 +81,9 @@ window.addEventListener("scroll", () => {
 });
 
 if (backTop) {
-  const darkSections = document.querySelectorAll("#kontak, footer");
+  // Semua section kini mengikuti tema, jadi tidak ada lagi area gelap khusus.
+  // Tambahkan atribut data-dark-section pada section yang sengaja dibuat gelap.
+  const darkSections = document.querySelectorAll("[data-dark-section]");
 
   const btnObserver = new IntersectionObserver(
     (entries) => {
@@ -113,29 +115,55 @@ if (backTop) {
 
 const navLinks = document.querySelectorAll(".nav-link");
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+// Scroll spy: menu aktif mengikuti section yang isinya sedang dibaca.
+// Sebuah section dianggap aktif saat awal kontennya (setelah padding atas)
+// sudah melewati garis di 30% tinggi layar di bawah navbar.
+const spySections = [...document.querySelectorAll("section[id]")];
+let spyTicking = false;
 
-      navLinks.forEach((l) => l.classList.remove("active"));
-      const activeLink = document.querySelector(
-        `.nav-link[href="#${entry.target.id}"]`,
-      );
-      if (activeLink) activeLink.classList.add("active");
+function setActiveSection(id) {
+  navLinks.forEach((l) => {
+    const isActive = l.getAttribute("href") === `#${id}`;
+    l.classList.toggle("active", isActive);
+    if (isActive) l.setAttribute("aria-current", "true");
+    else l.removeAttribute("aria-current");
+  });
+  updateBottomNav(id);
+}
 
-      updateBottomNav(entry.target.id);
-    });
-  },
-  {
-    rootMargin: "-40% 0px -55% 0px",
-    threshold: 0,
-  },
-);
+function updateActiveSection() {
+  spyTicking = false;
+  if (!spySections.length) return;
 
-document
-  .querySelectorAll("section[id]")
-  .forEach((s) => sectionObserver.observe(s));
+  const navHeight = navbar ? navbar.offsetHeight : 56;
+  const line = window.scrollY + navHeight + window.innerHeight * 0.3;
+  let current = spySections[0].id;
+
+  spySections.forEach((sec) => {
+    const padTop = parseFloat(getComputedStyle(sec).paddingTop) || 0;
+    const contentTop =
+      sec.getBoundingClientRect().top + window.scrollY + padTop;
+    if (contentTop <= line) current = sec.id;
+  });
+
+  // Section terakhir sering tidak bisa mencapai garis, jadi aktifkan saat sudah di dasar halaman.
+  const atBottom =
+    window.innerHeight + window.scrollY >=
+    document.documentElement.scrollHeight - 4;
+  if (atBottom) current = spySections[spySections.length - 1].id;
+
+  setActiveSection(current);
+}
+
+function requestActiveSection() {
+  if (spyTicking) return;
+  spyTicking = true;
+  requestAnimationFrame(updateActiveSection);
+}
+
+window.addEventListener("scroll", requestActiveSection, { passive: true });
+window.addEventListener("resize", requestActiveSection);
+window.addEventListener("load", requestActiveSection);
 
 const bottomNavItems = document.querySelectorAll(".bottom-nav-item");
 
@@ -144,6 +172,8 @@ function updateBottomNav(sectionId) {
     item.classList.toggle("active", item.dataset.section === sectionId);
   });
 }
+
+updateActiveSection();
 
 bottomNavItems.forEach((item) => {
   item.addEventListener("pointerdown", function (e) {
@@ -198,6 +228,29 @@ const fadeObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll(".fade-up").forEach((el) => fadeObserver.observe(el));
+
+// Pengalaman kerja dihitung otomatis sejak 3 Juni 2024, dalam tahun penuh.
+const CAREER_START = new Date(2024, 5, 3);
+
+function yearsOfExperience(now = new Date()) {
+  let years = now.getFullYear() - CAREER_START.getFullYear();
+  const anniversary = new Date(
+    now.getFullYear(),
+    CAREER_START.getMonth(),
+    CAREER_START.getDate(),
+  );
+  if (now < anniversary) years--;
+  return Math.max(0, years);
+}
+
+const EXP_YEARS = yearsOfExperience();
+
+document.querySelectorAll("[data-exp-years]").forEach((el) => {
+  el.textContent = EXP_YEARS;
+});
+document.querySelectorAll(".counter[data-exp]").forEach((el) => {
+  el.dataset.target = EXP_YEARS;
+});
 
 const counterObserver = new IntersectionObserver(
   (entries) => {
@@ -296,15 +349,18 @@ contactForm.addEventListener("submit", function (e) {
 
   const name = this.name.value.trim();
   const email = this.email.value.trim();
+  const subject = this.subject.value;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const errName = document.querySelector(".err-name");
   const errEmail = document.querySelector(".err-email");
+  const errSubject = document.querySelector(".err-subject");
 
   errName.classList.toggle("hidden", name.length > 0);
   errEmail.classList.toggle("hidden", emailRegex.test(email));
+  errSubject.classList.toggle("hidden", subject.length > 0);
 
-  if (!name || !emailRegex.test(email)) {
+  if (!name || !emailRegex.test(email) || !subject) {
     showToast(i18next.t("toast_error"), "error");
     return;
   }
@@ -324,14 +380,14 @@ contactForm.addEventListener("submit", function (e) {
       btn.disabled = false;
       btnText.textContent = i18next.t("form_submit");
       btnIcon.className =
-        "fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1";
+        "fas fa-paper-plane text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5";
       showToast(i18next.t("toast_success"), "success");
     })
     .catch(() => {
       btn.disabled = false;
       btnText.textContent = i18next.t("form_submit");
       btnIcon.className =
-        "fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1";
+        "fas fa-paper-plane text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5";
       showToast(i18next.t("toast_error"), "error");
     });
 });
@@ -512,18 +568,26 @@ function detectLang() {
   return browser === "en" ? "en" : "id";
 }
 
+// Isi variabel seperti {{years}} di teks terjemahan.
+function fillVars(str) {
+  const vars = { years: EXP_YEARS };
+  return String(str).replace(/\{\{(\w+)\}\}/g, (match, key) =>
+    key in vars ? vars[key] : match,
+  );
+}
+
 function applyTranslations(lang) {
   const t = window.translations[lang];
   if (!t) return;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.dataset.i18n;
-    if (t[key] !== undefined) el.textContent = t[key];
+    if (t[key] !== undefined) el.textContent = fillVars(t[key]);
   });
 
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
     const key = el.dataset.i18nHtml;
-    if (t[key] !== undefined) el.innerHTML = t[key];
+    if (t[key] !== undefined) el.innerHTML = fillVars(t[key]);
   });
 
   document.querySelectorAll("[data-i18n-ph]").forEach((el) => {

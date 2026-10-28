@@ -15,7 +15,7 @@ window.translations = {
     hero_role: "Programmer | Web Developer",
     hero_greeting: "Halo, saya",
     hero_desc:
-      "Saya seorang programmer yang fokus pada pengembangan web, dengan pengalaman membangun, mengintegrasikan, dan memelihara aplikasi menggunakan JavaScript/TypeScript modern serta .NET.",
+      "Saya seorang programmer yang fokus pada pengembangan web, dengan pengalaman membangun, mengintegrasikan, dan memelihara aplikasi dari tahap awal hingga berjalan stabil dan siap dipakai.",
     hero_cta_proyek: "Lihat Karya Saya",
     hero_cta_kontak: "Hubungi Saya",
     hero_find: "Temukan saya",
@@ -31,11 +31,11 @@ window.translations = {
     about_heading_sub: "dibaca dengan mudah",
     about_location: "Riau, Indonesia",
     about_p1:
-      'Sudah lebih dari <strong class="font-medium text-stone-800">2 tahun</strong> saya bekerja sebagai programmer, membangun aplikasi internal perusahaan, memelihara sistem yang berjalan, serta menerapkan autentikasi dan otorisasi berbasis peran.',
+      'Sudah lebih dari <strong class="font-medium text-stone-800">{{years}} tahun</strong> saya bekerja sebagai programmer, membangun aplikasi internal perusahaan, memelihara sistem yang berjalan, serta menerapkan autentikasi dan otorisasi berbasis peran.',
     about_p2:
       "Saya percaya kualitas kode terlihat bukan hanya saat pertama kali jalan, tapi saat proyek berkembang dan orang lain ikut terlibat.",
     about_p3:
-      "Stack yang sering saya gunakan mencakup Vue.js, React, Node.js, Laravel, dan C# / .NET — dipilih sesuai kebutuhan proyek, bukan sekadar kebiasaan.",
+      "Saya memilih alat dan pendekatan sesuai kebutuhan proyek, bukan sekadar kebiasaan, dan selalu berusaha menulis kode yang mudah dipahami seluruh tim.",
     about_tag1: "Pemecah Masalah",
     about_tag2: "Berorientasi Detail",
     about_tag3: "Pengembang Web",
@@ -89,13 +89,19 @@ window.translations = {
     form_email: "Email",
     form_email_ph: "email@anda.com",
     form_subject: "Subjek",
-    form_subject_ph: "Diskusi proyek / Konsultasi",
+    form_subject_ph: "Pilih subjek",
+    form_subject_opt1: "Tawaran pekerjaan",
+    form_subject_opt2: "Proyek freelance",
+    form_subject_opt3: "Kolaborasi",
+    form_subject_opt4: "Konsultasi teknis",
+    form_subject_opt5: "Lainnya",
     form_message: "Pesan",
     form_message_ph: "Ceritakan tentang proyek Anda...",
     form_submit: "Kirim Pesan",
     form_sending: "Mengirim...",
     form_err_name: "Mohon isi nama Anda.",
     form_err_email: "Mohon isi email yang valid.",
+    form_err_subject: "Mohon pilih subjek.",
 
     toast_success:
       "Pesan berhasil terkirim! Saya akan segera menghubungi Anda.",
@@ -125,7 +131,7 @@ window.translations = {
     hero_role: "Programmer | Web Developer",
     hero_greeting: "Hi, I'm",
     hero_desc:
-      "I'm a programmer focused on web development, with hands-on experience building, integrating, and maintaining applications using modern JavaScript/TypeScript and .NET.",
+      "I'm a programmer focused on web development, with hands-on experience building, integrating, and maintaining applications from the first draft to a stable, production-ready release.",
     hero_cta_proyek: "View My Work",
     hero_cta_kontak: "Contact Me",
     hero_find: "Find me on",
@@ -141,11 +147,11 @@ window.translations = {
     about_heading_sub: "easy to read",
     about_location: "Riau, Indonesia",
     about_p1:
-      'For over <strong class="font-medium text-stone-800">2 years</strong> I\'ve worked as a programmer, building internal company applications, maintaining production systems, and implementing role-based authentication and authorization.',
+      'For over <strong class="font-medium text-stone-800">{{years}} years</strong> I\'ve worked as a programmer, building internal company applications, maintaining production systems, and implementing role-based authentication and authorization.',
     about_p2:
       "I believe code quality shows not just when it first runs, but as the project grows and others get involved.",
     about_p3:
-      "My go-to stack includes Vue.js, React, Node.js, Laravel, and C# / .NET — chosen based on project needs, not habit.",
+      "I choose tools and approaches based on what the project needs, not out of habit, and I always aim to write code the whole team can easily understand.",
     about_tag1: "Problem Solver",
     about_tag2: "Detail Oriented",
     about_tag3: "Web Developer",
@@ -199,13 +205,19 @@ window.translations = {
     form_email: "Email",
     form_email_ph: "email@you.com",
     form_subject: "Subject",
-    form_subject_ph: "Project discussion / Consultation",
+    form_subject_ph: "Choose a subject",
+    form_subject_opt1: "Job opportunity",
+    form_subject_opt2: "Freelance project",
+    form_subject_opt3: "Collaboration",
+    form_subject_opt4: "Technical consultation",
+    form_subject_opt5: "Other",
     form_message: "Message",
     form_message_ph: "Tell me about your project...",
     form_submit: "Send Message",
     form_sending: "Sending...",
     form_err_name: "Please fill in your name.",
     form_err_email: "Please enter a valid email.",
+    form_err_subject: "Please choose a subject.",
 
     toast_success: "Message sent! I'll get back to you shortly.",
     toast_error: "Please complete the form correctly.",

@@ -53,7 +53,7 @@ Website portofolio pribadi satu halaman (_single page_) yang menampilkan profil,
 <tr><td>Styling Dasar</td><td>CSS3</td><td>—</td></tr>
 <tr><td>CSS Framework</td><td>Tailwind CSS</td><td>Dimuat via CDN</td></tr>
 <tr><td>Interaktivitas</td><td>JavaScript (vanilla)</td><td>—</td></tr>
-<tr><td>Font</td><td>Google Fonts — DM Sans, DM Mono, Playfair Display</td><td>Dimuat via CDN</td></tr>
+<tr><td>Font</td><td>Google Fonts — Geist, Geist Mono</td><td>Dimuat via CDN</td></tr>
 <tr><td>Ikon</td><td>Font Awesome</td><td>v6.4.0</td></tr>
 <tr><td>Internasionalisasi</td><td>i18next</td><td>v23.11.5</td></tr>
 <tr><td>Pengiriman Form</td><td>EmailJS</td><td>v4</td></tr>
@@ -68,7 +68,10 @@ my-portfolio/
 ├── styles.css    # Styling tambahan di luar Tailwind
 ├── script.js     # Logika interaktif (tema, filter proyek, form, dsb.)
 ├── i18n.js       # Konfigurasi & kamus terjemahan (ID/EN)
-└── Fedy.png      # Foto profil
+├── Fedy.png      # Foto profil
+├── favicon.svg   # Ikon tab (otomatis gelap/terang)
+├── favicon-32.png / apple-touch-icon.png
+└── assets/       # Logo (logo.svg, logo-512.png)
 ```
 
 ## Cara Menjalankan
