@@ -40,19 +40,19 @@ window.I18N = (function () {
     "ESLint dan Prettier": "ESLint and Prettier",
     "Aplikasi yang saya bangun dan rawat.":
       "Applications I build and maintain.",
-    "Aplikasi internal operasional": "Internal operations application",
-    "Aplikasi untuk mendukung kerja harian perusahaan.":
-      "An application that supports the company\u2019s daily work.",
+    "Portal untuk membuka aplikasi perusahaan dengan satu kali login.":
+      "A portal to open company applications with a single login.",
+    "Booking Room Meeting": "Meeting Room Booking",
+    "Aplikasi untuk memesan dan mengatur jadwal ruang rapat.":
+      "An application to book and manage meeting room schedules.",
+    "Sketsa peluncur aplikasi dengan deretan ubin aplikasi":
+      "Sketch of an app launcher with a grid of application tiles",
+    "Sketsa jadwal ruang rapat dengan blok pemesanan":
+      "Sketch of a meeting room schedule with booking blocks",
     "Lihat detail": "View details",
     "[Nama proyek]": "[Project name]",
     "[Isi stack]": "[Add stack]",
     "[Tahun]": "[Year]",
-    "Modul sistem produksi": "Production system module",
-    "Fitur baru pada aplikasi yang sudah berjalan.":
-      "New features for an application already in use.",
-    "Hak akses berbasis peran": "Role-based access control",
-    "Pengaturan akses pengguna sesuai perannya.":
-      "User access that follows each user\u2019s role.",
     "Mari diskusikan proyek Anda.": "Let\u2019s discuss your project.",
     "Salin email": "Copy email",
     "Atau kirim pesan lewat form.": "Or send a message using the form.",
@@ -80,12 +80,6 @@ window.I18N = (function () {
     "Foto Fedy Fs. Gerana": "Photo of Fedy Fs. Gerana",
     "Fedy Fs. Gerana mengenakan setelan jas hitam, dasi, dan kacamata hitam":
       "Fedy Fs. Gerana wearing a black suit, tie, and sunglasses",
-    "Sketsa dashboard dengan grafik batang dan garis":
-      "Sketch of a dashboard with bar and line charts",
-    "Sketsa tabel data dengan satu baris disorot":
-      "Sketch of a data table with one highlighted row",
-    "Sketsa tiga peran pengguna dengan tombol hak akses":
-      "Sketch of three user roles with access toggles",
     "Nama lengkap": "Full name",
     "nama@perusahaan.com": "name@company.com",
     "Ceritakan singkat kebutuhan Anda": "Briefly describe what you need",
