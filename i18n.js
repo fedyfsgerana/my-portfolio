@@ -42,9 +42,9 @@ window.I18N = (function () {
       "Applications I build and maintain.",
     "Portal untuk membuka aplikasi perusahaan dengan satu kali login.":
       "A portal to open company applications with a single login.",
-    "Booking Room Meeting": "Meeting Room Booking",
-    "Aplikasi untuk memesan dan mengatur jadwal ruang rapat.":
-      "An application to book and manage meeting room schedules.",
+    "Aplikasi pemesanan ruang meeting dengan persetujuan bertingkat, pengecekan kesiapan ruang, monitoring pemakaian, dan riwayat aktivitas.":
+      "A meeting room booking application with multi-level approval, room readiness checks, usage monitoring, and a full activity log.",
+    "Coba demo": "Try the demo",
     "Sketsa peluncur aplikasi dengan deretan ubin aplikasi":
       "Sketch of an app launcher with a grid of application tiles",
     "Sketsa jadwal ruang rapat dengan blok pemesanan":
