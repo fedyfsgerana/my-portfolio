@@ -40,8 +40,8 @@ window.I18N = (function () {
     "ESLint dan Prettier": "ESLint and Prettier",
     "Aplikasi yang saya bangun dan rawat.":
       "Applications I build and maintain.",
-    "Portal untuk membuka aplikasi perusahaan dengan satu kali login.":
-      "A portal to open company applications with a single login.",
+    "Portal login tunggal (SSO) dan peluncur aplikasi dengan akses berbasis grup, sesi lintas aplikasi, dan audit trail lengkap.":
+      "A single sign-on portal and application launcher with group-based access, cross-application sessions, and a complete audit trail.",
     "Aplikasi pemesanan ruang meeting dengan persetujuan bertingkat, pengecekan kesiapan ruang, monitoring pemakaian, dan riwayat aktivitas.":
       "A meeting room booking application with multi-level approval, room readiness checks, usage monitoring, and a full activity log.",
     "Coba demo": "Try the demo",
