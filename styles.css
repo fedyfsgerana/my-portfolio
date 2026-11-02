@@ -546,3 +546,13 @@ footer{margin-top:20px}
   .plink{min-height:44px;padding:0 18px}
   .plinks{padding-top:12px}
 }
+
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;display:none;
+  background:
+    radial-gradient(60% 55% at 88% -8%,color-mix(in srgb,var(--c) 24%,transparent),transparent 72%),
+    linear-gradient(var(--grid) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/40px 40px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%)}
+:root[data-theme="dark"] body::before{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::before{display:block}}
