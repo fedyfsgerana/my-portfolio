@@ -14,18 +14,10 @@ if (window.emailjs) {
 /* ===== Tema (Sistem / Terang / Gelap) + penanda menu aktif ===== */
 (function () {
   var root = document.documentElement,
-    segs = document.querySelectorAll(".seg button"),
-    bars = document.querySelectorAll('meta[name="theme-color"]'),
-    barColor = { light: "#ffffff", dark: "#000000" };
-  bars.forEach(function (m) {
-    m.dataset.base = m.getAttribute("content");
-  });
+    segs = document.querySelectorAll(".seg button");
   function setMode(mode, save) {
     if (mode === "light" || mode === "dark") root.dataset.theme = mode;
     else root.removeAttribute("data-theme");
-    bars.forEach(function (m) {
-      m.setAttribute("content", barColor[mode] || m.dataset.base);
-    });
     segs.forEach(function (b) {
       b.setAttribute(
         "aria-pressed",
@@ -34,14 +26,15 @@ if (window.emailjs) {
     });
     if (save) {
       try {
-        localStorage.setItem("theme", mode);
+        if (mode === "system") localStorage.removeItem("theme");
+        else localStorage.setItem("theme", mode);
       } catch (e) {}
     }
   }
-  var saved = "dark";
+  var saved = "system";
   try {
     var v = localStorage.getItem("theme");
-    if (v === "light" || v === "dark" || v === "system") saved = v;
+    if (v === "light" || v === "dark") saved = v;
   } catch (e) {}
   setMode(saved, false);
   segs.forEach(function (b) {

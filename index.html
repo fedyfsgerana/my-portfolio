@@ -40,7 +40,7 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
-<script>(function(){var r=document.documentElement,m="dark";try{var v=localStorage.getItem("theme");if(v==="light"||v==="dark"||v==="system")m=v}catch(e){}if(m==="system")r.removeAttribute("data-theme");else r.dataset.theme=m;var c={light:"#ffffff",dark:"#000000"};if(c[m])document.querySelectorAll('meta[name="theme-color"]').forEach(function(t){t.setAttribute("content",c[m])})})()</script>
+<script>try{var m=localStorage.getItem("theme");if(m==="light"||m==="dark")document.documentElement.dataset.theme=m}catch(e){}</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
