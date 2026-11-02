@@ -10,6 +10,8 @@ Website portofolio pribadi **Fedy Fs. Gerana**, Fullstack Developer: profil, tek
 
 **[Buka website](https://fedyfsgerana.github.io/my-portfolio/)**
 
+![Pratinjau portofolio Fedy Fs. Gerana](og-image.png)
+
 ## Daftar Isi
 
 - [Fitur](#fitur)
@@ -17,6 +19,7 @@ Website portofolio pribadi **Fedy Fs. Gerana**, Fullstack Developer: profil, tek
 - [Tech Stack](#tech-stack)
 - [Memulai](#memulai)
 - [Konfigurasi](#konfigurasi)
+- [SEO dan Pratinjau Tautan](#seo-dan-pratinjau-tautan)
 - [Struktur Proyek](#struktur-proyek)
 - [Deployment](#deployment)
 - [Aksesibilitas dan Kompatibilitas](#aksesibilitas-dan-kompatibilitas)
@@ -27,7 +30,7 @@ Website portofolio pribadi **Fedy Fs. Gerana**, Fullstack Developer: profil, tek
 
 | Fitur | Deskripsi |
 | --- | --- |
-| Tema Sistem / Terang / Gelap | Mengikuti pengaturan perangkat. Pilihan tersimpan di `localStorage` (`theme`) dan diterapkan tanpa kedip saat halaman dimuat |
+| Tema Sistem / Terang / Gelap | Mengikuti pengaturan perangkat. Pilihan tersimpan di `localStorage` (`theme`) dan diterapkan tanpa kedip saat halaman dimuat. Tema gelap memakai palet navy-indigo dengan kartu hitam, cahaya indigo, grid tipis, dan foto berwarna |
 | Dua bahasa (ID / EN) | Seluruh halaman bisa diterjemahkan. Pilihan tersimpan (`lang`), kamus ada di `i18n.js` |
 | Layout bento responsif | Hero, Tentang, Teknologi, Proyek, dan Kontak. Diuji dari lebar 320 px sampai 2560 px |
 | Navigasi | Menu atas yang menempel, menu bawah khusus ponsel, dan penanda bagian aktif saat menggulir |
@@ -35,6 +38,7 @@ Website portofolio pribadi **Fedy Fs. Gerana**, Fullstack Developer: profil, tek
 | Form kontak | Validasi per kolom, status mengirim, pesan sukses atau gagal, dan pengiriman lewat EmailJS |
 | Salin email | Satu klik, dengan konfirmasi |
 | Efek sorot kursor | Hanya aktif saat _hover_ pada perangkat dengan kursor |
+| Pratinjau tautan dan SEO | Meta Open Graph, Twitter Card, URL kanonis, dan data terstruktur JSON-LD (`Person`) di `index.html` |
 
 ## Proyek
 
@@ -155,14 +159,36 @@ Kunci harus sama persis dengan teks di HTML. Teks yang tidak ada di kamus tampil
 
 ### Tema dan warna
 
-Warna aksen dikendalikan variabel `--c` dan `--c-strong` di `styles.css`, yang didefinisikan terpisah untuk tema terang (blok `:root`) dan tema gelap. Mengganti nilai di kedua tempat sudah cukup untuk mengubah aksen di seluruh halaman.
+Tema terang memakai warna aksen `--c` dan `--c-strong` di `styles.css`, yang didefinisikan di blok `:root`. Tema gelap memakai palet tersendiri yang didefinisikan di akhir `styles.css`, dua kali dengan isi yang sama: pada `:root[data-theme="dark"]` dan pada blok `@media (prefers-color-scheme: dark)`. Kalau mengubah warna tema gelap, ubah di keduanya.
+
+| Variabel | Nilai | Fungsi |
+| --- | --- | --- |
+| `--brand` | `#2E2A8C` | Warna dasar indigo untuk cahaya dan grid latar |
+| `--card` | `#08080D` | Latar kartu dan panel |
+| `--card-glow` | `#22204A` | Cahaya indigo di pojok kanan atas kartu |
+| `--chip` | `#171717` | Latar pil dan chip |
+| `--line-strong` | `#3A3C4E` | Border chip, tombol, dan bingkai foto |
+| `--ink` / `--muted` | `#ECEEF7` / `#A2A5B8` | Teks utama dan teks sekunder |
+
+Cahaya indigo dan grid di latar halaman hanya tampil di tema gelap.
 
 ### Foto dan CV
 
 | Berkas | Ketentuan |
 | --- | --- |
-| `Fedy.webp` | Rasio 4:5, sekitar 800 x 1000 piksel |
+| `Fedy.webp` | Rasio 4:5, sekitar 800 x 1000 piksel. Tampil hitam-putih di tema terang dan berwarna asli di tema gelap |
 | `CV. Fedy Fs. Gerana.pdf` | Ganti dengan berkas baru bernama sama |
+
+## SEO dan Pratinjau Tautan
+
+| Elemen | Keterangan |
+| --- | --- |
+| Meta tag di `<head>` | `description`, Open Graph, Twitter Card, dan `canonical` di `index.html` |
+| `og-image.png` | Gambar pratinjau 1200 x 630 piksel untuk WhatsApp, LinkedIn, dan X. Ganti dengan berkas baru bernama sama, lalu unggah juga di **Settings** → **Social preview** pada repository |
+| JSON-LD | Data terstruktur `Person` di `index.html` (nama, jabatan, URL, email, GitHub) |
+| `robots.txt` dan `sitemap.xml` | Untuk *project page* GitHub Pages, crawler hanya membaca `robots.txt` di akar domain. Daftarkan `sitemap.xml` secara manual di Google Search Console |
+
+Kalau alamat situs berubah, perbarui URL di `canonical`, `og:url`, `og:image`, `twitter:image`, JSON-LD, `robots.txt`, dan `sitemap.xml`. Uji pratinjau tautan dengan [opengraph.xyz](https://www.opengraph.xyz/) atau LinkedIn Post Inspector setelah situs dipublikasikan.
 
 ## Struktur Proyek
 
@@ -179,6 +205,11 @@ my-portfolio/
 ├── apple-touch-icon.png
 ├── logo.svg
 ├── logo-512.png
+├── og-image.png               # Gambar pratinjau tautan (1200 x 630)
+├── robots.txt
+├── sitemap.xml
+├── LICENSE
+├── .gitignore
 └── README.md
 ```
 
@@ -193,7 +224,7 @@ Situs ini statis, jadi semua hosting statis bisa dipakai. Tidak ada perintah bui
 | Vercel | Impor repository, *Framework Preset* **Other**, tanpa *build command* |
 | Cloudflare Pages | Hubungkan repository, kosongkan *build command*, *output directory* `/` |
 
-Setelah dipublikasikan, tambahkan domain situs ke **allowed origins** di dashboard EmailJS.
+Setelah dipublikasikan, tambahkan domain situs ke **allowed origins** di dashboard EmailJS, dan perbarui URL di meta tag jika domainnya berbeda dari `fedyfsgerana.github.io`.
 
 ## Aksesibilitas dan Kompatibilitas
 
@@ -219,7 +250,7 @@ Browser yang lebih lama tetap menampilkan konten, tetapi sebagian aksen visual (
 
 ## Lisensi
 
-Proyek ini adalah portofolio pribadi dan **tidak dilisensikan untuk digunakan ulang**. Seluruh kode, desain, foto, dan konten adalah milik Fedy Fs. Gerana. © 2026 Fedy Fs. Gerana. All rights reserved.
+Proyek ini adalah portofolio pribadi dan **tidak dilisensikan untuk digunakan ulang**. Seluruh kode, desain, foto, dan konten adalah milik Fedy Fs. Gerana. © 2026 Fedy Fs. Gerana. All rights reserved. Lihat berkas [LICENSE](LICENSE).
 
 ## Pembuat
 
