@@ -60,21 +60,57 @@ if (window.emailjs) {
   });
   var ids = ["beranda", "tentang", "keahlian", "proyek", "kontak"];
   var links = document.querySelectorAll(".links a,.bnav a");
-  function spy() {
-    var y = window.scrollY + 160,
+  var navbar = document.querySelector(".navwrap");
+  var locked = null,
+    unlockTimer,
+    frame = 0;
+  function mark(cur) {
+    links.forEach(function (a) {
+      if (a.getAttribute("href") === "#" + cur)
+        a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  function current() {
+    var doc = document.documentElement;
+    if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4)
+      return ids[ids.length - 1];
+    var line = (navbar ? navbar.offsetHeight : 0) + 100,
       cur = ids[0];
     ids.forEach(function (id) {
       var el = document.getElementById(id);
-      if (el && el.offsetTop <= y) cur = id;
+      if (el && el.getBoundingClientRect().top <= line) cur = id;
     });
-    links.forEach(function (a) {
-      a.setAttribute(
-        "aria-current",
-        a.getAttribute("href") === "#" + cur ? "true" : "false",
-      );
-    });
+    return cur;
   }
-  addEventListener("scroll", spy, { passive: true });
+  function spy() {
+    frame = 0;
+    if (!locked) mark(current());
+  }
+  function queue() {
+    if (!frame) frame = requestAnimationFrame(spy);
+  }
+  function unlock() {
+    clearTimeout(unlockTimer);
+    locked = null;
+    queue();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    var id = a.getAttribute("href").slice(1);
+    if (ids.indexOf(id) < 0) return;
+    a.addEventListener("click", function () {
+      locked = id;
+      mark(id);
+      clearTimeout(unlockTimer);
+      unlockTimer = setTimeout(unlock, 1000);
+    });
+  });
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("scrollend", function () {
+    if (locked) unlock();
+  });
+  addEventListener("resize", queue);
+  addEventListener("load", queue);
   spy();
 })();
 
