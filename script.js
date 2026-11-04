@@ -11,13 +11,20 @@ if (window.emailjs) {
   emailjs.init(EMAILJS.publicKey);
 }
 
-/* ===== Tema (Sistem / Terang / Gelap) + penanda menu aktif ===== */
+/* ===== Tema (Gelap bawaan / Terang / Sistem) + penanda menu aktif ===== */
 (function () {
   var root = document.documentElement,
-    segs = document.querySelectorAll(".seg button");
+    segs = document.querySelectorAll(".seg button"),
+    themeColor = document.querySelector('meta[name="theme-color"]'),
+    lightQuery = window.matchMedia("(prefers-color-scheme: light)");
+  function paintThemeColor() {
+    var theme = root.dataset.theme || (lightQuery.matches ? "light" : "dark");
+    if (themeColor) themeColor.setAttribute("content", theme === "light" ? "#ffffff" : "#000000");
+  }
   function setMode(mode, save) {
     if (mode === "light" || mode === "dark") root.dataset.theme = mode;
     else root.removeAttribute("data-theme");
+    paintThemeColor();
     segs.forEach(function (b) {
       b.setAttribute(
         "aria-pressed",
@@ -26,17 +33,19 @@ if (window.emailjs) {
     });
     if (save) {
       try {
-        if (mode === "system") localStorage.removeItem("theme");
-        else localStorage.setItem("theme", mode);
+        localStorage.setItem("theme", mode);
       } catch (e) {}
     }
   }
-  var saved = "system";
+  var saved = "dark";
   try {
     var v = localStorage.getItem("theme");
-    if (v === "light" || v === "dark") saved = v;
+    if (v === "light" || v === "dark" || v === "system") saved = v;
   } catch (e) {}
   setMode(saved, false);
+  if (lightQuery.addEventListener) lightQuery.addEventListener("change", paintThemeColor);
+  var year = document.getElementById("yr");
+  if (year) year.textContent = "\u00a9 " + new Date().getFullYear() + " Fedy Fs. Gerana";
   segs.forEach(function (b) {
     b.addEventListener("click", function () {
       setMode(b.dataset.mode, true);

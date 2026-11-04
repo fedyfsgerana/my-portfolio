@@ -45,8 +45,8 @@ window.I18N = (function () {
     "Aplikasi pemesanan ruang meeting dengan persetujuan bertingkat, pengecekan kesiapan ruang, monitoring pemakaian, dan riwayat aktivitas.":
       "A meeting room booking application with multi-level approval, room readiness checks, usage monitoring, and a full activity log.",
     "Coba demo": "Try the demo",
-    "Sketsa peluncur aplikasi dengan deretan ubin aplikasi":
-      "Sketch of an app launcher with a grid of application tiles",
+    "Sketsa portal SSO Launcher dengan sidebar, ringkasan, dan ubin aplikasi":
+      "Sketch of the SSO Launcher portal with a sidebar, summary cards, and application tiles",
     "Sketsa jadwal ruang rapat dengan blok pemesanan":
       "Sketch of a meeting room schedule with booking blocks",
     "Lihat detail": "View details",
@@ -85,6 +85,11 @@ window.I18N = (function () {
     "Ceritakan singkat kebutuhan Anda": "Briefly describe what you need",
     "Fedy Fs. Gerana, kembali ke atas": "Fedy Fs. Gerana, back to top",
     "Tautan cepat": "Quick links",
+    "Navigasi footer": "Footer navigation",
+    Navigasi: "Navigation",
+    Tautan: "Links",
+    "Fullstack Developer di Riau, Indonesia. Membangun aplikasi web untuk kebutuhan bisnis.":
+      "Fullstack Developer based in Riau, Indonesia. Building web applications for business needs.",
     "Navigasi bawah": "Bottom navigation",
   };
   var TD = {
