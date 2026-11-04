@@ -39,17 +39,17 @@ Website portofolio pribadi **Fedy Fs. Gerana**, Fullstack Developer: profil, tek
 
 ## Fitur
 
-| Fitur                        | Deskripsi                                                                                                                                                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tema Gelap / Terang / Sistem | Tema gelap hitam monokrom ala Vercel menjadi bawaan, dengan pilihan terang atau mengikuti perangkat. Pilihan tersimpan di `localStorage` (`theme`) dan diterapkan tanpa kedip saat halaman dimuat |
-| Dua bahasa (ID / EN)         | Seluruh halaman bisa diterjemahkan. Pilihan tersimpan (`lang`), kamus ada di `i18n.js`                                                                                                            |
-| Layout bento responsif       | Hero, Tentang, Teknologi, Proyek, dan Kontak. Diuji dari lebar 320 px sampai 2560 px                                                                                                              |
-| Navigasi                     | Menu atas yang menempel, menu bawah khusus ponsel, dan penanda bagian aktif saat menggulir                                                                                                        |
-| Kartu proyek                 | Tombol **Coba demo** dan **GitHub** per proyek. Susunan kartu menyesuaikan jumlahnya secara otomatis                                                                                              |
-| Form kontak                  | Validasi per kolom, status mengirim, pesan sukses atau gagal, dan pengiriman lewat EmailJS                                                                                                        |
-| Salin email                  | Satu klik, dengan konfirmasi                                                                                                                                                                      |
-| Efek sorot kursor            | Hanya aktif saat _hover_ pada perangkat dengan kursor                                                                                                                                             |
-| Pratinjau tautan dan SEO     | Meta Open Graph, Twitter Card, URL kanonis, dan data terstruktur JSON-LD (`Person`) di `index.html`                                                                                               |
+| Fitur                        | Deskripsi                                                                                                                                                                                           |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tema Sistem / Terang / Gelap | Bawaannya mengikuti pengaturan perangkat, dengan tema gelap hitam monokrom ala Vercel dan tema terang. Pilihan tersimpan di `localStorage` (`theme`) dan diterapkan tanpa kedip saat halaman dimuat |
+| Dua bahasa (EN / ID)         | Bahasa Inggris menjadi bawaan, dengan pilihan Bahasa Indonesia. Pilihan tersimpan (`lang`), kamus ada di `i18n.js`                                                                                  |
+| Layout bento responsif       | Hero, Tentang, Teknologi, Proyek, dan Kontak. Diuji dari lebar 320 px sampai 2560 px                                                                                                                |
+| Navigasi                     | Menu atas yang menempel, menu bawah khusus ponsel, dan penanda bagian aktif saat menggulir                                                                                                          |
+| Kartu proyek                 | Tombol **Coba demo** dan **GitHub** per proyek. Susunan kartu menyesuaikan jumlahnya secara otomatis                                                                                                |
+| Form kontak                  | Validasi per kolom, status mengirim, pesan sukses atau gagal, dan pengiriman lewat EmailJS                                                                                                          |
+| Salin email                  | Satu klik, dengan konfirmasi                                                                                                                                                                        |
+| Efek sorot kursor            | Hanya aktif saat _hover_ pada perangkat dengan kursor                                                                                                                                               |
+| Pratinjau tautan dan SEO     | Meta Open Graph, Twitter Card, URL kanonis, dan data terstruktur JSON-LD (`Person`) di `index.html`                                                                                                 |
 
 ## Proyek
 

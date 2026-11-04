@@ -54,6 +54,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:720px;z-index:-1;po
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;
   -webkit-mask-image:radial-gradient(70% 80% at 50% 0%,#000 10%,transparent 75%);mask-image:radial-gradient(70% 80% at 50% 0%,#000 10%,transparent 75%)}
 [hidden]{display:none!important}
+.i18n-pending body{visibility:hidden}
 ::selection{background:var(--ink);color:var(--bg)}
 img,svg{display:block;max-width:100%}
 a{color:inherit}

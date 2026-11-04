@@ -11,7 +11,7 @@ if (window.emailjs) {
   emailjs.init(EMAILJS.publicKey);
 }
 
-/* ===== Tema (Gelap bawaan / Terang / Sistem) + penanda menu aktif ===== */
+/* ===== Tema (Sistem bawaan / Terang / Gelap) + penanda menu aktif ===== */
 (function () {
   var root = document.documentElement,
     segs = document.querySelectorAll(".seg button"),
@@ -37,7 +37,7 @@ if (window.emailjs) {
       } catch (e) {}
     }
   }
-  var saved = "dark";
+  var saved = "system";
   try {
     var v = localStorage.getItem("theme");
     if (v === "light" || v === "dark" || v === "system") saved = v;
@@ -124,6 +124,7 @@ if (window.emailjs) {
       o.el.setAttribute(o.a, l === "en" ? o.en : o.orig);
     });
     document.documentElement.lang = l;
+    document.documentElement.classList.remove("i18n-pending");
     document.querySelectorAll(".lang button").forEach(function (b) {
       b.setAttribute("aria-pressed", b.dataset.lang === l ? "true" : "false");
     });
@@ -139,7 +140,7 @@ if (window.emailjs) {
       setLang(b.dataset.lang, true);
     });
   });
-  var saved = "id";
+  var saved = "en";
   try {
     var sv = localStorage.getItem("lang");
     if (sv === "en" || sv === "id") saved = sv;
