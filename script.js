@@ -19,7 +19,11 @@ if (window.emailjs) {
     lightQuery = window.matchMedia("(prefers-color-scheme: light)");
   function paintThemeColor() {
     var theme = root.dataset.theme || (lightQuery.matches ? "light" : "dark");
-    if (themeColor) themeColor.setAttribute("content", theme === "light" ? "#ffffff" : "#000000");
+    if (themeColor)
+      themeColor.setAttribute(
+        "content",
+        theme === "light" ? "#ffffff" : "#000000",
+      );
   }
   function setMode(mode, save) {
     if (mode === "light" || mode === "dark") root.dataset.theme = mode;
@@ -43,9 +47,12 @@ if (window.emailjs) {
     if (v === "light" || v === "dark" || v === "system") saved = v;
   } catch (e) {}
   setMode(saved, false);
-  if (lightQuery.addEventListener) lightQuery.addEventListener("change", paintThemeColor);
+  if (lightQuery.addEventListener)
+    lightQuery.addEventListener("change", paintThemeColor);
   var year = document.getElementById("yr");
-  if (year) year.textContent = "\u00a9 " + new Date().getFullYear() + " Fedy Fs. Gerana";
+  if (year)
+    year.textContent =
+      "\u00a9 " + new Date().getFullYear() + " Fedy Fs. Gerana";
   segs.forEach(function (b) {
     b.addEventListener("click", function () {
       setMode(b.dataset.mode, true);
@@ -231,6 +238,7 @@ if (window.emailjs) {
       send.children[0].hidden = false;
       send.children[1].hidden = true;
       if (ok) {
+        sent.style.minHeight = form.offsetHeight + "px";
         form.reset();
         form.hidden = true;
         sent.hidden = false;
