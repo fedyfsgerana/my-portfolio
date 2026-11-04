@@ -96,6 +96,11 @@ section{scroll-margin-top:76px}
 .btn-ghost:hover{border-color:var(--muted);background:var(--hover)}
 .btn-sm{min-height:32px;padding:0 14px;font-size:13px}
 .btn[disabled]{opacity:.6;cursor:progress}
+.btn .i,.plink .i{flex:none;width:15px;height:15px}
+.plink .i{width:14px;height:14px}
+.i-right,.i-out{transition:transform .2s}
+.btn:hover .i-right{transform:translateX(3px)}
+.plink:hover .i-out{transform:translate(2px,-2px)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chips li{padding:3px 10px;border:1px solid var(--chip-line);border-radius:999px;background:var(--chip);color:var(--chip-text);font-size:12.5px;line-height:1.55}
 
@@ -167,7 +172,7 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
 .card .chips{margin-top:14px}
 .card .chips li{font-family:var(--mono);font-size:12px}
 .plinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
-.plink{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink);font:500 13px var(--sans);text-decoration:none;transition:background .15s,border-color .15s}
+.plink{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink);font:500 13px var(--sans);text-decoration:none;transition:background .15s,border-color .15s}
 .plink:hover{border-color:var(--muted);background:var(--hover)}
 .plink[data-kind="preview"]{border-color:var(--accent);background:var(--accent);color:var(--on-accent)}
 .plink[data-kind="preview"]:hover{background:var(--accent-hover)}
