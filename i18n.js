@@ -47,8 +47,8 @@ window.I18N = (function () {
     "Coba demo": "Try the demo",
     "Sketsa portal SSO Launcher dengan sidebar, ringkasan, dan ubin aplikasi":
       "Sketch of the SSO Launcher portal with a sidebar, summary cards, and application tiles",
-    "Sketsa jadwal ruang rapat dengan blok pemesanan":
-      "Sketch of a meeting room schedule with booking blocks",
+    "Sketsa Meeting Room Booking dengan status ruang dan jadwal pemesanan":
+      "Sketch of Meeting Room Booking with room status cards and a booking schedule",
     "Lihat detail": "View details",
     "[Nama proyek]": "[Project name]",
     "[Isi stack]": "[Add stack]",
