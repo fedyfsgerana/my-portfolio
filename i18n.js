@@ -44,6 +44,10 @@ window.I18N = (function () {
       "A single sign-on portal and application launcher with group-based access, cross-application sessions, and a complete audit trail.",
     "Aplikasi pemesanan ruang meeting dengan persetujuan bertingkat, pengecekan kesiapan ruang, monitoring pemakaian, dan riwayat aktivitas.":
       "A meeting room booking application with multi-level approval, room readiness checks, usage monitoring, and a full activity log.",
+    "Platform belajar online dengan pengelolaan kursus, video pembelajaran, quiz dan penilaian otomatis, pelacakan progres siswa, notifikasi, serta pembuat soal berbasis AI.":
+      "Online learning platform with course management, video lessons, auto-graded quizzes, student progress tracking, notifications, and an AI quiz generator.",
+    "Sketsa SkillPath dengan dashboard kursus, statistik, dan daftar kursus":
+      "Sketch of SkillPath with a course dashboard, statistics, and a course list",
     "Coba demo": "Try the demo",
     "Sketsa portal SSO Launcher dengan sidebar, ringkasan, dan ubin aplikasi":
       "Sketch of the SSO Launcher portal with a sidebar, summary cards, and application tiles",
