@@ -55,10 +55,11 @@ Website portofolio pribadi **Fedy Fs. Gerana**, Fullstack Developer: profil, tek
 
 Proyek yang ditampilkan di website ini, masing-masing dengan demo interaktif dan kode sumber publik:
 
-| Proyek               | Deskripsi                                                                                                           | Stack                                    | Tautan                                                                                                                        |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| SSO Launcher         | Portal login tunggal (SSO) dan peluncur aplikasi dengan akses berbasis grup, sesi lintas aplikasi, dan audit trail  | .NET 10, Next.js, TypeScript, PostgreSQL | [Demo](https://fedyfsgerana.github.io/sso-launcher/) · [GitHub](https://github.com/fedyfsgerana/sso-launcher)                 |
-| Meeting Room Booking | Pemesanan ruang meeting dengan persetujuan bertingkat, pengecekan kesiapan ruang, monitoring, dan riwayat aktivitas | Next.js, React, TypeScript, PostgreSQL   | [Demo](https://fedyfsgerana.github.io/meeting-room-booking/) · [GitHub](https://github.com/fedyfsgerana/meeting-room-booking) |
+| Proyek               | Deskripsi                                                                                                                                     | Stack                                    | Tautan                                                                                                                        |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| SSO Launcher         | Portal login tunggal (SSO) dan peluncur aplikasi dengan akses berbasis grup, sesi lintas aplikasi, dan audit trail                            | .NET 10, Next.js, TypeScript, PostgreSQL | [Demo](https://fedyfsgerana.github.io/sso-launcher/) · [GitHub](https://github.com/fedyfsgerana/sso-launcher)                 |
+| Meeting Room Booking | Pemesanan ruang meeting dengan persetujuan bertingkat, pengecekan kesiapan ruang, monitoring, dan riwayat aktivitas                           | Next.js, React, TypeScript, PostgreSQL   | [Demo](https://fedyfsgerana.github.io/meeting-room-booking/) · [GitHub](https://github.com/fedyfsgerana/meeting-room-booking) |
+| SkillPath            | Platform belajar online dengan kelola kursus, video pembelajaran, quiz dan penilaian otomatis, progres siswa, notifikasi, dan pembuat soal AI | NestJS, Nuxt, TypeScript, PostgreSQL     | [Demo](https://fedyfsgerana.github.io/skillpath/) · [GitHub](https://github.com/fedyfsgerana/skillpath)                       |
 
 ## Tech Stack
 
