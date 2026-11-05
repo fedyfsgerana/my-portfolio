@@ -130,17 +130,26 @@ if (window.emailjs) {
   while ((n = w.nextNode())) {
     var p = n.parentElement;
     if (!p || p.tagName === "SCRIPT" || p.tagName === "STYLE") continue;
-    var s = n.textContent.trim();
+    var raw = n.textContent,
+      s = raw.replace(/\s+/g, " ").trim();
     if (!s) continue;
     var en = p.tagName === "DT" && TD[s] ? TD[s] : T[s];
-    if (en) items.push({ n: n, orig: n.textContent, s: s, en: en });
+    if (en)
+      items.push({
+        n: n,
+        orig: raw,
+        en: en,
+        pre: raw.match(/^\s*/)[0],
+        post: raw.match(/\s*$/)[0],
+      });
   }
   document
     .querySelectorAll("[placeholder],[aria-label],[title],[alt]")
     .forEach(function (el) {
       ["placeholder", "aria-label", "title", "alt"].forEach(function (a) {
-        var v = el.getAttribute(a);
-        if (v && T[v]) attrs.push({ el: el, a: a, orig: v, en: T[v] });
+        var v = el.getAttribute(a),
+          k = v && v.replace(/\s+/g, " ").trim();
+        if (k && T[k]) attrs.push({ el: el, a: a, orig: v, en: T[k] });
       });
     });
   function showErrs() {
@@ -161,7 +170,7 @@ if (window.emailjs) {
   function setLang(l, save) {
     lang = l;
     items.forEach(function (o) {
-      o.n.textContent = l === "en" ? o.orig.replace(o.s, o.en) : o.orig;
+      o.n.textContent = l === "en" ? o.pre + o.en + o.post : o.orig;
     });
     attrs.forEach(function (o) {
       o.el.setAttribute(o.a, l === "en" ? o.en : o.orig);

@@ -160,7 +160,7 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
 .rl h3{flex:1;font-family:var(--display);font-weight:600;font-size:1rem;letter-spacing:-.02em}
 .count{padding:1px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font:500 12px var(--mono)}
 
-.pgrid2{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.pgrid2{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:var(--gap);align-items:stretch}
 .card{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--card);transition:border-color .2s}
 .card:hover{border-color:var(--line-strong)}
 .art{overflow:hidden;padding:18px 18px 0;border-bottom:1px solid var(--line);background:radial-gradient(90% 90% at 50% 0%,var(--glow),transparent 70%),var(--card-2)}
@@ -177,10 +177,6 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
 .plink[data-kind="preview"]{border-color:var(--accent);background:var(--accent);color:var(--on-accent)}
 .plink[data-kind="preview"]:hover{background:var(--accent-hover)}
 .plink[aria-disabled="true"]{opacity:.45;border-style:dashed;background:transparent;color:var(--ink);cursor:not-allowed;pointer-events:none}
-.pgrid2>.card:first-child:nth-last-child(odd){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,13fr) minmax(0,10fr)}
-.pgrid2>.card:first-child:nth-last-child(odd) .art{display:flex;align-items:flex-end;padding:24px 24px 0;border-bottom:0;border-right:1px solid var(--line)}
-.pgrid2>.card:first-child:nth-last-child(odd) .body{justify-content:center;padding:28px}
-.pgrid2>.card:first-child:nth-last-child(odd) h3{font-size:1.45rem}
 
 .contact{padding:72px 0 0}
 .cpanel{position:relative;overflow:hidden;padding:44px;border:1px solid var(--line);border-radius:var(--r-lg);background:radial-gradient(60% 100% at 100% 0%,var(--glow),transparent 70%),var(--card)}
@@ -295,10 +291,6 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
   .row{grid-template-columns:1fr;gap:10px;padding:14px 16px}
   .chips li{padding:3px 9px;font-size:12px}
   .pgrid2{grid-template-columns:1fr;margin-top:18px}
-  .pgrid2>.card:first-child:nth-last-child(odd){grid-template-columns:1fr}
-  .pgrid2>.card:first-child:nth-last-child(odd) .art{padding:12px 12px 0;border-right:0;border-bottom:1px solid var(--line)}
-  .pgrid2>.card:first-child:nth-last-child(odd) .body{padding:16px}
-  .pgrid2>.card:first-child:nth-last-child(odd) h3{font-size:1.05rem}
   .art{padding:12px 12px 0}
   .card .body{padding:16px 16px 18px}
   .card .body p{font-size:13.5px}

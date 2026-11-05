@@ -127,12 +127,9 @@ Template EmailJS membaca empat variabel. Atribut `name` pada form **tidak boleh 
 
 Kartu proyek ada di `index.html`, di dalam `<div class="pgrid2">` pada `<section id="proyek">`. Untuk menambah proyek, salin satu blok `<article class="card spot"> ... </article>`, lalu ubah judul, deskripsi, chip stack, tahun, dan tautannya.
 
-| Jumlah kartu          | Tampilan di desktop dan tablet                                         |
-| --------------------- | ---------------------------------------------------------------------- |
-| Genap (2, 4, ...)     | Semua kartu sama lebar, dua kolom                                      |
-| Ganjil (1, 3, 5, ...) | Kartu pertama menjadi proyek unggulan selebar penuh, sisanya dua kolom |
+Semua kartu berukuran sama. Grid menyesuaikan lebar layar secara otomatis: tiga kolom di desktop, dua kolom di tablet, dan satu kolom di ponsel.
 
-Di ponsel, semua kartu tersusun satu kolom. Kalau kartu disalin lengkap dengan ilustrasi `<svg>`, ubah `id` gradient-nya supaya unik, atau ganti ilustrasi dengan gambar.
+Kalau kartu disalin lengkap dengan ilustrasi `<svg>`, ubah `id` gradient-nya supaya unik, atau ganti ilustrasi dengan gambar.
 
 Tautan diisi lewat `href` pada tombol di dalam kartu:
 
