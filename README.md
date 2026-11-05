@@ -129,6 +129,8 @@ Kartu proyek ada di `index.html`, di dalam `<div class="pgrid2">` pada `<section
 
 Semua kartu berukuran sama. Grid menyesuaikan lebar layar secara otomatis: tiga kolom di desktop, dua kolom di tablet, dan satu kolom di ponsel.
 
+Chip teknologi di kartu proyek memakai ikon dan warna resmi lewat atribut `data-tech`, misalnya `<li data-tech="react"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-react" /></svg>React</li>`. Teknologi yang tersedia: `dotnet`, `nextjs`, `typescript`, `postgresql`, `react`, `nestjs`, `nuxt`, `vue`. Ikonnya ada di sprite SVG di awal `<body>`, dan warnanya diatur di `styles.css`. Chip tanpa `data-tech` tampil polos.
+
 Kalau kartu disalin lengkap dengan ilustrasi `<svg>`, ubah `id` gradient-nya supaya unik, atau ganti ilustrasi dengan gambar.
 
 Tautan diisi lewat `href` pada tombol di dalam kartu:

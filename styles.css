@@ -171,6 +171,25 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
 .card .body p{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.55}
 .card .chips{margin-top:14px}
 .card .chips li{font-family:var(--mono);font-size:12px}
+/* Chip teknologi pada kartu proyek: ikon dan warna resmi, warna menyesuaikan tema */
+.chips li[data-tech]{display:inline-flex;align-items:center;gap:6px;border-color:color-mix(in srgb,var(--tc) 32%,var(--chip-line));background:color-mix(in srgb,var(--tc) 9%,var(--chip))}
+.chips li .ti{flex:none;width:14px;height:14px;fill:var(--tc)}
+.chips li[data-tech="dotnet"]{--tc:#8C6BF0}
+.chips li[data-tech="nextjs"]{--tc:var(--ink)}
+.chips li[data-tech="typescript"]{--tc:#3B8BDA}
+.chips li[data-tech="postgresql"]{--tc:#5B84F0}
+.chips li[data-tech="react"]{--tc:#61DAFB}
+.chips li[data-tech="nestjs"]{--tc:#E0234E}
+.chips li[data-tech="nuxt"]{--tc:#00DC82}
+.chips li[data-tech="vue"]{--tc:#4FC08D}
+:root[data-theme="light"] .chips li[data-tech="dotnet"]{--tc:#512BD4}
+:root[data-theme="light"] .chips li[data-tech="typescript"]{--tc:#3178C6}
+:root[data-theme="light"] .chips li[data-tech="postgresql"]{--tc:#4169E1}
+:root[data-theme="light"] .chips li[data-tech="react"]{--tc:#149ECA}
+:root[data-theme="light"] .chips li[data-tech="nestjs"]{--tc:#E0234E}
+:root[data-theme="light"] .chips li[data-tech="nuxt"]{--tc:#00A86B}
+:root[data-theme="light"] .chips li[data-tech="vue"]{--tc:#3AA876}
+@media (prefers-color-scheme:light){:root:not([data-theme]) .chips li[data-tech="dotnet"]{--tc:#512BD4}:root:not([data-theme]) .chips li[data-tech="typescript"]{--tc:#3178C6}:root:not([data-theme]) .chips li[data-tech="postgresql"]{--tc:#4169E1}:root:not([data-theme]) .chips li[data-tech="react"]{--tc:#149ECA}:root:not([data-theme]) .chips li[data-tech="nestjs"]{--tc:#E0234E}:root:not([data-theme]) .chips li[data-tech="nuxt"]{--tc:#00A86B}:root:not([data-theme]) .chips li[data-tech="vue"]{--tc:#3AA876}}
 .plinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
 .plink{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink);font:500 13px var(--sans);text-decoration:none;transition:background .15s,border-color .15s}
 .plink:hover{border-color:var(--muted);background:var(--hover)}
