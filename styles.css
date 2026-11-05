@@ -174,22 +174,61 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
 /* Chip teknologi pada kartu proyek: ikon dan warna resmi, warna menyesuaikan tema */
 .chips li[data-tech]{display:inline-flex;align-items:center;gap:6px;border-color:color-mix(in srgb,var(--tc) 32%,var(--chip-line));background:color-mix(in srgb,var(--tc) 9%,var(--chip))}
 .chips li .ti{flex:none;width:14px;height:14px;fill:var(--tc)}
-.chips li[data-tech="dotnet"]{--tc:#8C6BF0}
-.chips li[data-tech="nextjs"]{--tc:var(--ink)}
-.chips li[data-tech="typescript"]{--tc:#3B8BDA}
-.chips li[data-tech="postgresql"]{--tc:#5B84F0}
-.chips li[data-tech="react"]{--tc:#61DAFB}
-.chips li[data-tech="nestjs"]{--tc:#E0234E}
-.chips li[data-tech="nuxt"]{--tc:#00DC82}
-.chips li[data-tech="vue"]{--tc:#4FC08D}
-:root[data-theme="light"] .chips li[data-tech="dotnet"]{--tc:#512BD4}
-:root[data-theme="light"] .chips li[data-tech="typescript"]{--tc:#3178C6}
-:root[data-theme="light"] .chips li[data-tech="postgresql"]{--tc:#4169E1}
-:root[data-theme="light"] .chips li[data-tech="react"]{--tc:#149ECA}
-:root[data-theme="light"] .chips li[data-tech="nestjs"]{--tc:#E0234E}
-:root[data-theme="light"] .chips li[data-tech="nuxt"]{--tc:#00A86B}
-:root[data-theme="light"] .chips li[data-tech="vue"]{--tc:#3AA876}
-@media (prefers-color-scheme:light){:root:not([data-theme]) .chips li[data-tech="dotnet"]{--tc:#512BD4}:root:not([data-theme]) .chips li[data-tech="typescript"]{--tc:#3178C6}:root:not([data-theme]) .chips li[data-tech="postgresql"]{--tc:#4169E1}:root:not([data-theme]) .chips li[data-tech="react"]{--tc:#149ECA}:root:not([data-theme]) .chips li[data-tech="nestjs"]{--tc:#E0234E}:root:not([data-theme]) .chips li[data-tech="nuxt"]{--tc:#00A86B}:root:not([data-theme]) .chips li[data-tech="vue"]{--tc:#3AA876}}
+[data-tech="dotnet"]{--tc:#8C6BF0}
+[data-tech="nextjs"]{--tc:var(--ink)}
+[data-tech="typescript"]{--tc:#3B8BDA}
+[data-tech="postgresql"]{--tc:#5B84F0}
+[data-tech="react"]{--tc:#61DAFB}
+[data-tech="nestjs"]{--tc:#E0234E}
+[data-tech="nuxt"]{--tc:#00DC82}
+[data-tech="vue"]{--tc:#4FC08D}
+:root[data-theme="light"] [data-tech="dotnet"]{--tc:#512BD4}
+:root[data-theme="light"] [data-tech="typescript"]{--tc:#3178C6}
+:root[data-theme="light"] [data-tech="postgresql"]{--tc:#4169E1}
+:root[data-theme="light"] [data-tech="react"]{--tc:#149ECA}
+:root[data-theme="light"] [data-tech="nestjs"]{--tc:#E0234E}
+:root[data-theme="light"] [data-tech="nuxt"]{--tc:#00A86B}
+:root[data-theme="light"] [data-tech="vue"]{--tc:#3AA876}
+@media (prefers-color-scheme:light){:root:not([data-theme]) [data-tech="dotnet"]{--tc:#512BD4}:root:not([data-theme]) [data-tech="typescript"]{--tc:#3178C6}:root:not([data-theme]) [data-tech="postgresql"]{--tc:#4169E1}:root:not([data-theme]) [data-tech="react"]{--tc:#149ECA}:root:not([data-theme]) [data-tech="nestjs"]{--tc:#E0234E}:root:not([data-theme]) [data-tech="nuxt"]{--tc:#00A86B}:root:not([data-theme]) [data-tech="vue"]{--tc:#3AA876}}
+[data-tech="tailwind"]{--tc:#06B6D4}
+[data-tech="pinia"]{--tc:#FFD859}
+[data-tech="zustand"]{--tc:#C9A27E}
+[data-tech="csharp"]{--tc:#B678D8}
+[data-tech="express"]{--tc:var(--ink)}
+[data-tech="laravel"]{--tc:#FF2D20}
+[data-tech="codeigniter"]{--tc:#EF4223}
+[data-tech="jwt"]{--tc:var(--ink)}
+[data-tech="prisma"]{--tc:#94A3B8}
+[data-tech="redis"]{--tc:#FF4438}
+[data-tech="git"]{--tc:#F05032}
+[data-tech="docker"]{--tc:#2496ED}
+[data-tech="swagger"]{--tc:#85EA2D}
+[data-tech="scalar"]{--tc:var(--ink)}
+[data-tech="jest"]{--tc:#E0455A}
+[data-tech="eslint"]{--tc:#8A7CFF}
+[data-tech="prettier"]{--tc:#F7B93E}
+[data-tech="sqlserver"]{--tc:#E5504E}
+[data-tech="playwright"]{--tc:#45BA4B}
+:root[data-theme="light"] [data-tech="tailwind"]{--tc:#0891B2}
+:root[data-theme="light"] [data-tech="pinia"]{--tc:#C99A00}
+:root[data-theme="light"] [data-tech="zustand"]{--tc:#8B5E3C}
+:root[data-theme="light"] [data-tech="csharp"]{--tc:#68217A}
+:root[data-theme="light"] [data-tech="laravel"]{--tc:#FF2D20}
+:root[data-theme="light"] [data-tech="codeigniter"]{--tc:#EF4223}
+:root[data-theme="light"] [data-tech="prisma"]{--tc:#2D3748}
+:root[data-theme="light"] [data-tech="redis"]{--tc:#DC382D}
+:root[data-theme="light"] [data-tech="git"]{--tc:#F05032}
+:root[data-theme="light"] [data-tech="docker"]{--tc:#2496ED}
+:root[data-theme="light"] [data-tech="swagger"]{--tc:#5AA400}
+:root[data-theme="light"] [data-tech="jest"]{--tc:#C21325}
+:root[data-theme="light"] [data-tech="eslint"]{--tc:#4B32C3}
+:root[data-theme="light"] [data-tech="prettier"]{--tc:#C48A00}
+:root[data-theme="light"] [data-tech="sqlserver"]{--tc:#CC2927}
+:root[data-theme="light"] [data-tech="playwright"]{--tc:#2EAD33}
+@media (prefers-color-scheme:light){:root:not([data-theme]) [data-tech="tailwind"]{--tc:#0891B2}:root:not([data-theme]) [data-tech="pinia"]{--tc:#C99A00}:root:not([data-theme]) [data-tech="zustand"]{--tc:#8B5E3C}:root:not([data-theme]) [data-tech="csharp"]{--tc:#68217A}:root:not([data-theme]) [data-tech="laravel"]{--tc:#FF2D20}:root:not([data-theme]) [data-tech="codeigniter"]{--tc:#EF4223}:root:not([data-theme]) [data-tech="prisma"]{--tc:#2D3748}:root:not([data-theme]) [data-tech="redis"]{--tc:#DC382D}:root:not([data-theme]) [data-tech="git"]{--tc:#F05032}:root:not([data-theme]) [data-tech="docker"]{--tc:#2496ED}:root:not([data-theme]) [data-tech="swagger"]{--tc:#5AA400}:root:not([data-theme]) [data-tech="jest"]{--tc:#C21325}:root:not([data-theme]) [data-tech="eslint"]{--tc:#4B32C3}:root:not([data-theme]) [data-tech="prettier"]{--tc:#C48A00}:root:not([data-theme]) [data-tech="sqlserver"]{--tc:#CC2927}:root:not([data-theme]) [data-tech="playwright"]{--tc:#2EAD33}}
+/* Ikon teknologi pada kartu "Utama" */
+.ico[data-tech]{border-color:color-mix(in srgb,var(--tc) 32%,var(--chip-line));background:color-mix(in srgb,var(--tc) 9%,var(--card-2))}
+.ico[data-tech] .ti{width:18px;height:18px;fill:var(--tc)}
 .plinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
 .plink{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;background:var(--card);color:var(--ink);font:500 13px var(--sans);text-decoration:none;transition:background .15s,border-color .15s}
 .plink:hover{border-color:var(--muted);background:var(--hover)}
@@ -304,7 +343,7 @@ h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.8vw,2.25r
   .panel.cells{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cell{gap:10px;padding:12px}
   .cell .ico,.rl .ico{width:30px;height:30px;border-radius:8px}
-  .cell .ico svg,.rl .ico svg{width:15px;height:15px}
+  .cell .ico svg,.rl .ico svg,.ico[data-tech] .ti{width:15px;height:15px}
   .cell strong{font-size:.92rem;white-space:nowrap}
   .cat{margin-top:0;font-size:12.5px}
   .row{grid-template-columns:1fr;gap:10px;padding:14px 16px}
